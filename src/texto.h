@@ -2,6 +2,7 @@
 #define texto.h
  
 typedef void* (Texto);
+typedef void* (Estilo);
 
 /// @brief Cria um texto com as informaçoes relacionadas a cada um dos parametros.
 /// @param id É o identificador, para saber como se referir a esse texto em especifico.
@@ -68,4 +69,44 @@ char* get_corp_texto (Texto t);
 /// @param t É um ponteiro que aponta para o texto.
 /// @return Retorna qual é a posição relativa do texto.
 char* get_a_texto (Texto t);
+
+// TADSs relacionados ao estilo do texto:
+
+/// @brief Cria um estilo que sera atribuido a um texto.
+/// @param family familia da fonte, podendo ser, como opção, alguma das seguintes: (sans/sans-serif, serif, cursive).
+/// @param weight expessura da fonte, podendo ser, como opção, alguma das seguintes: ( n: normal, b: bold, b+: bolder,l: | lighter).
+/// @param size tamanho da fonte.
+/// @return Retorna o estilo criado com os parâmetros informados.
+Estilo cria_estilo(char* family, char* weight, char* size);
+
+/// @brief O char ponteiro passado por parâmetro na função, torna-se a familia da fonte.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @param family É a nova familia da fonte.
+void setFamily(Estilo ts, char *family); 
+
+/// @brief Informam qual é a familia da fonte do texto.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @return Retorna a familia da fonte.
+char* getFamily(Estilo ts);
+
+/// @brief O char ponteiro passado por parâmetro na função, torna-se a expessura da fonte.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @param weight É a nova expessura da fonte.
+void setWeight(Estilo ts, char *weight);
+
+/// @brief Informam qual é a expessura da fonte do texto.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @return Retorna a expessura da fonte.
+char* getWeight(Estilo ts);
+
+/// @brief O char ponteiro passado por parâmetro na função, torna-se o tamanho da fonte.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @param size É o novo tamanho da fonte
+void setSize(Estilo ts, char *size);
+
+/// @brief Informam qual é o tamanho da fonte do texto.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @return Retorna o tamanho da fonte.
+char* getSize(Estilo ts);
+
 #endif
