@@ -1,6 +1,6 @@
 #ifndef circulo.h
 #define circulo.h
- 
+
 typedef void* (Circulo);
 
 /// @brief Cria um circulo com os parâmetros informados.
@@ -79,4 +79,5 @@ char* get_corp_circulo (Circulo c);
 /// @param c É um ponteiro que aponta para o circulo.
 /// @return Retorna um numero real float, correspondente ao tamanho dessa area.
 double calcula_area_circulo (Circulo c);
+
 #endif
