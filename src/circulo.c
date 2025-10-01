@@ -1,7 +1,10 @@
 #include "circulo.h"
+#include <stdio.h>
 #include <stdbool.h>
 
-typedef struct {
+#define PI = 3.14159
+
+typedef struct circulo {
     int id;
     double x, y, r;
     char* corb, corp;
@@ -15,9 +18,9 @@ Circulo cria_circulo (int id, double x, double y, double r, char* corb, char* co
     c->r = r;
     c->corb = (char*) malloc(strlen(corb)+1);
     if (c->corb == NULL) {
-        printf("Erro na alocação de memória para a cor de borda do circulo %d.", c->id);
-        exit(1);
-    }
+            printf("Erro na alocação de memória para a cor de borda do circulo %d.", c->id);
+            exit(1);
+        }
     strcpy(c->corb, corb);
     c->corp = (char *)malloc (strlen(corp)+1);
     if (c->corp == NULL) {
@@ -27,4 +30,56 @@ Circulo cria_circulo (int id, double x, double y, double r, char* corb, char* co
     strcpy(c->corp, corp);
 
     return ((circulo*)c);
+}
+
+void set_id_circulo (Circulo c, int id) {
+    ((circulo*)c)->id = id;
+}
+
+int get_id_circulo (Circulo c) {
+    return ((circulo*)c)->id;
+}
+
+void set_x_circulo (Circulo c, double x) {
+    ((circulo*)c)->x = x;
+}
+
+double get_x_circulo (Circulo c) {
+    return ((circulo*)c)->id;
+}
+
+void set_y_circulo (Circulo c, double y) {
+    ((circulo*)c)->y = y;
+}
+
+double get_y_circulo (Circulo c) {
+    return ((circulo*)c)->y;
+}
+
+void set_r_circulo (Circulo c, double r) {
+    ((circulo*)c)->r = r;
+}
+
+double get_r_circulo (Circulo c) {
+    return ((circulo*)c)->r;
+}
+
+void set_corb_circulo (Circulo c, char* corb) {
+    strcpy (((circulo*)c)->corb, corb);
+}
+
+char* get_corb_circulo (Circulo c) {
+    return ((circulo*)c)->corb;
+}
+
+void set_corp_circulo (Circulo c, char* corp) {
+    strcpy (((circulo*)c)->corp, corp);
+}
+
+int get_corp_circulo (Circulo c) {
+    return ((circulo*)c)->corp;
+}
+
+double calcula_area_circulo (Circulo c) {
+    return 2*PI*((circulo*)c)->r;
 }

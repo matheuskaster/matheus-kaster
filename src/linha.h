@@ -31,7 +31,7 @@ void set_x1_linha (Linha l, double x1);
 /// @brief Informa qual é a menor das coordenadas no eixo x, que indica uma das extremidades da linha.
 /// @param l É um ponteiro que aponta para a linha.
 /// @return Retorna qual é menor coordenada do eixo x da linha.
-int get_x1_linha (Linha l);
+double get_x1_linha (Linha l);
 
 /// @brief O numero double passado por parametro pela funçao, torna-se o novo y1 da linha, que é o que indica onde esta localizado o canto inferior esquerdo da linha, no eixo y.
 /// @param l É um ponteiro que aponta para a linha.
@@ -41,7 +41,7 @@ void set_y1_linha (Linha l, double y1);
 /// @brief Informa qual é a menor das coordenadas no eixo y, que indica uma das extremidades da linha.
 /// @param l É um ponteiro que aponta para a linha.
 /// @return Retorna qual é menor coordenada no eixo y da linha.
-int get_y1_linha (Linha l);
+double get_y1_linha (Linha l);
 
 /// @brief O numero double passado por parametro pela funçao, torna-se o novo x2 da linha, que é o que indica onde esta localizado o canto superior direito da linha, no eixo x.
 /// @param l É um ponteiro que aponta para a linha.
@@ -51,7 +51,7 @@ void set_x2_linha (Linha l, double x2);
 /// @brief Informa qual é a maior das coordenadas no eixo x, que indica uma das extremidades da linha.
 /// @param l É um ponteiro que aponta para a linha.
 /// @return Retorna o tamanho do raio da linha.
-int get_x2_linha (Linha l);
+double get_x2_linha (Linha l);
 
 /// @brief O numero double passado por parametro pela funçao, torna-se o novo y2 da linha, que é o que indica onde esta localizado o canto superior direito da linha, no eixo y.
 /// @param l É um ponteiro que aponta para a linha.
@@ -61,7 +61,7 @@ void set_y2_linha (Linha l, double y2);
 /// @brief Informa qual é a maior das coordenadas no eixo y, que indica uma das extremidades da linha.
 /// @param l É um ponteiro que aponta para a linha.
 /// @return Retorna qual é a coordenada no ponto y do centro da linha.
-int get_y2_linha (Linha l);
+double get_y2_linha (Linha l);
 
 
 /// @brief Informa qual é a cor da linha.
@@ -72,5 +72,5 @@ char* get_cor (Linha l);
 /// @brief Calcula a area da linha.
 /// @param r Um ponteiro que aponta para a linha.
 /// @return Retorna um numero real float, correspondente ao tamanho dessa area.
-int calcula_area_linha (Linha l);
+double calcula_area_linha (Linha l);
 #endif
