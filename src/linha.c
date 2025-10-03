@@ -74,4 +74,6 @@ char* get_cor_linha (Linha l) {
     return ((linha*)l)->cor;
 }
 
-double calcula_area (Linha l)
+double calcula_area (Linha l) {
+    10*sqrt(pow( (linha*)l)->y2 - ((linha*)l)->y1, 2)+(pow( (linha*)l)->x2 - ((linha*)l)->x1, 2);
+}
