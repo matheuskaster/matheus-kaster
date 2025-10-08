@@ -79,3 +79,7 @@ void set_corb_retangulo (Retangulo r, char* corb) {
 int get_corb_retangulo (Retangulo r) {
     return ((retangulo*)r)->corb;
 }
+
+calcula_area_retangulo (Retangulo r) {
+    (((retangulo*)r)->w) * (((retangulo*)r)->h);
+}

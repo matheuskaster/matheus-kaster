@@ -1,21 +1,63 @@
 #ifndef texto.h
 #define texto.h
- 
+
 typedef void* (Texto);
 typedef void* (Estilo);
 
-/// @brief Cria um texto com as informaçoes relacionadas a cada um dos parametros.
-/// @param id É o identificador, para saber como se referir a esse texto em especifico.
-/// @param x É a posicao no eixo x, na qual esta localizada a ancora do texto.
-/// @param y É a posicao no eixo y, na qual esta localizada a ancora do texto.
+// TADs relacionados ao estilo do texto:
+
+/// @brief Cria um estilo que sera atribuido a um texto.
+/// @param family familia da fonte, podendo ser, como opção, alguma das seguintes: (sans/sans-serif, serif, cursive).
+/// @param weight expessura da fonte, podendo ser, como opção, alguma das seguintes: ( n: normal, b: bold, b+: bolder,l: | lighter).
+/// @param size tamanho da fonte.
+/// @return Retorna o estilo criado com os parâmetros informados.
+Estilo cria_estilo(char* family, char* weight, char* size);
+
+/// @brief O char ponteiro passado por parâmetro na função, torna-se a família da fonte.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @param family É a nova família da fonte.
+void set_family_estilo(Estilo ts, char *family); 
+
+/// @brief Informam qual é a família da fonte do texto.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @return Retorna a família da fonte.
+char* get_family_estilo(Estilo ts);
+
+/// @brief O char ponteiro passado por parâmetro na função, torna-se a expessura da fonte.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @param weight É a nova expessura da fonte.
+void set_weight_estilo(Estilo ts, char *weight);
+
+/// @brief Informam qual é a expessura da fonte do texto.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @return Retorna a expessura da fonte.
+char* get_weight_estilo(Estilo ts);
+
+/// @brief O char ponteiro passado por parâmetro na função, torna-se o tamanho da fonte.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @param size É o novo tamanho da fonte
+void set_size_estilo(Estilo ts, char *size);
+
+/// @brief Informam qual é o tamanho da fonte do texto.
+/// @param ts É um ponteiro para o estilo do texto.
+/// @return Retorna o tamanho da fonte.
+char* get_size_estilo(Estilo ts);
+
+// TADs relacionados ao texto:
+
+/// @brief Cria um texto com as informaçoes relacionadas a cada um dos parâmetros.
+/// @param id É o identificador, para saber como se referir a esse texto em específico.
+/// @param x É a posicao no eixo x, na qual esta localizada a âncora do texto.
+/// @param y É a posicao no eixo y, na qual esta localizada a âncora do texto.
 /// @param corb É a cor da borda de cada um dos caracteres do texto.
 /// @param corp É a cor de preenchimento de cada um dos caracteres do texto.
 /// @param a É um char, feito para poder identificar sobre qual parte do texto ele se refere (começo, meio, ou fim).
 /// @param txto É o parametro que associa a forma do texto.
+/// @param ts É o estilo que o texto vai possuir.
 /// @return Retorna um texto criado com os parametros informados.
-Texto cria_texto (int id, double x, double y, char* corb, char* corp, double a, char* txto);
+Texto cria_texto (int id, double x, double y, char* corb, char* corp, double a, char* txto, Estilo ts);
 
-/// @brief O numero inteiro passado por parametro pela funçao, torna-se o identificador para saber a qual texto ele se refere.
+/// @brief O número inteiro passado por parametro pela funçao, torna-se o identificador para saber a qual texto ele se refere.
 /// @param c É um ponteiro que aponta para o texto.l
 /// @param id É o novo identificador do texto.
 void set_id_texto (Texto t, int id);
@@ -70,43 +112,5 @@ char* get_corp_texto (Texto t);
 /// @return Retorna qual é a posição relativa do texto.
 char* get_a_texto (Texto t);
 
-// TADSs relacionados ao estilo do texto:
-
-/// @brief Cria um estilo que sera atribuido a um texto.
-/// @param family familia da fonte, podendo ser, como opção, alguma das seguintes: (sans/sans-serif, serif, cursive).
-/// @param weight expessura da fonte, podendo ser, como opção, alguma das seguintes: ( n: normal, b: bold, b+: bolder,l: | lighter).
-/// @param size tamanho da fonte.
-/// @return Retorna o estilo criado com os parâmetros informados.
-Estilo cria_estilo(char* family, char* weight, char* size);
-
-/// @brief O char ponteiro passado por parâmetro na função, torna-se a familia da fonte.
-/// @param ts É um ponteiro para o estilo do texto.
-/// @param family É a nova familia da fonte.
-void setFamily(Estilo ts, char *family); 
-
-/// @brief Informam qual é a familia da fonte do texto.
-/// @param ts É um ponteiro para o estilo do texto.
-/// @return Retorna a familia da fonte.
-char* getFamily(Estilo ts);
-
-/// @brief O char ponteiro passado por parâmetro na função, torna-se a expessura da fonte.
-/// @param ts É um ponteiro para o estilo do texto.
-/// @param weight É a nova expessura da fonte.
-void setWeight(Estilo ts, char *weight);
-
-/// @brief Informam qual é a expessura da fonte do texto.
-/// @param ts É um ponteiro para o estilo do texto.
-/// @return Retorna a expessura da fonte.
-char* getWeight(Estilo ts);
-
-/// @brief O char ponteiro passado por parâmetro na função, torna-se o tamanho da fonte.
-/// @param ts É um ponteiro para o estilo do texto.
-/// @param size É o novo tamanho da fonte
-void setSize(Estilo ts, char *size);
-
-/// @brief Informam qual é o tamanho da fonte do texto.
-/// @param ts É um ponteiro para o estilo do texto.
-/// @return Retorna o tamanho da fonte.
-char* getSize(Estilo ts);
 
 #endif
