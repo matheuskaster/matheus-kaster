@@ -11,11 +11,14 @@ typedef elemento *pont;
 
 typedef struct {
     int tam;
-    pont *topo;
+    pont topo;
 } pilha;
 
 Pilha criar_pilha () {
-    pilha* p = malloc(sizeof(pilha));
+    pilha *p = (pilha*)malloc(sizeof(pilha));
+    if (p == NULL) {
+        printf("Erro ao tentar alocar memória para a criação da pilha. \n");
+    }
     p->topo = NULL;
     p->tam = 0;
     return ((pilha*)p);
@@ -31,6 +34,7 @@ void inserir_pilha (Pilha p, Conteudo chave) {
     novo->chave = chave;
     novo->prox = ((pilha*)p)->topo;
     ((pilha*)p)->topo = novo;
+    ((pilha*)p)->tam++;
 }
 
 void remover_pilha (Pilha p) {
@@ -38,12 +42,15 @@ void remover_pilha (Pilha p) {
     pont apagar = ((pilha*)p)->topo;
     ((pilha*)p)->topo = ((pilha*)p)->topo->prox;
     free(apagar);
-    ((piilha*)p)->tam--;
+    ((pilha*)p)->tam--;
 }
 
 Conteudo get_conteudo_topo_pilha (Pilha p) {
+    if (p == NULL || ((pilha*)p)->topo == NULL) {
+        return;
+    }
     return ((pilha*)p)->topo->chave;
-}
+} 
 
 void liberar_pilha (Pilha p) {
     if (p == NULL) return;
@@ -54,18 +61,4 @@ void liberar_pilha (Pilha p) {
         atual = proximo;
     }
     free (p);
-}
-
-void copiar_pilha (Pilha copia, Pilha auxiliar, Pilha fonte) {
-    pont aux = ((pilha*)fonte)->topo;
-    while (aux != NULL) {
-        inserir_pilha (auxiliar, ((pont)aux)->chave);
-        aux = ((pont)aux)->prox;
-    }
-    aux = ((pilha*)auxiliar)->topo;
-    while (aux != NULL) {
-        inserir_pilha (copia, ((pont)aux)->chave);
-        aux = ((pont)aux)->prox;
-    }
-    liberar_pilha (auxiliar);
 }

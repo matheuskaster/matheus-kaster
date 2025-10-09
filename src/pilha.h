@@ -36,10 +36,4 @@ Conteudo get_conteudo_topo_pilha(Pilha p);
 /// @param p É um ponteiro para a pilha.
 void liberar_pilha(Pilha pilha);
 
-/// @brief Copia uma pilha fonte para outra 
-/// @param copia Nova pilha copiada, com os mesmos elemento da anterior.
-/// @param fonte Pilha original. 
-void copiar_pilha (Pilha copia, Pilha fonte);
-
-
 #endif

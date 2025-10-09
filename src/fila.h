@@ -13,6 +13,11 @@ typedef void *Conteudo;
 /// @return Retorna um ponteiro para a fila vazia.
 Fila criar_fila();
 
+/// @brief Verifica o tamanho da fila, a quantidade de elementos que ela possui.
+/// @param f É um ponteiro que aponta para a fila f.
+/// @return Retorna qual é o tamanho da fila.
+int tam_fila(Fila f);
+
 /// @brief Insere um novo elemento no fim da fila.
 /// @param f É um ponteiro que aponta para a fila f.
 /// @param n O conteúdo que será inserido na fila, podendo ser uma variável de qualquer tipo.
@@ -20,22 +25,12 @@ void inserir_fila(Fila f, Conteudo n);
 
 /// @brief Remove o elemento do início da fila
 /// @param f É um ponteiro que aponta para a fila f.
-void remover_inicio_fila(Fila f);
+void remover_fila(Fila f);
 
 /// @brief Acessa o conteúdo do elemento no início da fila e informa o que ele é.
 /// @param f É um ponteiro que aponta para a fila f.
 /// @return Retorna o conteúdo do início.
 Conteudo get_conteudo_inicio_fila(Fila f);
-
-/// @brief Copia uma fila fonte para outra 
-/// @param copia Nova fila copiada, com os mesmos elemento da anterior.
-/// @param fonte Fila original, inalterada. 
-void copiar_fila (Fila fopia, Fila fonte);
-
-/// @brief Verifica o tamanho da fila, a quantidade de elementos que ela possui.
-/// @param f É um ponteiro que aponta para a fila f.
-/// @return Retorna qual é o tamanho da fila.
-int tam_fila(Fila f);
 
 /// @brief Libera a memória alocada para a fila.
 /// @param f É um ponteiro para a fila.
