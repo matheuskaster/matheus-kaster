@@ -21,24 +21,25 @@ int tam_pilha(Pilha p);
 /// @brief Insere um novo elemento no topo da pilha.
 /// @param p É um ponteiro que aponta para a pilha p.
 /// @param n O conteúdo que será inserido na pilha, podendo ser uma variável de qualquer tipo.
-void inserir_pilha(Pilha p, Conteudo n);
+void inserir_pilha(Pilha p, Conteudo chave);
 
 /// @brief Remove o elemento do topo da pilha
 /// @param p É um ponteiro que aponta para a pilha p.
-void remover_topo_pilha(Pilha p);
+void remover_pilha(Pilha p);
 
 /// @brief Acessa o conteúdo do elemento no topo da pilha e informa o que ele é.
 /// @param p É um ponteiro que aponta para a pilha p.
 /// @return Retorna o conteúdo do topo.
 Conteudo get_conteudo_topo_pilha(Pilha p);
 
+/// @brief liberar memória da pilha.
+/// @param p É um ponteiro para a pilha.
+void liberar_pilha(Pilha pilha);
+
 /// @brief Copia uma pilha fonte para outra 
 /// @param copia Nova pilha copiada, com os mesmos elemento da anterior.
 /// @param fonte Pilha original. 
 void copiar_pilha (Pilha copia, Pilha fonte);
 
-/// @brief liberar memória da pilha.
-/// @param p É um ponteiro para a pilha.
-void liberar_pilha(Pilha pilha);
 
 #endif
