@@ -1,7 +1,7 @@
-#ifndef circulo.h
-#define circulo.h
+#ifndef CIRCULO.h
+#define CIRCULO.h
 
-typedef void* (Circulo);
+typedef void *Circulo;
 
 /// @brief Cria um círculo com os parâmetros informados.
 /// @param id Número inteiro positivo identificador, para saber a qual círculo ele está se referindo.

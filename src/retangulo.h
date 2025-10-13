@@ -1,7 +1,7 @@
 #ifndef retangulo.h
 #define retangulo.h
 
-typedef void* (Retangulo);
+typedef void *Retangulo;
 
 
 /// @brief Cria um retângulo com os parâmetros informados.

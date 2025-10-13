@@ -1,4 +1,4 @@
-#include "circulo.h"
+#include "CIRCULO.h"
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -7,11 +7,11 @@
 typedef struct circulo {
     int id;
     double x, y, r;
-    char* corb, corp;
+    char *corb, *corp;
 } circulo;
 
 Circulo cria_circulo (int id, double x, double y, double r, char* corb, char* corp) {
-    circulo *c = circulo malloc(sizeof(circulo));
+    circulo *c = (circulo*) malloc (sizeof(circulo));
     c->id = id;
     c->x = x;
     c->y = y;

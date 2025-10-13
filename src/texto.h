@@ -1,8 +1,8 @@
 #ifndef texto.h
 #define texto.h
 
-typedef void* (Texto);
-typedef void* (Estilo);
+typedef void* Texto;
+typedef void* Estilo;
 
 // TADs relacionados ao estilo do texto:
 

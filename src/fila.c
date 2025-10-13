@@ -30,7 +30,7 @@ int tam_fila (Pilha f) {
     return ((fila*)f)->tam;
 }
 
-void inserir_fila (Fila f, Conteudo chave) {
+void insere_fila (Fila f, Conteudo chave) {
     pont novo = (pont)malloc(sizeof(elemento));
     if (novo == NULL) return;
     novo->chave = chave;
@@ -45,7 +45,7 @@ void inserir_fila (Fila f, Conteudo chave) {
     ((fila*)f)->tam++;
 }
 
-void remover_fila (Fila f) {
+void remove_fila (Fila f) {
     if (f == NULL || ((fila*)f)->inicio == NULL) return;
     pont apagar = ((fila*)f)->inicio;
     ((fila*)f)->inicio = ((fila*)f)->inicio->prox;
@@ -56,14 +56,14 @@ void remover_fila (Fila f) {
     ((pilha*)f)->tam--;
 }
 
-Conteudo get_conteudo_inicio_fila (Fila f) {
+Conteudo get_conteudo_fila (Fila f) {
     if (f == NULL || ((fila*)f)->inicio == NULL) {
         return;
     }
     return ((fila*)f)->inicio->chave;
 } 
 
-void liberar_fila (Fila f) {
+void libera_fila (Fila f) {
     if (f == NULL) return;
     pont atual = ((fila*)f)->inicio;
     while (atual != NULL) {

@@ -1,7 +1,7 @@
 #ifndef linha.h
 #define linha.h
  
-typedef void* (Linha);
+typedef void *Linha;
 
 /// @brief Cria um linha com os parâmetros informados.
 /// @param id Número inteiro identificador para saber a qual linha ele está se referindo.

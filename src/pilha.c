@@ -14,7 +14,7 @@ typedef struct {
     pont topo;
 } pilha;
 
-Pilha criar_pilha () {
+Pilha cria_pilha () {
     pilha *p = (pilha*)malloc(sizeof(pilha));
     if (p == NULL) {
         printf("Erro ao tentar alocar memória para a criação da pilha. \n");
@@ -28,7 +28,7 @@ int tam_pilha (Pilha p) {
     return ((pilha*)p)->tam;
 }
 
-void inserir_pilha (Pilha p, Conteudo chave) {
+void insere_pilha (Pilha p, Conteudo chave) {
     pont novo = (pont)malloc(sizeof(elemento));
     if (novo == NULL) return;
     novo->chave = chave;
@@ -37,7 +37,7 @@ void inserir_pilha (Pilha p, Conteudo chave) {
     ((pilha*)p)->tam++;
 }
 
-void remover_pilha (Pilha p) {
+void remove_pilha (Pilha p) {
     if (p == NULL || ((pilha*)p)->topo == NULL) return;
     pont apagar = ((pilha*)p)->topo;
     ((pilha*)p)->topo = ((pilha*)p)->topo->prox;
@@ -45,14 +45,14 @@ void remover_pilha (Pilha p) {
     ((pilha*)p)->tam--;
 }
 
-Conteudo get_conteudo_topo_pilha (Pilha p) {
+Conteudo get_conteudo_pilha (Pilha p) {
     if (p == NULL || ((pilha*)p)->topo == NULL) {
         return;
     }
     return ((pilha*)p)->topo->chave;
 } 
 
-void liberar_pilha (Pilha p) {
+void libera_pilha (Pilha p) {
     if (p == NULL) return;
     pont atual = ((pilha*)p)->topo;
     while (atual != NULL) {
