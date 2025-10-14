@@ -1,5 +1,5 @@
-#ifndef disparador.h
-#define disparador.h
+#ifndef DISPARADOR.h
+#define DISPARADOR.h
 
 typedef void *Disparador;
 typedef void *Carregador;

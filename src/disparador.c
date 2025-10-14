@@ -1,5 +1,5 @@
-#include "disparador.h"
-#include "carregador.h"
+#include "DISPARADOR.h"
+#include "CARREGADOR.h"
 #include <stdio.h>
 typedef struct {
     int id;

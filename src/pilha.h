@@ -1,5 +1,5 @@
-#ifndef pilha_h
-#define pilha_h
+#ifndef PILHA_h
+#define PILHA_h
 #include <stdbool.h>
 
 typedef void *Pilha;

@@ -1,5 +1,5 @@
-#ifndef texto.h
-#define texto.h
+#ifndef TEXTO.h
+#define TEXTO.h
 
 typedef void* Texto;
 typedef void* Estilo;

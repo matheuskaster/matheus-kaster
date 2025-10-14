@@ -1,5 +1,5 @@
-#ifndef retangulo.h
-#define retangulo.h
+#ifndef RETANGULO.h
+#define RETANGULO.h
 
 typedef void *Retangulo;
 

@@ -1,5 +1,5 @@
-#ifndef carregador.h
-#define carregador.h
+#ifndef CARREGADOR.h
+#define CARREGADOR.h
 
 typedef void *Carregador;
 

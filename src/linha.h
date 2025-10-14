@@ -1,5 +1,5 @@
-#ifndef linha.h
-#define linha.h
+#ifndef LINHA.h
+#define LINHA.h
  
 typedef void *Linha;
 

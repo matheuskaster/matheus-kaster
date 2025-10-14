@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include "linha.h"
+#include "LINHA.h"
 #include "stdbool.h"
 
 typedef struct linha {

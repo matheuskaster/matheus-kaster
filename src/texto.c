@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "texto.h"
+#include "TEXTO.h"
 #include <string.h>
 #include "stdbool.h"
 
@@ -14,7 +14,7 @@ typedef struct estilo {
 typedef struct texto {
     int id;
     double x, y;
-    char* corb
+    char* corb;
     char* corp;
     char a;
     char* texto;
@@ -24,7 +24,7 @@ typedef struct texto {
 } texto;
 
 Estilo cria_estilo (char* family, char* weight, char* size) {
-    Estilo* ts = (estilo*) malloc (sizeof(estilo));
+    Estilo ts = (estilo) malloc (sizeof(estilo));
     ts->family = (char*) malloc (sizeof(family)+1);
     if (ts->family == NULL) {
         printf ("Erro na alocação de memória ao criar a família");

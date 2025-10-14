@@ -1,5 +1,5 @@
-#ifndef fila_h
-#define fila_h
+#ifndef FILA.h
+#define FILA.h
 #include <stdbool.h>
 
 typedef void *Fila;

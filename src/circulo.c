@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define PI = 3.14159
+#define PI 3.14159
 
 typedef struct circulo {
     int id;
@@ -18,11 +18,11 @@ Circulo cria_circulo (int id, double x, double y, double r, char* corb, char* co
     c->r = r;
     c->corb = (char*) malloc(strlen(corb)+1);
     if (c->corb == NULL) {
-            printf("Erro na alocação de memória para a cor de borda do circulo %d.", c->id);
-            exit(1);
-        }
+        printf("Erro na alocação de memória para a cor de borda do circulo %d.", c->id);
+        exit(1);
+    }
     strcpy(c->corb, corb);
-    c->corp = (char *)malloc (strlen(corp)+1);
+    c->corp = (char*)malloc (strlen(corp)+1);
     if (c->corp == NULL) {
         printf("Erro na alocação de memória para a cor de preenchimento do circulo %d.", c->id);
         exit(1);
