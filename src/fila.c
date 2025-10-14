@@ -1,9 +1,9 @@
+#include "FILA.h"
 #include "stdio.h"
 #include "stdlib.h"
-#include "FILA.h"
 
 typedef struct elemento {
-    Conteudo chave;
+    Forma chave;
     struct elemento *prox;
 } elemento;  
 
@@ -26,11 +26,11 @@ Fila criar_fila () {
     return ((fila*)f);
 }
 
-int tam_fila (Pilha f) {
+int tam_fila (Fila f) {
     return ((fila*)f)->tam;
 }
 
-void insere_fila (Fila f, Conteudo chave) {
+void insere_fila (Fila f, Forma chave) {
     pont novo = (pont)malloc(sizeof(elemento));
     if (novo == NULL) return;
     novo->chave = chave;
@@ -53,10 +53,10 @@ void remove_fila (Fila f) {
         ((fila*)f)->fim == NULL;
     }
     free(apagar);
-    ((pilha*)f)->tam--;
+    ((fila*)f)->tam--;
 }
 
-Conteudo get_conteudo_fila (Fila f) {
+Forma get_conteudo_fila (Fila f) {
     if (f == NULL || ((fila*)f)->inicio == NULL) {
         return;
     }

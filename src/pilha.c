@@ -1,9 +1,9 @@
+#include "PILHA.h"
 #include "stdio.h"
 #include "stdlib.h"
-#include "PILHA.h"
 
 typedef struct elemento {
-    Conteudo chave;
+    Forma chave;
     struct elemento *prox;
 } elemento;  
 
@@ -28,7 +28,7 @@ int tam_pilha (Pilha p) {
     return ((pilha*)p)->tam;
 }
 
-void insere_pilha (Pilha p, Conteudo chave) {
+void insere_pilha (Pilha p, Forma chave) {
     pont novo = (pont)malloc(sizeof(elemento));
     if (novo == NULL) return;
     novo->chave = chave;
@@ -45,7 +45,7 @@ void remove_pilha (Pilha p) {
     ((pilha*)p)->tam--;
 }
 
-Conteudo get_conteudo_pilha (Pilha p) {
+Forma get_conteudo_pilha (Pilha p) {
     if (p == NULL || ((pilha*)p)->topo == NULL) {
         return;
     }

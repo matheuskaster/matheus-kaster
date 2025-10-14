@@ -1,4 +1,6 @@
 #include "CARREGADOR.h"
+#include "PILHA.h"
+#include "FILA.h"
 #include <stdio.h>
 
 typedef struct carregador {
@@ -10,13 +12,12 @@ Carregador cria_carregador (int id) {
     car->id = id;
 
     return ((carregador*)car);
-}
+}   
 
 void load_carregador (Carregador car, int n) {
     for (int i = 0; i < n; i ++) {
-        Conteudo forma = get_conteudo_fila (chao);
-        Conteudo
-        remove_fila (chao);
-        insere_pilha (car, forma);
+         = get_conteudo_inicio_fila (chao);
+        insere_pilha (car, );
+        remove_fila (chao)
     }
 }

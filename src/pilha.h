@@ -1,9 +1,9 @@
 #ifndef PILHA_h
 #define PILHA_h
+#include "FORMA.h"
 #include <stdbool.h>
 
 typedef void *Pilha;
-typedef void *Conteudo;
 
 
 // Arquivo .h revelando de uma forma abstrata o funcionamento de uma pilha, feita de forma genérica, pode ser utilizada em qualquer contexto que seja aplicável o conceito de LIFO. OU seja, será possível acessar somente o último elemento inserido na ED.
@@ -21,7 +21,7 @@ int tam_pilha(Pilha p);
 /// @brief Insere um novo elemento no topo da pilha.
 /// @param p É um ponteiro que aponta para a pilha p.
 /// @param n O conteúdo que será inserido na pilha, podendo ser uma variável de qualquer tipo.
-void insere_pilha(Pilha p, Conteudo chave);
+void insere_pilha(Pilha p, Forma chave);
 
 /// @brief Remove o elemento do topo da pilha
 /// @param p É um ponteiro que aponta para a pilha p.
@@ -30,7 +30,7 @@ void remove_pilha(Pilha p);
 /// @brief Acessa o conteúdo do elemento no topo da pilha e informa o que ele é.
 /// @param p É um ponteiro que aponta para a pilha p.
 /// @return Retorna o conteúdo do topo.
-Conteudo get_conteudo_pilha(Pilha p);
+Forma get_conteudo_pilha(Pilha p);
 
 /// @brief liberar memória da pilha.
 /// @param p É um ponteiro para a pilha.
