@@ -11,7 +11,7 @@ typedef void *Linha;
 /// @param y2 É o maior valor onde uma das extremidades da linha se encontra no eixo y (referente ao vértice superior direito), indicando a sua posição no plano.
 /// @param cor Indica a cor da linha.
 /// @return Retorna uma linha criada com os parâmetros.
-Linha cria_linha (int id, double x1, double y1, double x2, double y2, double r, char* corb, char* corp);
+Linha cria_linha (int id, double x1, double y1, double x2, double y2, char* cor);
 
 /// @brief O número inteiro passado de parâmetro na função se torna o novo identificador da linha.
 /// @param c É um ponteiro que aponta para a linha.

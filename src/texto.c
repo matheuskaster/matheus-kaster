@@ -17,14 +17,14 @@ typedef struct texto {
     char* corb;
     char* corp;
     char a;
-    char* texto;
+    char* txto;
     double sw;  
     int n;
     Estilo ts;
 } texto;
 
 Estilo cria_estilo (char* family, char* weight, char* size) {
-    Estilo ts = (estilo) malloc (sizeof(estilo));
+    estilo *ts = (estilo*) malloc (sizeof(estilo));
     ts->family = (char*) malloc (sizeof(family)+1);
     if (ts->family == NULL) {
         printf ("Erro na alocação de memória ao criar a família");
@@ -73,8 +73,8 @@ char* get_size(Estilo ts) {
 }
 
 
-Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, char* texto, double sw, int n, Estilo ts) {
-    Texto* t = (texto*) malloc (sizeof(texto));
+Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, char* txto, double sw, int n, Estilo ts) {
+    texto *t = (texto*) malloc (sizeof(texto));
     t->id = id;
     t->x = x;
     t->y = y;
@@ -94,12 +94,12 @@ Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, ch
 
     t->a = a;
     
-    t->texto = (char*) malloc (strlen(texto)+1);
-    if (t->texto == NULL) {
+    t->txto = (char*) malloc (strlen(txto)+1);
+    if (t->txto == NULL) {
         printf("Erro na alocação de memória ao criar o texto");
         exit(1);
     }
-    strcpy(t->texto, texto);
+    strcpy(t->txto, txto);
     t->ts = ts;
     return ((texto*)t);
 

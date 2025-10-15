@@ -2,7 +2,14 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-Retangulo cria_retangulo (int id, double x, double y, double w, double h, char* corb, char* corp) {
+typedef struct retangulo {
+    int id;
+    double x, y, w, h;
+    char *corb, *corp;
+} retangulo;
+
+
+Retangulo cria_retangulo (int id, double x, double y, double w, double h, char *corb, char *corp) {
     retangulo *r = malloc(sizeof(retangulo));
     r->id = id;
     r->x = x;

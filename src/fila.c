@@ -15,7 +15,7 @@ typedef struct {
     pont fim;
 } fila;
 
-Fila criar_fila () {
+Fila cria_fila () {
     fila *f = (fila*)malloc(sizeof(fila));
     if (f == NULL) {
         printf("Erro ao tentar alocar memória para a criação da fila. \n");

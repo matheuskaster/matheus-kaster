@@ -11,7 +11,7 @@ typedef void *Fila;
 
 /// @brief Cria dinâmicamente uma fila vazia, sem elementos.
 /// @return Retorna um ponteiro para a fila vazia.
-Fila criar_fila();
+Fila cria_fila();
 
 /// @brief Verifica o tamanho da fila, a quantidade de elementos que ela possui.
 /// @param f É um ponteiro que aponta para a fila f.
@@ -21,19 +21,19 @@ int tam_fila(Fila f);
 /// @brief Insere um novo elemento no fim da fila.
 /// @param f É um ponteiro que aponta para a fila f.
 /// @param n O conteúdo que será inserido na fila, podendo ser uma variável de qualquer tipo.
-void inserir_fila(Fila f, Forma n);
+void insere_fila(Fila f, Forma n);
 
 /// @brief Remove o elemento do início da fila
 /// @param f É um ponteiro que aponta para a fila f.
-void remover_fila(Fila f);
+void remove_fila(Fila f);
 
 /// @brief Acessa o conteúdo do elemento no início da fila e informa o que ele é.
 /// @param f É um ponteiro que aponta para a fila f.
 /// @return Retorna o conteúdo do início.
-Forma get_conteudo_inicio_fila(Fila f);
+Forma get_conteudo_fila(Fila f);
 
 /// @brief Libera a memória alocada para a fila.
 /// @param f É um ponteiro para a fila.
-void liberar_fila(Fila fila);
+void libera_fila(Fila fila);
 
 #endif

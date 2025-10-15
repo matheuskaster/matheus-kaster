@@ -13,7 +13,7 @@ typedef void *Retangulo;
 /// @param corb Indica a cor da borda do retângulo.
 /// @param corp Indica a cor de preenchimento do retângulo.
 /// @return Retorna um retângulo criado com os parâmetros.
-Retangulo cria_retangulo (int id, double x, double y, double w, double h, char* corb, char* corp);
+Retangulo cria_retangulo (int id, double x, double y, double w, double h, char *corb, char *corp);
 
 /// @brief O número inteiro passado por parâmetro na função se torna o novo identificador do retãngulo.
 /// @param c É um ponteiro que aponta para o retângulo.
@@ -28,7 +28,7 @@ int get_id_retangulo (Retangulo r);
 /// @brief O número double passado por parâmetro na função indica a coordenada no eixo x onde está localizado a âncora do retângulo.
 /// @param c É um ponteiro que aponta para o retângulo.
 /// @param x É a coordenada no eixo x na qual a ãncora do retângulo se encontra.
-void set_x_retangulo (Retangulo c, double x);
+void set_x_retangulo (Retangulo r, double x);
 
 /// @brief Informa qual é a coordenada no ponto x da âncora do retângulo.
 /// @param c É um ponteiro que aponta para o retângulo.
@@ -59,7 +59,7 @@ int get_w_retangulo (Retangulo r);
 /// @brief O ponteiro para um char passado por parâmetro na função aponta para uma sequência de letras determinam uma cor, e essa cor, por meio da função, passa a ser a nova cor de borda do retângulo, também passado por parâmetro.
 /// @param r É um ponteiro que aponta para o retângulo.
 /// @param corb É a nova cor do retângulo.
-void set_corb_retangulo (Retangulo r, char* corb);
+void set_corb_retangulo (Retangulo r, char *corb);
 
 /// @brief Informa qual é a cor de borda do retângulo.
 /// @param r É um ponteiro que aponta para o retângulo.
@@ -69,7 +69,7 @@ char* get_corb_retangulo (Retangulo r);
 /// @brief O ponteiro para um char passado por parâmetro na funçao aponta para uma sequência de letras determinam uma cor, e essa cor, por meio da função, passa a ser a nova cor de preenchimento do retângulo, também passado por parâmetro.
 /// @param r É um ponteiro que aponta para o retângulo.
 /// @param corp É a nova cor do retângulo.
-void set_corp_retangulo (Retangulo r, char* corp);
+void set_corp_retangulo (Retangulo r, char *corp);
 
 /// @brief Informa qual é a cor de preenchimento do retângulo.
 /// @param r É um ponteiro que aponta para o retângulo.

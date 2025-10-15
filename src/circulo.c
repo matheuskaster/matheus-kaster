@@ -10,7 +10,7 @@ typedef struct circulo {
     char *corb, *corp;
 } circulo;
 
-Circulo cria_circulo (int id, double x, double y, double r, char* corb, char* corp) {
+Circulo cria_circulo (int id, double x, double y, double r, char *corb, char *corp) {
     circulo *c = (circulo*) malloc (sizeof(circulo));
     c->id = id;
     c->x = x;

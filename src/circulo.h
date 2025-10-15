@@ -11,7 +11,7 @@ typedef void *Circulo;
 /// @param corb É uma string de caracteres que represetam a cor da borda do círculo, no padrão SVG, RGB que a cada dois caracteres no sistema hexadecimal são a intensidade de cada uma das três cores (ex.: #00FF00).
 /// @param corp É uma string de caracteres que represetam a cor de preenchimento do círculo, no padrão SVG, RGB que a cada dois caracteres no sistema hexadecimal são a intensidade de cada uma das três cores (ex.: #00FF00).
 /// @return Retorna um círculo criado com os parâmetros.
-Circulo cria_circulo (int id, double x, double y, double r, char* corb, char* corp);
+Circulo cria_circulo (int id, double x, double y, double r, char *corb, char *corp);
 
 
 /// @brief O número inteiro passado por parâmetro na função passa a ser o novo identificador do círculo.
@@ -58,7 +58,7 @@ double get_r_circulo (Circulo c);
 /// @brief O ponteiro para um char passado por parametro na função aponta para uma sequência em hexadecimal determinando uma cor, e essa cor, por meio da função, passa a ser a nova cor de borda do círculo, também passado por parâmetro.
 /// @param c É um ponteiro que aponta para o círculo.
 /// @param corb Será a nova cor do círculo.
-void set_corb_circulo (Circulo c, char* corb);
+void set_corb_circulo (Circulo c, char *corb);
 
 /// @brief Informa qual é a cor de borda do círculo.
 /// @param c É um ponteiro que aponta para o círculo.
@@ -68,7 +68,7 @@ char* get_corb_circulo (Circulo c);
 /// @brief O ponteiro para um char passado por parametro na função aponta para uma sequência em hexadecimal determinando uma cor, e essa cor, por meio da função, passa a ser a nova cor de preenchimento do círculo, também passado por parâmetro.
 /// @param c É um ponteiro que aponta para o círculo.
 /// @param corp Será a nova cor do círculo.
-void set_corp_circulo (Circulo c, char* corp);
+void set_corp_circulo (Circulo c, char *corp);
 
 /// @brief Informa qual é a cor de preenchimento do círculo.
 /// @param c É um ponteiro que aponta para o círculo.

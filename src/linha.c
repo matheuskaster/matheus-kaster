@@ -8,10 +8,10 @@
 typedef struct linha {
     int id;
     double x1, y1, x2, y2;
-    char* cor;
+    char *cor;
 } linha;
 
-Linha cria_linha (int id, double x1, double y1, double x2, double y2, char* cor) {
+Linha cria_linha (int id, double x1, double y1, double x2, double y2, char *cor) {
     linha* l = malloc(sizeof(linha));
     l->id = id;
     l->x1 = x1;
@@ -75,5 +75,5 @@ char* get_cor_linha (Linha l) {
 }
 
 double calcula_area (Linha l) {
-    10*sqrt(pow( (linha*)l)->y2 - ((linha*)l)->y1, 2)+(pow( (linha*)l)->x2 - ((linha*)l)->x1, 2);
+    10 * sqrt( pow( ((linha*)l)->y2 - ((linha*)l)->y1, 2) + pow( ((linha*)l)->x2 - ((linha*)l)->x1, 2));
 }
