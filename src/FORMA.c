@@ -46,7 +46,7 @@ Forma cria_forma_linha (char tipo, int id, double x1, double y1, double x2, doub
     return ((forma*)F);
 }
 
-Forma cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto, Estilo ts) {
+Forma cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto) {
     forma *F = (forma*)malloc(sizeof(forma));
     if (F == NULL){
         printf("Erro na alocação de memória para a criação da forma. \n");

@@ -14,7 +14,7 @@ Forma cria_forma_retangulo (char tipo, int id, double x, double y, double w, dou
 
 Forma cria_forma_linha (char tipo, int id, double x1, double y1, double x2, double y2, char *cor);
 
-Forma cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto, double sw, int n, Estilo ts);
+Forma cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto);
 
 char get_tipo_forma (Forma F);
 

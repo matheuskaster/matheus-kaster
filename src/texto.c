@@ -18,8 +18,6 @@ typedef struct texto {
     char* corp;
     char a;
     char* txto;
-    double sw;  
-    int n;
     Estilo ts;
 } texto;
 
@@ -73,7 +71,7 @@ char* get_size(Estilo ts) {
 }
 
 
-Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, char* txto, double sw, int n, Estilo ts) {
+Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, char* txto) {
     texto *t = (texto*) malloc (sizeof(texto));
     t->id = id;
     t->x = x;

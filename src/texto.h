@@ -55,7 +55,7 @@ char* get_size_estilo(Estilo ts);
 /// @param txto É o parametro que associa a forma do texto.
 /// @param ts É o estilo que o texto vai possuir.
 /// @return Retorna um texto criado com os parametros informados.
-Texto cria_texto (int id, double x, double y, char* corb, char* corp, double a, char* txto, Estilo ts);
+Texto cria_texto (int id, double x, double y, char* corb, char* corp, double a, char* txto);
 
 /// @brief O número inteiro passado por parametro pela funçao, torna-se o identificador para saber a qual texto ele se refere.
 /// @param c É um ponteiro que aponta para o texto.l

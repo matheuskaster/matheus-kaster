@@ -16,8 +16,8 @@ Carregador cria_carregador (int id) {
 
 void load_carregador (Carregador car, int n) {
     for (int i = 0; i < n; i ++) {
-         = get_conteudo_inicio_fila (chao);
-        insere_pilha (car, );
-        remove_fila (chao)
+        Forma F = get_conteudo_fila (chao);
+        insere_pilha (car, F);
+        remove_fila (chao);
     }
 }
