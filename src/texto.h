@@ -1,8 +1,8 @@
 #ifndef TEXTO.h
 #define TEXTO.h
 
-typedef void* Texto;
-typedef void* Estilo;
+typedef void *Texto;
+typedef void *Estilo;
 
 // TADs relacionados ao estilo do texto:
 
@@ -11,7 +11,7 @@ typedef void* Estilo;
 /// @param weight expessura da fonte, podendo ser, como opção, alguma das seguintes: ( n: normal, b: bold, b+: bolder,l: | lighter).
 /// @param size tamanho da fonte.
 /// @return Retorna o estilo criado com os parâmetros informados.
-Estilo cria_estilo(char* family, char* weight, char* size);
+Estilo cria_estilo(char *family, char *weight, char *size);
 
 /// @brief O char ponteiro passado por parâmetro na função, torna-se a família da fonte.
 /// @param ts É um ponteiro para o estilo do texto.
@@ -52,10 +52,9 @@ char* get_size_estilo(Estilo ts);
 /// @param corb É a cor da borda de cada um dos caracteres do texto.
 /// @param corp É a cor de preenchimento de cada um dos caracteres do texto.
 /// @param a É um char, feito para poder identificar sobre qual parte do texto ele se refere (começo, meio, ou fim).
-/// @param txto É o parametro que associa a forma do texto.
-/// @param ts É o estilo que o texto vai possuir.
+/// @param txto É o texto que estará escrito no arquivo .svg da forma texto.
 /// @return Retorna um texto criado com os parametros informados.
-Texto cria_texto (int id, double x, double y, char* corb, char* corp, double a, char* txto);
+Texto cria_texto (int id, double x, double y, char *corb, char *corp, char a, char *txto);
 
 /// @brief O número inteiro passado por parametro pela funçao, torna-se o identificador para saber a qual texto ele se refere.
 /// @param c É um ponteiro que aponta para o texto.l
@@ -87,30 +86,44 @@ void set_y_texto (Texto t, double y);
 /// @return Retorna um doble representando a coordenada do eixo y que esta localizada o texto.
 int get_y_texto (Texto t);
 
-/// @brief O ponteiro para um char passado por parametro na funçao aponta para uma sequencia de letras determinam uma cor, e essa cor, por meio da funçao, passa a ser a nova cor de borda do texto, tambem passado por parametro.
+/// @brief O ponteiro para um char passado por parametro na funçao, aponta para uma sequencia de letras determinam uma cor, e essa cor, por meio da funçao, passa a ser a nova cor de borda do texto, tambem passado por parametro.
 /// @param r É um ponteiro que aponta para o texto.
 /// @param corb É a nova cor do texto.
-void set_corb_texto (Texto t, char* corb);
+void set_corb_texto (Texto t, char *corb);
 
 /// @brief Informa qual é a cor de borda do texto.
 /// @param t É um ponteiro que aponta para o texto.
 /// @return Retorna a cor de borda do texto.
 char* get_corb_texto (Texto t);
 
-/// @brief O ponteiro para um char passado por parametro na funçao aponta para uma sequencia de letras determinam uma cor, e essa cor, por meio da funçao, passa a ser a nova cor de preenchimento do texto, tambem passado por parametro.
+/// @brief O ponteiro para um char passado por parametro na funçao, aponta para uma sequencia de letras determinam uma cor, e essa cor, por meio da funçao, passa a ser a nova cor de preenchimento do texto, tambem passado por parametro.
 /// @param t É um ponteiro que aponta para o texto.
 /// @param corp É a nova cor do texto.
-void set_corp_texto (Texto t, char* corp);
+void set_corp_texto (Texto t, char *corp);
 
 /// @brief Informa qual é a cor de preenchimento do texto.
 /// @param t É um ponteiro que aponta para o texto.
 /// @return Retorna a cor de preenchimento do texto.
 char* get_corp_texto (Texto t);
 
+/// @brief O char passado por parâmetro na função, será a nova posição relativa do texto, podendo ser i, no inicio; m, no meio, ou f, quando é o fim do texto.
+/// @param t É um ponteiro que aponta para o texto.
+/// @param a É a nova posição relativa do texto.
+void set_a_texto (Texto t, char a);
+
 /// @brief Informa qual é a posição relativa do texto, podendo ser i, no inicio; m, no meio, ou f, quando é o fim do texto.
 /// @param t É um ponteiro que aponta para o texto.
 /// @return Retorna qual é a posição relativa do texto.
 char* get_a_texto (Texto t);
 
+/// @brief O ponteiro que aponta para um char, passado por parâmetro na função, aponta para um texto e esse texto será o novo texto que estará escrito no arquivo .svg da forma.
+/// @param t É um ponteiro que aponta para o texto.
+/// @param txto É o novo texto que estará escrito no SVG da forma
+void set_txto (Texto t, char *txto);
+
+/// @brief Informa qual é o texto que estará escrito no arquivo .svg da forma texto.
+/// @param t É um ponteiro que aponta para o texto.
+/// @return Retorna qual é o txto do texto. 
+char* get_txto (Texto t);
 
 #endif

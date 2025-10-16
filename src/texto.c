@@ -98,50 +98,60 @@ Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, ch
         exit(1);
     }
     strcpy(t->txto, txto);
-    t->ts = ts;
     return ((texto*)t);
-
+}
     void set_id_texto (Texto t, int id) {
-        ((estilo*)ts)->id = id;
+        ((texto*)t)->id = id;
     }
 
     int get_id_texto (Texto t) {
-        return ((estilo*)ts)->id;
+        return ((texto*)t)->id;
     }
 
     void set_x_texto (Texto t, double x) {
-        ((estilo*)ts)->x = x;
+        ((texto*)t)->x = x;
     }
 
     int get_x_texto (Texto t) {
-        return ((estilo*)ts)->x;
+        return ((texto*)t)->x;
     }
 
     void set_y_texto (Texto t, double y) {
-        ((estilo*)ts)->y = y;
+        ((texto*)t)->y = y;
     }
 
     int get_y_texto (Texto t) {
-        return ((estilo*)ts)->y = y;
+        return ((texto*)t)->y;
     }
 
     void set_corb_texto (Texto t, char* corb) {
-        strcpy (((estilo*)ts)->corb, corb);
+        strcpy (((texto*)t)->corb, corb);
     }
 
     char* get_corb_texto (Texto t) {
-        return ((estilo*)ts)->corb;
+        return ((texto*)t)->corb;
     }
 
     void set_corp_texto (Texto t, char* corp) {
-        strcpy (((estilo*)ts)->corp, corp);
+        strcpy (((texto*)t)->corp, corp);
     }
 
     char* get_corp_texto (Texto t) {
-        return (((estilo*)ts)->corp, corp);
+        return ((texto*)t)->corp;
     }
 
-    char* get_a_texto (Texto t) {
-        return ((estilo*)ts)->a;
+    void set_a_texto (Texto t, char a) {
+        ((texto*)t)->a = a;
     }
-}
+
+    char get_a_texto (Texto t) {
+        return ((texto*)t)->a;
+    }
+
+    set_txto (Texto t, char *txto) {
+        strcpy (((texto*)t)->txto, txto);
+    }
+
+    void get_txto (Texto t) {
+        return ((texto*)t)->txto;
+    }
