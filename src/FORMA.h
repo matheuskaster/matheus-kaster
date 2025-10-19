@@ -6,7 +6,8 @@
 #include "LINHA.h"
 #include "TEXTO.h"
 
-typedef void *Forma;
+typedef void* Forma;
+typedef forma* Pontprastruct;
  
 Forma cria_forma_circulo (char tipo, int id, double x, double y, double r, char *corb, char *corp);
 

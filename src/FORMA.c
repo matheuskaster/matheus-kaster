@@ -52,13 +52,16 @@ Forma cria_forma_texto (char tipo, int id, double x, double y, char *corb, char 
         printf("Erro na alocação de memória para a criação da forma. \n");
         exit (1);
     }
-    F->geometrica = cria_texto (id, x, y, corb, corp, a, txto, ts);
+    F->geometrica = cria_texto (id, x, y, corb, corp, a, txto);
     F->tipo = 't';
     return ((forma*)F);
 }
 
-
 char get_tipo_forma (Forma F) {
+    return ((forma*)F)->tipo;
+}
+
+int get_id_forma (Forma F) {
 
     if (F == NULL) {
         printf("Erro! A forma passada por parâmetro não existe. \n");

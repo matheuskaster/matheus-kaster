@@ -8,6 +8,6 @@
 /// @param chao É o chão do projeto, onde as formas ficam ao serem criadas.
 /// @param arq_geo É o arquivo de entrada, do tipo .geo.
 /// @param arq_svg 
-void geo (Fila chao, FILE* arq_geo, FILE* arq_svg);
+void geo (FILE* arq_geo, FILE* arq_svg);
 
 #endif

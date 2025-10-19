@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "SVG.h"
 
-void geo (Fila chao, FILE* arq_geo, FILE* arq_svg) { 
+void geo (Fila chao, FILE* arq_geo, FILE* arq_svg) {
     
     if(arq_geo == NULL){
         printf("Arquivo .geo não encontrado. \n");

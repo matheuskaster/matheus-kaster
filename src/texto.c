@@ -148,7 +148,7 @@ Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, ch
         return ((texto*)t)->a;
     }
 
-    set_txto (Texto t, char *txto) {
+    char* set_txto (Texto t, char *txto) {
         strcpy (((texto*)t)->txto, txto);
     }
 

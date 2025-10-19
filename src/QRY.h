@@ -1,6 +1,6 @@
 #ifndef QRY.h
 #define QRY.h
-#include ".GEO.h"
+#include "GEO.h"
 #include "PILHA.h"
 #include "FILA.h"
 #include "FORMA.h"

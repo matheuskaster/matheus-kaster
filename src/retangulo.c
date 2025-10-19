@@ -67,7 +67,7 @@ void set_h_retangulo (Retangulo r, double h) {
     ((retangulo*)r)->h = h;
 }
 
-int get_h_retagulo (Retangulo r) {
+double get_h_retagulo (Retangulo r) {
     return ((retangulo*)r)->h;
 }
 
@@ -75,7 +75,7 @@ void set_corp_retangulo (Retangulo r, char* corp) {
     strcpy (((retangulo*)r)->corp, corp);
 }
 
-int get_corp_retangulo (Retangulo r) {
+char* get_corp_retangulo (Retangulo r) {
     return ((retangulo*)r)->corp;
 }
 
@@ -83,7 +83,7 @@ void set_corb_retangulo (Retangulo r, char* corb) {
     strcpy (((retangulo*)r)->corb, corb);
 }
 
-int get_corb_retangulo (Retangulo r) {
+char* get_corb_retangulo (Retangulo r) {
     return ((retangulo*)r)->corb;
 }
 

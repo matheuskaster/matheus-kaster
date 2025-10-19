@@ -11,6 +11,6 @@ Carregador cria_carregador (int id);
 /// @brief Pega a quantidade desejada de formas, do chão, e as coloca dentro do carregador.
 /// @param c É um ponteiro para saber a qual carregador ele se refere.
 /// @param n Coloca as n primeiras formas que estão no chão.
-void lc (Carregador car, int n);
+void lc (Carregador car, int n, Fila chao);
 
 #endif
