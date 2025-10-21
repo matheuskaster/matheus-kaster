@@ -9,6 +9,8 @@
 #include "FILA.h"
 #include <stdio.h>
 
+#include <stddef.h>
+
 typedef struct {
     int id;
     double x;
@@ -126,17 +128,35 @@ void dsp (Disparador d, double dx, double dy, Fila arena) {
     }
 }
 
-double get_x_disparador (Disparador d) {
-    return ((disparador*)d)->x;
-}
-
-double get_y_disparador (Disparador d) {
-    return ((disparador*)d)->y;
+void set_id_disparador (Disparador d, int id) {
+    ((disparador*)d)->id = id;
 }
 
 int get_id_disparador (Disparador d) {
     return ((disparador*)d)->id;
 }
 
+void set_x_disparador (Disparador d, double x) {
+    ((disparador*)d)->x = x;
+}
+
+double get_x_disparador (Disparador d) {
+    return ((disparador*)d)->x;
+}
+
+void set_y_disparador (Disparador d, double y) {
+    ((disparador*)d)->y = y;
+}
+
+double get_y_disparador (Disparador d) {
+    return ((disparador*)d)->y;
+}
+
 void libera_memoria_disparador (Disparador d) {
+    disparador* lmd = (disparador*) d;
+    free (lmd);
+}
+
+size_t size_of (Disparador d) {
+    return sizeof(disparador);
 }

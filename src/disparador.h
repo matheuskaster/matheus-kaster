@@ -41,20 +41,35 @@ void dsp (Disparador d, double dx, double dy, [v|i]);
 
 void rjd (Disparador d, char lado, double dx, double dy, double ix, double iy);
 
-/// @brief Informa um disparador, e espera a função mostrar qual é o falor no eixo x da coordenada que esse disparador se encontra.
-/// @param d É um ponteiro que indica de qual disparador ele quer essa informação. 
-/// @return Retorna o valor do x do disparador.
-double get_x_disparador (Disparador d);
-
-/// @brief Informa um disparador, e espera a função mostrar qual é o falor no eixo y da coordenada que esse disparador se encontra.
-/// @param d É um ponteiro que indica de qual disparador ele quer essa informação. 
-/// @return Retorna o valor do y do disparador.
-double get_y_disparador (Disparador d);
+/// @brief O número inteiro passado por parâmetro na função passa a ser o novo número identificador do disparador.
+/// @param d É um ponteiro para o disparador que terá seu id alterado.
+/// @param id É o novo número int responsável por identificar o disparador. 
+void set_id_disparador (Disparador d, int id);
 
 /// @brief Informa qual é o identificador id, do disparador.
 /// @param d É um ponteiro que indica de qual disparador ele quer essa informação.
 /// @return Retorna o valor do id do disparador.
 int get_id_disparador (Disparador d);
+
+/// @brief O número double passado por parâmetro na função passa a ser o novo valor no eixo x da coordenada que esse disparador se encontra.
+/// @param d É um ponteiro para o disparador que terá seu x alterado.
+/// @param x É o novo número responsável por indicar onde está localizado o disparador no eixo x.
+void set_x_disparador (Disparador d, double x);
+
+/// @brief Informa um disparador, e espera a função mostrar qual é o valor no eixo x da coordenada que esse disparador se encontra.
+/// @param d É um ponteiro que indica de qual disparador ele quer essa informação. 
+/// @return Retorna o valor do x do disparador.
+double get_x_disparador (Disparador d);
+
+/// @brief O número double passado por parâmetro na função passa a ser o novo valor no eixo y da coordenada que esse disparador se encontra.
+/// @param d É um ponteiro para o disparador que terá seu y alterado.
+/// @param y É o novo número responsável por indicar onde está localizado o disparador no eixo y.
+void set_y_disparador (Disparador d, double y);
+
+/// @brief Informa um disparador, e espera a função mostrar qual é o valor no eixo y da coordenada que esse disparador se encontra.
+/// @param d É um ponteiro que indica de qual disparador ele quer essa informação. 
+/// @return Retorna o valor do y do disparador.
+double get_y_disparador (Disparador d);
 
 /// @brief Libera a memória associada ao disparador.
 /// @param d É um ponteiro que indica de qual disparador será liberada a memória.

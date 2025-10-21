@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 typedef void* Forma;
-typedef struct forma* Pforma;
+typedef forma* Pforma;
  
 Forma cria_forma_circulo (char tipo, int id, double x, double y, double r, char *corb, char *corp);
 

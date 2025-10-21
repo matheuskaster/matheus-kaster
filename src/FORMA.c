@@ -57,6 +57,10 @@ Forma cria_forma_texto (char tipo, int id, double x, double y, char *corb, char 
     return ((forma*)F);
 }
 
+Forma get_info_forma (Pforma F) {
+    return ((forma*)F)->geometrica;
+}
+
 char get_tipo_forma (Forma F) {
     return ((forma*)F)->tipo;
 }
@@ -122,8 +126,4 @@ double get_y_forma(Forma F){
     else if (((forma*)F)->tipo == 't') {
         return get_y_texto (( ((forma*)F)->geometrica) );
     }
-}
-
-Forma get_info_forma (Pforma F) {
-    return ((forma*)F)->geometrica;
 }
