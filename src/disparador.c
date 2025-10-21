@@ -1,6 +1,10 @@
 #include "DISPARADOR.h"
 #include "CARREGADOR.h"
 #include "FORMA.h"
+#include "CIRCULO.h"
+#include "RETANGULO.h"
+#include "LINHA.h"
+#include "TEXTO.h"
 #include "PILHA.h"
 #include "FILA.h"
 #include <stdio.h>
@@ -69,10 +73,10 @@ void shft (Disparador d, char lado, int n) {
 
 void dsp (Disparador d, double dx, double dy, Fila arena) {
     disparador *D = (disparador*) d;
-    Pontprastruct PD = D->pd;
-    char tipo = get_tipo_forma (PD);
+    char tipo = D->pd;
+
     if (tipo == 'c') {
-        Circulo c = PD->geometrica;
+        Circulo c = get_info_forma (D);
         double x_c = get_x_circulo (c);
         double novo_x = x_c + dx;
         set_x_circulo (c, novo_x);
@@ -82,7 +86,7 @@ void dsp (Disparador d, double dx, double dy, Fila arena) {
         set_y_circulo (c, novo_y);
     }
     if (tipo == 'r') {
-        Retangulo r = PD->geometrica;
+        Retangulo r = get_tipo_forma (D);
         double x_r = get_x_retangulo (r);
         double novo_x = x_r + dx;
         set_x_retangulo (r, novo_x);
@@ -93,7 +97,7 @@ void dsp (Disparador d, double dx, double dy, Fila arena) {
     }
     if (tipo == 'l') {
 
-        Linha l = PD->geometrica;
+        Linha l = get_tipo_forma (D);
         double x1_l = get_x1_linha (l);
         double novo_x1 = x1_l + dx;
         set_x1_linha (l, novo_x1);
@@ -111,7 +115,7 @@ void dsp (Disparador d, double dx, double dy, Fila arena) {
         set_y2_linha (l, novo_y2);
     }
     if (tipo == 't') {
-        Texto t = PD->geometrica;
+        Texto t = get_tipo_forma (D);
         double x_t = get_x_texto (t);
         double novo_x = x_t + dx;
         set_x_texto (t, novo_x);
@@ -130,4 +134,9 @@ double get_y_disparador (Disparador d) {
     return ((disparador*)d)->y;
 }
 
-void libera_memoria_disparador (Disparador d) {}
+int get_id_disparador (Disparador d) {
+    return ((disparador*)d)->id;
+}
+
+void libera_memoria_disparador (Disparador d) {
+}

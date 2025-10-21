@@ -13,4 +13,8 @@ Carregador cria_carregador (int id);
 /// @param n Coloca as n primeiras formas que estão no chão.
 void lc (Carregador car, int n, Fila chao);
 
+/// @brief Informa qual é o identificador id, do carregador desejado.
+/// @param car É um ponteiro que aponta para um carregador.
+/// @return Retorna um número inteiro, que é o id do carregador.
+int get_id_carregador (Carregador car);
 #endif

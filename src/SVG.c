@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "DISPARADOR.h"
+#include "CIRCULO.h"
+#include "RETANGULO.h"
+#include "LINHA.h"
+#include "TEXTO.h"
+
 #include "SVG.h"
 
 void abre_svg (FILE **arq_svg, char* caminho) {

@@ -123,3 +123,7 @@ double get_y_forma(Forma F){
         return get_y_texto (( ((forma*)F)->geometrica) );
     }
 }
+
+Forma get_info_forma (Pforma F) {
+    return ((forma*)F)->geometrica;
+}

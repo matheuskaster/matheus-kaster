@@ -51,6 +51,11 @@ double get_x_disparador (Disparador d);
 /// @return Retorna o valor do y do disparador.
 double get_y_disparador (Disparador d);
 
+/// @brief Informa qual é o identificador id, do disparador.
+/// @param d É um ponteiro que indica de qual disparador ele quer essa informação.
+/// @return Retorna o valor do id do disparador.
+int get_id_disparador (Disparador d);
+
 /// @brief Libera a memória associada ao disparador.
 /// @param d É um ponteiro que indica de qual disparador será liberada a memória.
 void libera_memoria_disparador (Disparador d);

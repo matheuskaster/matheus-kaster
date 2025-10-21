@@ -1,13 +1,9 @@
 #ifndef FORMA.h
 #define FORMA.h
 #include <stdio.h>
-#include "CIRCULO.h"
-#include "RETANGULO.h"
-#include "LINHA.h"
-#include "TEXTO.h"
 
 typedef void* Forma;
-typedef forma* Pontprastruct;
+typedef struct forma* Pforma;
  
 Forma cria_forma_circulo (char tipo, int id, double x, double y, double r, char *corb, char *corp);
 
@@ -22,5 +18,7 @@ char get_tipo_forma (Forma F);
 double get_x_forma (Forma F);
 
 double get_y_forma (Forma F);
+
+Forma get_info_forma (Pforma F);
 
 #endif

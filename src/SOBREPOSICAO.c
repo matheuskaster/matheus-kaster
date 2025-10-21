@@ -9,7 +9,7 @@
 #include "TEXTO.h"
 #include "GEO.h"
 
-typedef struct bounding_box{
+typedef struct bounding_box {
     double x_min, x_max, y_min, y_max;
 } bb;
 
@@ -18,45 +18,68 @@ bb get_limite (Forma F1) {
     char tipo = get_tipo_forma(F1);
 
     if (tipo == 'c') {
+        Circulo c = get_info_forma (F1);
+
+        limite.x_min = get_x_circulo(c) - get_r_circulo(c);
+        limite.x_max = get_x_circulo(c) + get_r_circulo(c);
+        limite.y_min = get_y_circulo(c) - get_r_circulo(c);
+        limite.y_max = get_y_circulo(c) + get_r_circulo(c);
     }
     else if (tipo == 'r') {
-        Retangulo r = (retangulo*) F1->geometrica;
+        Retangulo r = get_info_forma (F1);
 
-        limite->x_min = get_x_retangulo (r);
-        limite->x_max = get_x_retangulo(r) + get_w_retangulo(r);
-        limite->y_min = get_y_retangulo(r) - get_h_retangulo(r);
-        limite->y_max = get_h_retangulo(r);
+        limite.x_min = get_x_retangulo (r);
+        limite.x_max = get_x_retangulo(r) + get_w_retangulo(r);
+        limite.y_min = get_y_retangulo(r) - get_h_retangulo(r);
+        limite.y_max = get_h_retangulo(r);
     }
-    else if (tipo == 'l') {}
-    else if (tipo == 't') {}
+    else if (tipo == 'l') {
+        Linha l = get_info_forma (F1);
 
+        limite.x_min = get_x1_linha (l);
+        limite.x_max = get_x2_linha (l);
+        limite.y_min = get_y1_linha (l);
+        limite.y_max = get_x2_linha (l);
+    }
+    else if (tipo == 't') {
+        Texto t = get_info_forma (F1);
+
+        limite.x_min = 
+        limite.x_max = 
+        limite.y_min = 
+        limite.y_max = 
+    }
+    return limite;
 }
 
-verifica_colisão (Forma F1 , Forma F2) {
-    if (F1->tipo == 'c'){
-        if (F2->tipo == 'c') {}
-        if (F2->tipo == 'r') {}
-        if (F2->tipo == 'l') {}
-        if (F2->tipo == 't') {}
+bool bb_esta_sobreposta (bb l1, bb l2) {
+    return (l1.x_max >= l2.x_min && l1.x_min <= l2.x_max && l1.y_max >= l2.y_min && l1.y_min <= l2.y_max);
+}
+
+bool houve_colisao (F1, F2){
+    bb b1 = get_limite (F1);
+    bb b2 = get_limite (F2);
+
+    if (!bb_esta_sobreposta) return false;
+
+    char t1 = get_tipo_forma (F1);
+    char t2 = get_tipo_forma (F2);
+
+    if (t1 == 'c' && t2 == 'c'){
+        Circulo c = get_info_forma (F1);
+
+        double dx = get_x_circulo(c) - get_x_circulo(c);
+        double dy = get_y_circulo(c) - get_y_circulo(c);
+        double d_centro_circulos = sqrt (pow(dx,2) + pow(dy,2));
+
+        if (d_centro_circulos <= (getRCirculo(F1) + getRCirculo(F2))) return true;
     }
-    else if (F1->tipo == 'r') {
-        if (F2->tipo == 'c') {}
-        if (F2->tipo == 'r') {}
-        if (F2->tipo == 'l') {}
-        if (F2->tipo == 't') {}
-    }
-    else if (F1->tipo == 'l') {
-        if (F2->tipo == 'c') {}
-        if (F2->tipo == 'r') {}
-        if (F2->tipo == 'l') {}
-        if (F2->tipo == 't') {}
-    }
-    else if if (F1->tipo == 't') {
-        if (F2->tipo == 'c') {}
-        if (F2->tipo == 'r') {}
-        if (F2->tipo == 'l') {}
-        if (F2->tipo == 't') {}
-    }
+    else if ((t1 == 'c' && t2 == 'l') || (t2 == 'l') && (t2 == 'c')) {}
+    else if ((t1 == 'c' && t2 == 't') || (t2 == 't') && (t2 == 'c')) {}
+    else if (t1 == 'r' || t2 == 'r') return true;
+    else if (t1 == 'l' && t2 == 'l') {}
+    else if ((t1 == 'l' && t2 == 't') || (t2 == 't') && (t2 == 'l')) {}
+    else if (t1 == 't' && t2 == 't') {}
 }
 
 
@@ -65,114 +88,3 @@ verifica_colisão (Forma F1 , Forma F2) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-typedef struct {
-    double xmin,ymin,xmax,ymax;
-}Box;
-
-Box getBox(Pacote g1) {
-    Box box;
-    TipoForma tipo = getTipoForma(g1);
-
-    switch (tipo) {
-        case RETANGULO: {
-            Retangulo r = getDadosForma(g1);
-
-            box.xmin = getXRetangulo(r);
-            box.ymin = getYRetangulo(r);
-            box.xmax = box.xmin + getWRetangulo(r);
-            box.ymax = box.ymin + getHRetangulo(r);
-            break;
-        }
-        case CIRCULO: {
-            Circulo c = getDadosForma(g1);
-
-            box.xmin = getXCirculo(c) - getRCirculo(c);
-            box.xmax = getXCirculo(c) + getRCirculo(c);
-            box.ymin = getYCirculo(c) - getRCirculo(c);
-            box.ymax = getYCirculo(c) + getRCirculo(c);
-            break;
-        }
-        case LINHA: {
-            Linha l = getDadosForma(g1);
-
-            box.xmin = fmin(getX1Linha(l), getX2Linha(l));
-            box.xmax = fmax(getX1Linha(l), getX2Linha(l));
-            box.ymin = fmin(getY1Linha(l), getY2Linha(l));
-            box.ymax = fmax(getY1Linha(l), getY2Linha(l));
-            break;
-        }
-        case TEXTO: {
-            Texto t = getDadosForma(g1);
-            Linha l = transformarTextoLinha(t);
-            return getBox(l);
-        }
-        default:
-            box.xmin = box.ymin = box.xmax = box.ymax = 0;
-    }
-    return box;
-}
-
-bool boxSobrepoem(Box b1,Box b2) {
-    return !(b1.xmax < b2.xmin || b1.xmin > b2.xmax || b1.ymax < b2.ymin || b1.ymin > b2.ymax);
-}
-
-bool verificarSobreposicao(Pacote g1,Pacote g2) {
-
-    Box b1= getBox(g1);
-    Box b2= getBox(g2);
-
-    if (boxSobrepoem(b1,b2)) return false;
-
-    TipoForma t1 = getTipoForma(g1);
-    TipoForma t2 = getTipoForma(g2);
-
-    if (t1 == RETANGULO && t2 == RETANGULO) {
-        return true;
-    }else if (t1 == CIRCULO && t2 == CIRCULO) {
-        double dx = getXCirculo(g1) - getXCirculo(g2);
-        double dy = getYCirculo(g1) - getYCirculo(g2);
-        double dT = sqrt(dx*dx + dy*dy);
-
-        return dT <= (getRCirculo(g1) + getRCirculo(g2));
-    }else if (t1 == RETANGULO && t2 == CIRCULO || t1 == CIRCULO && t2 == RETANGULO) {
-        return true;
-    }else if (t1 == LINHA && t2 == LINHA) {
-        double x1 = getX1Linha(g1);
-        double y1 = getY1Linha(g1);
-        double x2 = getX2Linha(g1);
-        double y2 = getY2Linha(g1);
-
-        double x3 = getX1Linha(g2);
-        double y3 = getY1Linha(g2);
-        double x4 = getX2Linha(g2);
-        double y4 = getY2Linha(g2);
-
-        double denom = (x1-x2)*(y3-y4) - (y1-y2)*(x3-x4);
-        if (denom == 0) return false;
-
-        double px = ((x1*y2 - y1*x2)*(x3 - x4) - (x1-x2)*(x3*y4 - y3*x4)) / denom;
-        double py = ((x1*y2 - y1*x2)*(y3-y4) - (y1-y2)*(x3*y4 - y3*x4)) / denom;
-
-        bool dentro1 = px >= fmin(x1,x2) && px <= fmax(x1,x2) && py >= fmin(y1,y2) && py <= fmax(y1,y2);
-        bool dentro2 = px >= fmin(x3,x4) && px <= fmax(x3,x4) && py >= fmin(y3,y4) && py <= fmax(y3,y4);
-
-        return dentro1 && dentro2;
-    }else if (t1 == LINHA && t2 == CIRCULO || t1 == CIRCULO && t2 == LINHA) {
-        return true;
-    }else if (t1 == LINHA && t2 == RETANGULO || t1 == RETANGULO && t2 == LINHA) {
-        return true;
-    }
-
-}

@@ -21,3 +21,7 @@ void load_carregador (Carregador car, int n, Fila chao) {
         remove_fila (chao);
     }
 }
+
+int get_id_carregador (car) {
+    return (((carregador*)car)->id);
+}

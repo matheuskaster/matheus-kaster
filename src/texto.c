@@ -70,7 +70,6 @@ char* get_size(Estilo ts) {
     return ((estilo*)ts)->size;
 }
 
-
 Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, char* txto) {
     texto *t = (texto*) malloc (sizeof(texto));
     t->id = id;
