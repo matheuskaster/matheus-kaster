@@ -118,12 +118,22 @@ char* get_a_texto (Texto t);
 
 /// @brief O ponteiro que aponta para um char, passado por parâmetro na função, aponta para um texto e esse texto será o novo texto que estará escrito no arquivo .svg da forma.
 /// @param t É um ponteiro que aponta para o texto.
-/// @param txto É o novo texto que estará escrito no SVG da forma
+/// @param txto É o novo texto que estará escrito no SVG da forma.
 void set_txto (Texto t, char *txto);
 
 /// @brief Informa qual é o texto que estará escrito no arquivo .svg da forma texto.
 /// @param t É um ponteiro que aponta para o texto.
 /// @return Retorna qual é o txto do texto. 
 char* get_txto (Texto t);
+
+/// @brief O ponteiro que aponta para um char, passado por parâmetro na função, aponta para um estilo, esse estilo será o novo estilo do texto.
+/// @param t É um ponteiro que aponta para o texto que terá seu estilo alterado.
+/// @param ts É novo estilo do texto.
+void set_estilo_texto (Texto t, Estilo ts);
+
+/// @brief Informa qual é o estilo que esse estilo possui.
+/// @param t É um ponteiro que aponta para o texto que tem esse estilo.
+/// @return Retorna qual é o estilo do texto.
+Estilo get_estilo_texto (Texto t);
 
 #endif

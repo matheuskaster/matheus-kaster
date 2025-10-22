@@ -1,10 +1,9 @@
 #include <stdbool.h>
-#include "CARREGADOR.h"
+#include <stdio.h>
+#include <stddef.h>
 #include "PILHA.h"
 #include "FILA.h"
-#include <stdio.h>
-
-#include <stddef.h>
+#include "CARREGADOR.h"
 
 typedef struct carregador {
     int id;

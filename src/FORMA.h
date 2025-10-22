@@ -1,24 +1,78 @@
 #ifndef FORMA.h
 #define FORMA.h
-#include <stdio.h>
 
 typedef void* Forma;
 typedef forma* Pforma;
- 
+
+/// @brief Cria um círculo com os parâmetros informados.
+/// @param tipo É um char que tem a inicial da forma, nesse caso, 'c'.
+/// @param id Número inteiro positivo identificador, para saber a qual círculo ele está se referindo.
+/// @param x Número real que indica a coordenada no eixo x no qual o centro do círculo se encontra.
+/// @param y Número real que indica a coordenada no eixo y no qual o centro do círculo se encontra.
+/// @param r Número real que indica o tamanho do raio do círculo.
+/// @param corb É uma string de caracteres que represetam a cor da borda do círculo, no padrão SVG, RGB que a cada dois caracteres no sistema hexadecimal são a intensidade de cada uma das três cores (ex.: #00FF00).
+/// @param corp É uma string de caracteres que represetam a cor de preenchimento do círculo, no padrão SVG, RGB que a cada dois caracteres no sistema hexadecimal são a intensidade de cada uma das três cores (ex.: #00FF00).
+/// @return Retorna uma Forma com o tipo e um círculo criado com os parâmetros.
 Forma cria_forma_circulo (char tipo, int id, double x, double y, double r, char *corb, char *corp);
 
+/// @brief Cria um retângulo com os parâmetros informados.
+/// @param tipo É um char que tem a inicial da forma, nesse caso, 'r'.
+/// @param id Número inteiro e positivo identificador para saber a qual retângulo ele está se referindo.
+/// @param x É a coordenada no eixo x no qual a âncora do retângulo se encontra (o vértice do canto superior esquerdo).
+/// @param y É a coordenada no eixo y no qual a âncora do retângulo se encontra (o vértice do canto superior esquerdo).
+/// @param w É um número real correspondente a largura do retângulo.
+/// @param h É um número real correspondente a altura do retângulo.
+/// @param corb Indica a cor da borda do retângulo.
+/// @param corp Indica a cor de preenchimento do retângulo.
+/// @return Retorna uma Forma com o tipo e um retângulo criado com os parâmetros.
 Forma cria_forma_retangulo (char tipo, int id, double x, double y, double w, double h, char *corb, char *corp);
 
+/// @brief Cria um linha com os parâmetros informados.
+/// @param tipo É um char que tem a inicial da forma, nesse caso, 'l'.
+/// @param id Número inteiro identificador para saber a qual linha ele está se referindo.
+/// @param x1 É o menor valor onde uma das extremidades da linha se encontra no eixo x (referente ao vértice inferior esquerdo), indicando a sua posição no plano.
+/// @param y1 É o menor valor onde uma das extremidades da linha se encontra no eixo y (referente ao vértice inferior esquerdo), indicando a sua posição no plano.
+/// @param x2 É o maior valor onde uma das extremidades da linha se encontra no eixo x (referente ao vértice superior direito), indicando a sua posição no plano.
+/// @param y2 É o maior valor onde uma das extremidades da linha se encontra no eixo y (referente ao vértice superior direito), indicando a sua posição no plano.
+/// @param cor Indica a cor da linha.
+/// @return Retorna uma Forma com o tipo e um linha criado com os parâmetros.
 Forma cria_forma_linha (char tipo, int id, double x1, double y1, double x2, double y2, char *cor);
 
+/// @brief Cria um texto com as informaçoes relacionadas a cada um dos parâmetros.
+/// @param tipo É um char que tem a inicial da forma, nesse caso, 't'.
+/// @param id É o identificador, para saber como se referir a esse texto em específico.
+/// @param x É a posicao no eixo x, na qual esta localizada a âncora do texto.
+/// @param y É a posicao no eixo y, na qual esta localizada a âncora do texto.
+/// @param corb É a cor da borda de cada um dos caracteres do texto.
+/// @param corp É a cor de preenchimento de cada um dos caracteres do texto.
+/// @param a É um char, feito para poder identificar sobre qual parte do texto ele se refere (começo, meio, ou fim).
+/// @param txto É o texto que estará escrito no arquivo .svg da forma texto.
+/// @return Retorna uma Forma com o tipo e um texto criado com os parâmetros.
 Forma cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto);
 
+/// @brief Por meio de um ponteiro a forma, ele passa especificamente a forma que está la dentro. 
+/// @param F É um ponteiro que aponta para a implementação da forma.
+/// @return Retorna um void* apontado para a forma específica (ex.: retorna Circulo, Retangulo, Linha, Texto).
+Forma get_info_forma (Pforma F);
+
+/// @brief Acessa a forma informada por parâmetro e informa qual é o tipo dela.
+/// @param F É um ponteiro que aponta para a forma.
+/// @return Retorna um char que indica qual é o tipo da forma.
 char get_tipo_forma (Forma F);
 
+/// @brief Acessa a forma passada por parâmetro e mostra qual é o número inteiro responsável por identificar a forma.
+/// @param F É um ponteiro que aponta para a forma.
+/// @return Retorna um int que indica qual é o identificador id dessa forma.
+int get_id_forma (Forma F);
+
+/// @brief Acessa a forma passada por parâmetro e mostra qual é a coordenada no eixo x, na qual esta localizada a forma.
+/// @param F É um ponteiro que aponta para a forma.
+/// @return Retorna um doble representando a coordenada do eixo x que está localizada a forma.
 double get_x_forma (Forma F);
 
+/// @brief Acessa a forma passada por parâmetro e mostra qual é a coordenada no eixo y, na qual esta localizada a forma.
+/// @param F É um ponteiro que aponta para a forma.
+/// @return Retorna um doble representando a coordenada do eixo y que está localizada a forma.
 double get_y_forma (Forma F);
-
-Forma get_info_forma (Pforma F);
 
 #endif

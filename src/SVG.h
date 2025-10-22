@@ -1,14 +1,18 @@
 #ifndef SVG.h
 #define SVG.h
 #include <stdio.h>
+#include "CIRCULO.h"
+#include "RETANGULO.h"
+#include "LINHA.h"
+#include "TEXTO.h"
 #include "FORMA.h"
 #include "GEO.h"
 
 
-/// @brief Abre o arquivo svg e verifica se ele exite, permitindo o uso dele para ilustrar o jogo.
-/// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo.
-/// @param caminho É um ponteiro para char, para poder guardar qual que é o caminho para acessar aquele caminho em específico.
-void abre_svg (FILE **arq_svg, char *caminho);
+/// @brief Escreve o cabeçalho do arquivo .svg, ou seja, é a declaração <?xml ...?> e a tag <svg ...> com seus atributos que 
+/// definem o espaço e as regras para o desenho.
+/// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
+void abre_svg (FILE* arq_svg);
 
 /// @brief Passa as características do círculo para o svg poder o desenhar.
 /// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo.
@@ -30,8 +34,13 @@ void desenha_linha_svg (FILE* arq_svg, Linha l);
 /// @param t É um ponteiro que aponta para o texto.
 void desenha_texto_svg (FILE* arq_svg, Texto t, Estilo ts);
 
-/// @brief Fecha o arquivo svg, inferindo que foi tudo realizado com sucesso.
-/// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo.
+/// @brief Passa as caracteísticas da forma para o svg poder escrever.
+/// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
+/// @param f É a forma genérica que será desenhada no svg.
+void desenha_forma_svg (FILE* arq_svg, Forma f);
+
+/// @brief Escreve o rodapé do arquivo .svg, ou seja, é a tag </svg> que fecha o arquivo svg, indicando a realização com sucesso.
+/// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
 void fecha_svg (FILE* arq_svg);
 
 

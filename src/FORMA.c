@@ -1,14 +1,14 @@
 #include <stdio.h>
-#include "FORMA.h"
 #include "CIRCULO.h"
 #include "RETANGULO.h"
 #include "LINHA.h"
+#include "FORMA.h"
 #include "TEXTO.h"
 #include "DISPARADOR.h"
 #include "PILHA.h"
 #include <math.h>
 
-typedef struct {
+typedef struct forma {
     Forma geometrica;
     char tipo;
 } forma;
@@ -79,7 +79,7 @@ int get_id_forma (Forma F) {
         return get_id_retangulo( ((forma*)F)->geometrica ); 
     }
     else if (((forma*)F)->tipo == 'l') {
-        return get_id_linha (( ((forma*)F)->geometrica ));
+        return get_id_linha ( ((forma*)F)->geometrica );
     }
     else if (((forma*)F)->tipo == 't') {
         return get_id_texto (( ((forma*)F)->geometrica) );

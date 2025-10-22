@@ -1,17 +1,16 @@
-#include "TEXTO.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <string.h>
 #include "stdbool.h"
+#include "TEXTO.h"
 
-typedef struct estilo {
+typedef struct {
     char *family;
     char *weight;
     char *size;
 } estilo;
 
-typedef struct texto {
+typedef struct {
     int id;
     double x, y;
     char* corb;
@@ -99,58 +98,66 @@ Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, ch
     strcpy(t->txto, txto);
     return ((texto*)t);
 }
-    void set_id_texto (Texto t, int id) {
-        ((texto*)t)->id = id;
-    }
+void set_id_texto (Texto t, int id) {
+    ((texto*)t)->id = id;
+}
 
-    int get_id_texto (Texto t) {
-        return ((texto*)t)->id;
-    }
+int get_id_texto (Texto t) {
+    return ((texto*)t)->id;
+}
 
-    void set_x_texto (Texto t, double x) {
-        ((texto*)t)->x = x;
-    }
+void set_x_texto (Texto t, double x) {
+    ((texto*)t)->x = x;
+}
 
-    int get_x_texto (Texto t) {
-        return ((texto*)t)->x;
-    }
+int get_x_texto (Texto t) {
+    return ((texto*)t)->x;
+}
 
-    void set_y_texto (Texto t, double y) {
-        ((texto*)t)->y = y;
-    }
+void set_y_texto (Texto t, double y) {
+    ((texto*)t)->y = y;
+}
 
-    int get_y_texto (Texto t) {
-        return ((texto*)t)->y;
-    }
+int get_y_texto (Texto t) {
+    return ((texto*)t)->y;
+}
 
-    void set_corb_texto (Texto t, char* corb) {
-        strcpy (((texto*)t)->corb, corb);
-    }
+void set_corb_texto (Texto t, char* corb) {
+    strcpy (((texto*)t)->corb, corb);
+}
 
-    char* get_corb_texto (Texto t) {
-        return ((texto*)t)->corb;
-    }
+char* get_corb_texto (Texto t) {
+    return ((texto*)t)->corb;
+}
 
-    void set_corp_texto (Texto t, char* corp) {
-        strcpy (((texto*)t)->corp, corp);
-    }
+void set_corp_texto (Texto t, char* corp) {
+    strcpy (((texto*)t)->corp, corp);
+}
 
-    char* get_corp_texto (Texto t) {
-        return ((texto*)t)->corp;
-    }
+char* get_corp_texto (Texto t) {
+    return ((texto*)t)->corp;
+}
 
-    void set_a_texto (Texto t, char a) {
-        ((texto*)t)->a = a;
-    }
+void set_a_texto (Texto t, char a) {
+    ((texto*)t)->a = a;
+}
 
-    char get_a_texto (Texto t) {
-        return ((texto*)t)->a;
-    }
+char get_a_texto (Texto t) {
+    return ((texto*)t)->a;
+}
 
-    char* set_txto (Texto t, char *txto) {
-        strcpy (((texto*)t)->txto, txto);
-    }
+void set_txto (Texto t, char *txto) {
+    strcpy (((texto*)t)->txto, txto);
+}
 
-    void get_txto (Texto t) {
-        return ((texto*)t)->txto;
-    }
+char* get_txto (Texto t) {
+    return ((texto*)t)->txto;
+}
+
+void set_estilo_texto (Texto t, Estilo ts) {
+    ((texto*)t)->ts = ts;
+}
+
+Estilo get_estilo_texto (Texto t) {
+    return ((texto*)t)->ts;
+}

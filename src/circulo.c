@@ -81,5 +81,5 @@ int get_corp_circulo (Circulo c) {
 }
 
 double calcula_area_circulo (Circulo c) {
-    return 2*PI*((circulo*)c)->r;
+    return PI* pow(((circulo*)c)->r, 2);
 }

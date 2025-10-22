@@ -8,15 +8,15 @@
 
 #include "SVG.h"
 
-void abre_svg (FILE **arq_svg, char* caminho) {
-    *arq_svg = fopen (caminho, "w");
+void abre_svg (FILE* arq_svg) {
+    
     if (arq_svg == NULL) {
         printf("O aquivo não exite. \n");
-        exit(1);
+        return;
     }
     fprintf(arq_svg,"<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n");
     fprintf(arq_svg,"<svg xmlns:svg=\"http://www.w3.org/2000/svg\" xmlns=\"http://www.w3.org/2000/svg\" width=\"1000\" height=\"1000\">\n");
-    fprintf(arq_svg,"</g>\n");
+    fprintf(arq_svg,"<g>\n");
 }
 
 
@@ -43,8 +43,32 @@ void desenha_texto_svg (FILE* arq_svg, Texto t, Estilo ts) {
     }
 }
 
+void desenha_forma_svg (FILE* arq_svg, Forma f) {
+    char tipo = get_tipo_forma(f);
+
+    if (tipo == 'c') {
+        Circulo c = get_info_forma (f);
+        desenha_circulo_svg (arq_svg, c);
+    }
+    else if (tipo == 'r') {
+        Retangulo r = get_info_forma (f);
+        desenha_retangulo_svg (arq_svg, r);
+    }
+    else if (tipo == 'l') {
+        Linha l = get_info_forma (f);
+        desenha_linha_svg (arq_svg, l);
+    }
+    else if (tipo == 't') {
+        Texto t = get_info_forma (f);
+        Estilo ts = get_estilo_texto (t);
+        desenha_texto_svg (arq_svg, t, ts);
+    }
+}
+
 void fecharSVG(FILE* arq_svg) {
+    if (arq_svg == NULL) {
+        return;
+    }
     fprintf(arq_svg, "</g>\n");
     fprintf(arq_svg,"</svg>\n");
-    fclose(arq_svg);
 }
