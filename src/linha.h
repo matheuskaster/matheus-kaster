@@ -50,7 +50,7 @@ void set_x2_linha (Linha l, double x2);
 
 /// @brief Informa qual é a maior das coordenadas no eixo x, que indica uma das extremidades da linha.
 /// @param l É um ponteiro que aponta para a linha.
-/// @return Retorna o tamanho do raio da linha.
+/// @return Retorna qual é maior coordenada do eixo x da linha.
 double get_x2_linha (Linha l);
 
 /// @brief O número double passado por parâmetro na função, torna-se o novo y2 da linha, que é o que indica onde esta localizado o canto y2 no eixo y.
@@ -60,7 +60,7 @@ void set_y2_linha (Linha l, double y2);
 
 /// @brief Informa qual é a maior das coordenadas no eixo y, que indica uma das extremidades da linha.
 /// @param l É um ponteiro que aponta para a linha.
-/// @return Retorna qual é a coordenada no ponto y do centro da linha.
+/// @return Retorna qual é maior coordenada do eixo y da linha.
 double get_y2_linha (Linha l);
 
 

@@ -32,10 +32,10 @@ void set_x_retangulo (Retangulo r, double x);
 
 /// @brief Informa qual é a coordenada no ponto x da âncora do retângulo.
 /// @param c É um ponteiro que aponta para o retângulo.
-/// @return Retorna qual é a coordenada no ponto da âncora do retângulo.
+/// @return Retorna qual é a coordenada no ponto x da âncora do retângulo.
 double get_x_retangulo (Retangulo r);
 
-/// @brief O número double passado por parâmetro na função indica a coordenada no eixo y onde esta localizado a âncora do retângulo.
+/// @brief O número double passado por parâmetro na função indica a coordenada no eixo y onde está localizado a âncora do retângulo.
 /// @param r É um ponteiro que aponta para o retângulo.
 /// @param y É a coordenada no eixo y na qual a âncora do retângulo se encontra.
 void set_y_retangulo (Retangulo r, double y);

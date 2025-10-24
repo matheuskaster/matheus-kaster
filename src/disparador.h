@@ -12,16 +12,18 @@ typedef void *Carregador;
 Disparador cria_disparador (int id, double x, double y);
 
 /// @brief Reposiciona o disparador passado por parâmetro para a nova coordanada x e y, também passados por parâmetro.
-/// @param d É um ponteiro que aponta para o disparador d.
+/// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
 /// @param x O número double passado por parâmetro na função passa a ser a nova coordenada no eixo x onde está localizado o disparador.
 /// @param y O número double passado por parâmetro na função passa a ser a nova coordenada no eixo x onde está localizado o disparador.
-void pd (Disparador d, double x, double y);
+/// @param D 
+void pd (int id, double x, double y, Divisoria D);
 
 /// @brief Os carregadores passador por parâmetro são anexados ao disparador escolhido.
-/// @param d É um ponteiro que aponta para o disparador que será carregado.
+/// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
 /// @param car_esq É um ponteiro que aponta para qual carregador será colocado no lado esquerdo do Disparador.
 /// @param car_dir É um ponteiro que aponta para qual carregador será colocado no lado direito do Disparador.
-void atch (Disparador d, Carregador car_esq, Carregador car_dir);
+/// @param D 
+void atch (int id, Carregador car_esq, Carregador car_dir, Divisoria D);
 
 /* 
 /// @brief Será informado qual dos botões será apertado podendo ser 'e' para o esquerdo ou 
@@ -29,17 +31,23 @@ void atch (Disparador d, Carregador car_esq, Carregador car_dir);
 última forma que foi colocada no carregador selecionado, e essa será postana posição de 
 disparo. Caso já tenha alguma forma em posição de disparo, a forma que já estava naquela 
 posição será inserida no outro carregador, liberando a posição de disparo.*/
-/// @param d É um ponteiro que indicica qual disparador que está sendo operado.
+/// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
 /// @param lado É uma letra para escolher o lado da carga que será colocado em posição de disparo.
-/// @param n É um número inteiro positivo que indica a quantidade de vezes que o botão 
-void shft (Disparador d, char lado, int n);
+/// @param n É um número inteiro positivo que indica a quantidade de vezes que o botão.
+/// @param D 
+void shft (int id, char lado, int n, Disparador D);
 
 /// @brief Dispara a forma que estava em posição na arena, a uma distância dx e dy da posição do disparador, e deixa sem nenhuma forma essa posição de disparo.
-/// @param d É um ponteiro que indica qual disparador será disparado.
+/// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
+/// @param dx É a variação do deslocamento da coordenada inicial da forma na posição de disparo até a nova posição dela, ou seja,
+/// sai da coordenada onde o disparador se encontra, e aumenta dx unidades no valor do eixo x.
+/// @param dy É a variação do deslocamento da coordenada inicial da forma na posição de disparo até a nova posição dela, ou seja,
+/// sai da coordenada onde o disparador se encontra, e aumenta dy unidades no valor do eixo y.
+/// @param 
+/// @param arena 
+/// @param D 
 /// @return Retorna as informações armazenadas da forma.
-void dsp (Disparador d, double dx, double dy, [v|i]);
-
-void rjd (Disparador d, char lado, double dx, double dy, double ix, double iy);
+void dsp (int id, double dx, double dy, [v|i], Fila arena, Disparador D);
 
 /// @brief O número inteiro passado por parâmetro na função passa a ser o novo número identificador do disparador.
 /// @param d É um ponteiro para o disparador que terá seu id alterado.

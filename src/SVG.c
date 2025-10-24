@@ -65,8 +65,9 @@ void desenha_forma_svg (FILE* arq_svg, Forma f) {
     }
 }
 
-void fecharSVG(FILE* arq_svg) {
+void fecha_svg(FILE* arq_svg) {
     if (arq_svg == NULL) {
+        printf("Não foi possível acessar o arquivo. \n");
         return;
     }
     fprintf(arq_svg, "</g>\n");

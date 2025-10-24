@@ -7,6 +7,7 @@
 #include "TEXTO.h"
 #include "PILHA.h"
 #include "FILA.h"
+#include "DIVISORIA.h"
 #include <stdio.h>
 
 #include <stddef.h>
@@ -32,17 +33,20 @@ Disparador cria_disparador (int id, double x, double y) {
     return d;
 }
 
-void pd (Disparador d, double x, double y) {
+void pd (int id, double x, double y, Divisoria D) {
+    Disparador d = busca_elem_div(D, id, 'd');
     ((disparador*)d)->x = x;
     ((disparador*)d)->y = y;
 }
 
-void atch (Disparador d, Carregador car_esq, Carregador car_dir) {
+void atch (int id, Carregador car_esq, Carregador car_dir, Divisoria D) {
+    Disparador d = busca_elem_div(D, id, 'd');
     ((disparador*)d)->car_esq = car_esq;
     ((disparador*)d)->car_dir = car_dir;
 }
 
-void shft (Disparador d, char lado, int n) {
+void shft (int id, char lado, int n, Divisoria D) {
+    Disparador d = busca_elem_div(D, id, 'd');
     if (lado == 'd') {
         if (((disparador*)d)->pd != NULL) {
             insere_pilha (((disparador*)d)->car_dir, ((disparador*)d)->pd);
@@ -73,12 +77,13 @@ void shft (Disparador d, char lado, int n) {
     }
 }
 
-void dsp (Disparador d, double dx, double dy, Fila arena) {
-    disparador *D = (disparador*) d;
-    char tipo = D->pd;
+void dsp (int id, double dx, double dy, Fila arena, Divisoria D) {
+    Disparador d = busca_elem_div(D, id, 'd');
+    disparador *disp = (disparador*) d;
+    char tipo = disp->pd;
 
     if (tipo == 'c') {
-        Circulo c = get_info_forma (D);
+        Circulo c = get_info_forma (disp);
         double x_c = get_x_circulo (c);
         double novo_x = x_c + dx;
         set_x_circulo (c, novo_x);
@@ -88,7 +93,7 @@ void dsp (Disparador d, double dx, double dy, Fila arena) {
         set_y_circulo (c, novo_y);
     }
     if (tipo == 'r') {
-        Retangulo r = get_tipo_forma (D);
+        Retangulo r = get_tipo_forma (disp);
         double x_r = get_x_retangulo (r);
         double novo_x = x_r + dx;
         set_x_retangulo (r, novo_x);
@@ -99,7 +104,7 @@ void dsp (Disparador d, double dx, double dy, Fila arena) {
     }
     if (tipo == 'l') {
 
-        Linha l = get_tipo_forma (D);
+        Linha l = get_tipo_forma (disp);
         double x1_l = get_x1_linha (l);
         double novo_x1 = x1_l + dx;
         set_x1_linha (l, novo_x1);
@@ -117,7 +122,7 @@ void dsp (Disparador d, double dx, double dy, Fila arena) {
         set_y2_linha (l, novo_y2);
     }
     if (tipo == 't') {
-        Texto t = get_tipo_forma (D);
+        Texto t = get_tipo_forma (disp);
         double x_t = get_x_texto (t);
         double novo_x = x_t + dx;
         set_x_texto (t, novo_x);

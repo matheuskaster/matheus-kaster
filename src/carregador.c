@@ -4,6 +4,7 @@
 #include "PILHA.h"
 #include "FILA.h"
 #include "CARREGADOR.h"
+#include "DIVISORIA.h"
 
 typedef struct carregador {
     int id;
@@ -22,7 +23,8 @@ Carregador cria_carregador (int id, Pilha p) {
     return ((carregador*)car);
 }
 
-void load_carregador (Carregador car, int n, Fila chao) {
+void load_carregador (int id, int n, Fila chao, Divisoria D) {
+    Carregador car = busca_elem_div(D, id, 'c');
     for (int i = 0; i < n; i ++) {
         Forma F = get_conteudo_fila (chao);
         insere_pilha (((carregador*)car)->p, F);
