@@ -1,7 +1,6 @@
 #ifndef FILA.h
 #define FILA.h
 #include "FORMA.h"
-#include "FILA.c"
 #include <stdbool.h>
 
 typedef void *Fila;

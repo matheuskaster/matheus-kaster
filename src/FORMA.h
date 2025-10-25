@@ -1,10 +1,8 @@
 #ifndef FORMA.h
 #define FORMA.h
-#include "FORMA.c"
-
 
 typedef void* Forma;
-typedef forma* Pforma;
+//typedef forma* Pforma;
 
 /// @brief Cria um círculo com os parâmetros informados.
 /// @param tipo É um char que tem a inicial da forma, nesse caso, 'c'.
@@ -82,15 +80,25 @@ double get_y_forma (Forma F);
 /// @return Retorna um número double, que é o valor da área dessa forma.
 double get_area_forma (Forma F);
 
-/// @brief Acessa a forma passada por parâmetro e mostra qual é a cor de preenchimento dela.
+/// @brief O ponteiro para um char passado por parâmetro na função aponta para uma sequência de letras determinam uma cor, e essa cor, por meio da função, passa a ser a nova cor de borda da forma, também passada por parâmetro.
 /// @param F É um ponteiro que aponta para a forma.
-/// @return Retorna qual é a cor de preenchimento da forma.
-char* get_corp_forma(Forma F);
+/// @param corb É a nova cor de borda da forma.
+void set_corb_forma (Forma F, char* corb);
 
 /// @brief Acessa a forma passada por parâmetro e mostra qual é a cor de borda dela.
 /// @param F É um ponteiro que aponta para a forma.
 /// @return Retorna qual é a cor de borda da forma.
-void get_corb_forma(Forma F);
+char* get_corb_forma(Forma F);
+
+/// @brief O ponteiro para um char passado por parâmetro na função aponta para uma sequência de letras determinam uma cor, e essa cor, por meio da função, passa a ser a nova cor de preenchimento da forma, também passada por parâmetro.
+/// @param F É um ponteiro que aponta para a forma.
+/// @param corp É a nova cor de borda da forma.
+void set_corp_forma (Forma F, char* corp);
+
+/// @brief Acessa a forma passada por parâmetro e mostra qual é a cor de preenchimento dela.
+/// @param F É um ponteiro que aponta para a forma.
+/// @return Retorna qual é a cor de preenchimento da forma.
+char* get_corp_forma(Forma F);
 
 /// @brief Acessa a forma passada por parâmetro e mostra qual é a área dela.
 /// @param F É um ponteiro que aponta para a forma.

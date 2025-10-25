@@ -45,11 +45,11 @@ void remove_pilha (Pilha p) {
     ((pilha*)p)->tam--;
 }
 
-Forma get_conteudo_pilha (Pilha p) {
+pont get_conteudo_pilha (Pilha p) {
     if (p == NULL || ((pilha*)p)->topo == NULL) {
         return;
     }
-    return ((pilha*)p)->topo->chave;
+    return ((pilha*)p)->topo;
 } 
 
 void libera_pilha (Pilha p) {

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
 #include "CIRCULO.h"
 #include "RETANGULO.h"
 #include "LINHA.h"
@@ -9,7 +10,7 @@
 #include "PILHA.h"
 #include <math.h>
 
-static int MAIOR_ID = 0;
+static int ULTIMO_ID = 0;
 
 typedef struct forma {
     Forma geometrica;
@@ -151,27 +152,27 @@ double get_area_forma (Forma F) {
     }
 }
 
-char* get_corp_forma(Forma F) {
+void set_corb_forma (Forma F, char *corb) {
     if (F == NULL) {
         printf("Erro! A forma passada por parâmetro não existe. \n");
         exit (1);
     }
 
     if (((forma*)F)->tipo == 'c') {
-        return get_corp_circulo( ((forma*)F)->geometrica );
+        set_corb_circulo( ((forma*)F)->geometrica, corb );
     }
     else if (((forma*)F)->tipo == 'r') {
-        return get_corp_retangulo( ((forma*)F)->geometrica ); 
+        set_corb_retangulo( ((forma*)F)->geometrica, corb ); 
     }
     else if (((forma*)F)->tipo == 'l') {
-        return get_cor( ((forma*)F)->geometrica );
+        set_cor( ((forma*)F)->geometrica, corb );
     }
     else if (((forma*)F)->tipo == 't') {
-        return get_corp_texto( ((forma*)F)->geometrica );
+        set_corb_texto( ((forma*)F)->geometrica, corb );
     }
 }
 
-void get_corb_forma(Forma F) {
+char* get_corb_forma(Forma F) {
     if (F == NULL) {
         printf("Erro! A forma passada por parâmetro não existe. \n");
         exit (1);
@@ -188,6 +189,53 @@ void get_corb_forma(Forma F) {
     }
     else if (((forma*)F)->tipo == 't') {
         return get_corb_texto( ((forma*)F)->geometrica );
+    }
+}
+
+void set_corp_forma (Forma F, char *corp) {
+    if (F == NULL) {
+        printf("Erro! A forma passada por parâmetro não existe. \n");
+        exit (1);
+    }
+
+    if (((forma*)F)->tipo == 'c') {
+        set_corp_circulo( ((forma*)F)->geometrica, corp );
+    }
+    else if (((forma*)F)->tipo == 'r') {
+        set_corp_retangulo( ((forma*)F)->geometrica, corp ); 
+    }
+    else if (((forma*)F)->tipo == 'l') return;
+    else if (((forma*)F)->tipo == 't') {
+        set_corp_texto( ((forma*)F)->geometrica, corp );
+    }
+}
+
+char* get_corp_forma(Forma F) {
+    if (F == NULL) {
+        printf("Erro! A forma passada por parâmetro não existe. \n");
+        exit (1);
+    }
+
+    if (((forma*)F)->tipo == 'c') {
+        return get_corp_circulo( ((forma*)F)->geometrica );
+    }
+    else if (((forma*)F)->tipo == 'r') {
+        return get_corp_retangulo( ((forma*)F)->geometrica ); 
+    }
+    else if (((forma*)F)->tipo == 'l') {
+        char *cor = get_cor_linha( ((forma*)F)->geometrica );
+        if (cor[0] != '#') return;
+        int R, G, B;
+        sscanf(cor, "#%02x%02x%02x", &R, &G, &B);
+        int R_complem = 255 - R;
+        int G_complem = 255 - G;
+        int B_complem = 255 - B;
+        char* cor_complem;
+        sprintf (cor_complem, "#%02X%02X%02X", R_complem, G_complem, B_complem);
+        return cor_complem;
+    }
+    else if (((forma*)F)->tipo == 't') {
+        return get_corp_texto( ((forma*)F)->geometrica );
     }
 }
 
@@ -211,12 +259,12 @@ double get_area_forma(Forma F) {
     }
 }
 
-void armazenaMaiorId(int maior_id) {
-    MAIOR_ID = maior_id + 1;
+void armazena_ultimo_id(int ultimo_id) {
+    ULTIMO_ID = ultimo_id + 1;
 }
 
-int getMaiorId() {
-    return MAIOR_ID;
+int get_ultimo_id() {
+    return ULTIMO_ID;
 }
 
 Forma clona_forma(Forma F) {
@@ -225,43 +273,49 @@ Forma clona_forma(Forma F) {
         exit (1);
     }
 
+    int novo_id = get_ultimo_id();
+
     if (((forma*)F)->tipo == 'c') {
-        double x = get_x_circulo( ((forma*)F)->geometrica );
-        double y = get_y_circulo( ((forma*)F)->geometrica );
-        double r = get_r_circulo( ((forma*)F)->geometrica );
-        char* corb = get_corb_circulo( ((forma*)F)->geometrica );
-        char* corp = get_corp_circulo( ((forma*)F)->geometrica );
-        MAIOR_ID++;
-        return cria_circulo (id, x, y, r, corb, corp);
+        Circulo c = get_info_forma (F);
+        double x = get_x_circulo(c);
+        double y = get_y_circulo(c);
+        double r = get_r_circulo(c);
+        char* corb = get_corb_circulo(c);
+        char* corp = get_corp_circulo(c);
+        ULTIMO_ID++;
+        return cria_forma_circulo ('c', novo_id, x, y, r, corb, corp);
     }
     else if (((forma*)F)->tipo == 'r') {
-        double x = get_x_retangulo( ((forma*)F)->geometrica );
-        double y = get_y_retangulo( ((forma*)F)->geometrica );
-        double w = get_w_retangulo( ((forma*)F)->geometrica );
-        double h = get_h_retangulo( ((forma*)F)->geometrica );
-        char* corb = get_corb_retangulo( ((forma*)F)->geometrica );
-        char* corp = get_corp_retangulo( ((forma*)F)->geometrica );
-        MAIOR_ID++;
-        return cria_retangulo(id, x, y, w, h, corb, corp);
+        Retangulo r = get_info_forma(F);
+        double x = get_x_retangulo(r);
+        double y = get_y_retangulo(r);
+        double w = get_w_retangulo(r);
+        double h = get_h_retangulo(r);
+        char* corb = get_corb_retangulo(r);
+        char* corp = get_corp_retangulo(r);
+        ULTIMO_ID++;
+        return cria_forma_retangulo('r', novo_id, x, y, w, h, corb, corp);
     }
     else if (((forma*)F)->tipo == 'l') {
-        double x1 = get_x1_linha( ((forma*)F)->geometrica );
-        double y1 = get_y1_linha( ((forma*)F)->geometrica );
-        double x2 = get_x2_linha( ((forma*)F)->geometrica );
-        double y2 = get_y2_linha( ((forma*)F)->geometrica );
-        char* cor = get_cor( ((forma*)F)->geometrica );
-        MAIOR_ID++;
-        return cria_linha(id, x1, y1, x2, y2, cor);
+        Linha l = get_info_forma(F);
+        double x1 = get_x1_linha(l);
+        double y1 = get_y1_linha(l);
+        double x2 = get_x2_linha(l);
+        double y2 = get_y2_linha(l);
+        char* cor = get_cor(l);
+        ULTIMO_ID++;
+        return cria_forma_linha('l', novo_id, x1, y1, x2, y2, cor);
     }
     else if (((forma*)F)->tipo == 't') {
-        double x = get_x_texto( ((forma*)F)->geometrica );
-        double y = get_y_texto( ((forma*)F)->geometrica );
-        char* corb = get_corb_texto( ((forma*)F)->geometrica );
-        char* corp = get_corp_texto( ((forma*)F)->geometrica );
-        char* a = get_a_texto( ((forma*)F)->geometrica );
-        char* txto = get_txto( ((forma*)F)->geometrica );
-        MAIOR_ID++;
-        return cria_texto(id, x, y, corb, corp, a, txto);
+        Texto t = get_info_forma(F);
+        double x = get_x_texto(t);
+        double y = get_y_texto(t);
+        char* corb = get_corb_texto(t);
+        char* corp = get_corp_texto(t);
+        char* a = get_a_texto(t);
+        char* txto = get_txto(t);
+        ULTIMO_ID++;
+        return cria_forma_texto('t', novo_id, x, y, corb, corp, a, txto);
     }
 }
 
@@ -282,6 +336,18 @@ void inverte_cores_forma(Forma F) {
         char *cpr = get_corp_retangulo( ((forma*)F)->geometrica );
         set_corb_retangulo(((forma*)F)->tipo, cpr);
         set_corp_retangulo(((forma*)F)->tipo, cbr);
+    }
+    else if (((forma*)F)->tipo == 'l') {
+        char *cor = get_cor_linha( ((forma*)F)->geometrica );
+        if (cor[0] != '#') return;
+        int R, G, B;
+        sscanf(cor, "#%02x%02x%02x", &R, &G, &B);
+        int R_complem = 255 - R;
+        int G_complem = 255 - G;
+        int B_complem = 255 - B;
+        char *nova_cor_borda;
+        sprintf (nova_cor_borda, "#%02X%02X%02X", R_complem, G_complem, B_complem);
+        set_cor_linha (nova_cor_borda);
     }
     else if (((forma*)F)->tipo == 't') {
         char *cbt = get_corb_texto( ((forma*)F)->geometrica );

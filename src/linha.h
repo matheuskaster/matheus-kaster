@@ -63,11 +63,14 @@ void set_y2_linha (Linha l, double y2);
 /// @return Retorna qual é maior coordenada do eixo y da linha.
 double get_y2_linha (Linha l);
 
+/// @brief O ponteiro para um char passado por parâmetro na função aponta para uma sequência em hexadecimal determinando uma cor, e essa cor, por meio da função, passa a ser a nova cor da linha, também passada por parâmetro.
+/// @param l É um ponteiro que aponta para a linha.
+void set_cor_linha (Linha l);
 
 /// @brief Informa qual é a cor da linha.
 /// @param l É um ponteiro que aponta para a linha.
 /// @return Retorna a cor da linha.
-char* get_cor (Linha l);
+char* get_cor_linha (Linha l);
 
 /// @brief Calcula a área da linha considerando a espessura dela como 10 u e vendo a distância entre as estremidades.
 /// @param r Um ponteiro que aponta para a linha.

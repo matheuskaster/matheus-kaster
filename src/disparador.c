@@ -85,7 +85,8 @@ void shft (int id, char lado, int n, Divisoria D, FILE* arq_txt) {
 void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Divisoria D, FILE* arq_txt, int *num_disparos) {
     Disparador d = busca_elem_div(D, id, 'd');
     disparador *disp = (disparador*) d;
-    char tipo = disp->pd;
+    Forma f = disp->pd;
+    char tipo = get_tipo_forma(f);
 
     if (tipo == 'c') {
         Circulo c = get_info_forma (disp);
@@ -143,6 +144,30 @@ void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Divisoria D
     insere_fila (arena, disp);
     (*num_disparos)++;
     ((disparador*)d)->pd = NULL;
+}
+
+void rjd (int id, char lado, double dx, double dy, double ix, double iy, Fila arena, Divisoria D, FILE* arq_txt, int *num_disparos) {
+    Disparador d = busca_elem_div(D, id, 'd');
+    disparador *disp = (disparador*) d;
+    Carregador c_e = disp->car_esq;
+    Carregador c_d = disp->car_dir;
+    pont topo_e = get_conteudo_pilha(c_e);
+    pont topo_d = get_conteudo_pilha(c_d);
+    int i = 0;
+    if (lado == 'd') {
+        while (topo_e != NULL) {
+            shft (id, lado, 1, D, arq_txt);
+            dsp (id, dx+i*ix, dy+i*iy, 'v', arena, D, arq_txt, num_disparos);
+            i++;
+        }
+    }
+    if (lado == 'e') {
+        while (topo_d != NULL) {
+            shft (id, lado, 1, D, arq_txt);
+            dsp (id, dx+i*ix, dy+i*iy, 'v', arena, D, arq_txt, num_disparos);
+            i++;
+        }
+    }
 }
 
 void set_id_disparador (Disparador d, int id) {
