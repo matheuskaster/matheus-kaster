@@ -136,4 +136,18 @@ void set_estilo_texto (Texto t, Estilo ts);
 /// @return Retorna qual é o estilo do texto.
 Estilo get_estilo_texto (Texto t);
 
+/// @brief Recebe um texto e o transforma em uma linha, convencionando que seu comprimento é 10 vezes o número de caracteres, os 
+/// valores de y1 e y2 são metade de sua altura total, e encontra quem seriam o x1 e x2, tomando com referência o 'a' do texto.
+/// @param t É um ponteiro que aponta para o texto que será transformado em linha.
+/// @param x1 É o menor valor onde uma das extremidades da linha se encontra no eixo x (referente ao vértice inferior esquerdo), indicando a sua posição no plano.
+/// @param y1 É o menor valor onde uma das extremidades da linha se encontra no eixo y (referente ao vértice inferior esquerdo), indicando a sua posição no plano.
+/// @param x2 É o maior valor onde uma das extremidades da linha se encontra no eixo x (referente ao vértice superior direito), indicando a sua posição no plano.
+/// @param y2 É o maior valor onde uma das extremidades da linha se encontra no eixo y (referente ao vértice superior direito), indicando a sua posição no plano.
+void transforma_texto_em_linha (Texto t, double *x1, double *y1, double *x2, double *y2);
+
+/// @brief Calcula a área do texto, convencionando que ela seria calculada como 20 vezes a quantidade de caracteres do texto.
+/// @param t É um ponteiro que aponta para o texto que terá sua área calculada.
+/// @return Retorna um número double correspondente à área do texto.
+double calcula_area_texto (Texto t);
+
 #endif

@@ -1,13 +1,16 @@
-#include "FILA.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include "CIRCULO.h"
+#include "RETANGULO.h"
+#include "LINHA.h"
+#include "TEXTO.h"
+#include "FORMA.h"
+#include "FILA.h"
 
 typedef struct elemento {
     Forma chave;
     struct elemento *prox;
-} elemento;  
-
-typedef elemento* pont;
+} elemento;
 
 typedef struct {
     int tam;
@@ -56,12 +59,16 @@ void remove_fila (Fila f) {
     ((fila*)f)->tam--;
 }
 
-Forma get_conteudo_fila (Fila f) {
+pont get_conteudo_fila (Fila f) {
     if (f == NULL || ((fila*)f)->inicio == NULL) {
         return;
     }
-    return ((fila*)f)->inicio->chave;
-} 
+    return ((fila*)f)->inicio;
+}
+
+pont anda_fila (pont atual, Fila f) {
+    return atual->prox;
+}
 
 void libera_fila (Fila f) {
     if (f == NULL) return;

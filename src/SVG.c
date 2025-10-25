@@ -5,6 +5,7 @@
 #include "RETANGULO.h"
 #include "LINHA.h"
 #include "TEXTO.h"
+#include "FILA.h"
 
 #include "SVG.h"
 
@@ -72,4 +73,16 @@ void fecha_svg(FILE* arq_svg) {
     }
     fprintf(arq_svg, "</g>\n");
     fprintf(arq_svg,"</svg>\n");
+}
+
+void svg (FILE* arq_svg, Fila chao) {
+    abre_svg (arq_svg);
+    int tam = tam_fila (chao);
+    pont atual = get_conteudo_fila (chao);
+    for (int i = 0; i < tam; i ++) {
+        Forma F = atual->chave;
+        desenha_forma_svg (arq_svg, F);
+        atual = atual->prox;
+    }
+    fecha_svg(arq_svg);
 }

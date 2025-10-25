@@ -23,10 +23,16 @@ Carregador cria_carregador (int id, Pilha p) {
     return ((carregador*)car);
 }
 
-void load_carregador (int id, int n, Fila chao, Divisoria D) {
+void load_carregador (int id, int n, Fila chao, Divisoria D, FILE* arq_txt) {
+
+    fprintf(arq_txt, "Comando assionado 'lc' carregando o carregador %d com %d formas.\n", get_id_carregador(id), n);
+
     Carregador car = busca_elem_div(D, id, 'c');
     for (int i = 0; i < n; i ++) {
         Forma F = get_conteudo_fila (chao);
+
+        fprintf(arq_txt, "A forma carregada é a de id %d, do tipo: %c, que estava na posição X: %.1f e Y: %.1f.\n", get_id_forma(F), get_tipo_forma(F), get_x_forma(F), get_y_forma(F));
+
         insere_pilha (((carregador*)car)->p, F);
         remove_fila (chao);
     }

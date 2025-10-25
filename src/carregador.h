@@ -14,7 +14,8 @@ Carregador cria_carregador (int id, Pilha p);
 /// @param n Coloca as n primeiras formas que estão no chão.
 /// @param chao É um ponteiro do tipo void, que aponta para uma fila, possibilitando retirar as formas do chão para carregar o carregador.
 /// @param D 
-void lc (int id, int n, Fila chao, Divisoria D);
+/// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
+void lc (int id, int n, Fila chao, Divisoria D, FILE* arq_txt);
 
 /// @brief O número inteiro passado por parâmetro na função passa a ser o novo número identificador do carregador.
 /// @param car É um ponteiro para o carregador que terá seu id alterado.

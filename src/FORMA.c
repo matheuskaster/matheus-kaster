@@ -9,6 +9,8 @@
 #include "PILHA.h"
 #include <math.h>
 
+static int MAIOR_ID = 0;
+
 typedef struct forma {
     Forma geometrica;
     char tipo;
@@ -149,7 +151,7 @@ double get_area_forma (Forma F) {
     }
 }
 
-char* forma_get_corp(Forma F) {
+char* get_corp_forma(Forma F) {
     if (F == NULL) {
         printf("Erro! A forma passada por parâmetro não existe. \n");
         exit (1);
@@ -169,7 +171,7 @@ char* forma_get_corp(Forma F) {
     }
 }
 
-void forma_get_corb(Forma F, char* cor) {
+void get_corb_forma(Forma F) {
     if (F == NULL) {
         printf("Erro! A forma passada por parâmetro não existe. \n");
         exit (1);
@@ -189,7 +191,35 @@ void forma_get_corb(Forma F, char* cor) {
     }
 }
 
-Forma forma_clona(Forma F, int id) {
+double get_area_forma(Forma F) {
+    if (F == NULL) {
+        printf("Erro! A forma passada por parâmetro não existe. \n");
+        exit (1);
+    }
+
+    if (((forma*)F)->tipo == 'c') {
+        return calcula_area_circulo( ((forma*)F)->geometrica );
+    }
+    else if (((forma*)F)->tipo == 'r') {
+        return calcula_area_retangulo( ((forma*)F)->geometrica ); 
+    }
+    else if (((forma*)F)->tipo == 'l') {
+        return calcula_area_linha( ((forma*)F)->geometrica );
+    }
+    else if (((forma*)F)->tipo == 't') {
+        return calcula_area_texto( ((forma*)F)->geometrica );
+    }
+}
+
+void armazenaMaiorId(int maior_id) {
+    MAIOR_ID = maior_id + 1;
+}
+
+int getMaiorId() {
+    return MAIOR_ID;
+}
+
+Forma clona_forma(Forma F) {
     if (F == NULL) {
         printf("Erro! A forma passada por parâmetro não existe. \n");
         exit (1);
@@ -201,7 +231,7 @@ Forma forma_clona(Forma F, int id) {
         double r = get_r_circulo( ((forma*)F)->geometrica );
         char* corb = get_corb_circulo( ((forma*)F)->geometrica );
         char* corp = get_corp_circulo( ((forma*)F)->geometrica );
-
+        MAIOR_ID++;
         return cria_circulo (id, x, y, r, corb, corp);
     }
     else if (((forma*)F)->tipo == 'r') {
@@ -211,7 +241,7 @@ Forma forma_clona(Forma F, int id) {
         double h = get_h_retangulo( ((forma*)F)->geometrica );
         char* corb = get_corb_retangulo( ((forma*)F)->geometrica );
         char* corp = get_corp_retangulo( ((forma*)F)->geometrica );
-
+        MAIOR_ID++;
         return cria_retangulo(id, x, y, w, h, corb, corp);
     }
     else if (((forma*)F)->tipo == 'l') {
@@ -220,7 +250,7 @@ Forma forma_clona(Forma F, int id) {
         double x2 = get_x2_linha( ((forma*)F)->geometrica );
         double y2 = get_y2_linha( ((forma*)F)->geometrica );
         char* cor = get_cor( ((forma*)F)->geometrica );
-
+        MAIOR_ID++;
         return cria_linha(id, x1, y1, x2, y2, cor);
     }
     else if (((forma*)F)->tipo == 't') {
@@ -230,12 +260,12 @@ Forma forma_clona(Forma F, int id) {
         char* corp = get_corp_texto( ((forma*)F)->geometrica );
         char* a = get_a_texto( ((forma*)F)->geometrica );
         char* txto = get_txto( ((forma*)F)->geometrica );
-
+        MAIOR_ID++;
         return cria_texto(id, x, y, corb, corp, a, txto);
     }
 }
 
-void forma_inverte_cores(Forma F) {
+void inverte_cores_forma(Forma F) {
     if (F == NULL) {
         printf("Erro! A forma passada por parâmetro não existe. \n");
         exit (1);
@@ -261,5 +291,5 @@ void forma_inverte_cores(Forma F) {
     }
 }
 
-void forma_libera(Forma F) {
+void libera_forma(Forma F) {
 }

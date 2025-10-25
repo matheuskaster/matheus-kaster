@@ -1,10 +1,11 @@
 #ifndef FILA.h
 #define FILA.h
 #include "FORMA.h"
+#include "FILA.c"
 #include <stdbool.h>
 
 typedef void *Fila;
-
+typedef elemento* pont;
 
 // Arquivo .h revelando de uma forma abstrata o funcionamento de uma fila, feita de forma genérica, pode ser utilizada em qualquer contexto que seja aplicável o conceito de FIFO. OU seja, será possível acessar somente o prifila elemento inserido na ED.
 
@@ -30,7 +31,13 @@ void remove_fila(Fila f);
 /// @brief Acessa o conteúdo do elemento no início da fila e informa o que ele é.
 /// @param f É um ponteiro que aponta para a fila f.
 /// @return Retorna o conteúdo do início.
-Forma get_conteudo_fila(Fila f);
+pont get_conteudo_fila(Fila f);
+
+/// @brief É uma função que tem como objetivo acessar receber o elemento atual, encontrar em qual posição ele se está e retornar
+/// o próximo elemento da fila, sem o excuir.
+/// @param f É um ponteiro que aponta para a fila.
+/// @return Retorna qual é o próximo elemento da fila
+pont anda_fila (pont atual, Fila f);
 
 /// @brief Libera a memória alocada para a fila.
 /// @param f É um ponteiro para a fila.

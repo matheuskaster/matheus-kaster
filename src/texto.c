@@ -161,3 +161,32 @@ void set_estilo_texto (Texto t, Estilo ts) {
 Estilo get_estilo_texto (Texto t) {
     return ((texto*)t)->ts;
 }
+
+void transforma_texto_em_linha (Texto t, double *x1, double *y1, double *x2, double *y2) {
+    char a = get_a_texto(t);
+    char* txto = get_txto(t);
+    
+    double comp = strlen(txto) * 10.0;
+    
+    double x = get_x_texto(t);
+    double y = get_y_texto(t) + 7.5; 
+
+    *y1 = y;
+    *y2 = y;
+
+    if (a == 'i') {
+        *x1 = x;
+        *x2 = x + comp;
+    } else if (a == 'm') {
+        *x1 = x - (comp / 2.0);
+        *x2 = x + (comp / 2.0);
+    } else if (a == 'f') {
+        *x1 = x - comp;
+        *x2 = x;
+    }
+}
+
+double calcula_area_texto (Texto t) {
+    char* txto = get_txto(t);
+    return 20 * strlen(txto);
+}

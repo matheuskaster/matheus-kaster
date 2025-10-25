@@ -85,25 +85,29 @@ double get_area_forma (Forma F);
 /// @brief Acessa a forma passada por parâmetro e mostra qual é a cor de preenchimento dela.
 /// @param F É um ponteiro que aponta para a forma.
 /// @return Retorna qual é a cor de preenchimento da forma.
-char* forma_get_corp(Forma F);
+char* get_corp_forma(Forma F);
 
 /// @brief Acessa a forma passada por parâmetro e mostra qual é a cor de borda dela.
 /// @param F É um ponteiro que aponta para a forma.
-/// @param cor Retorna qual é a cor de borda da forma.
-void forma_get_corb(Forma F, char* cor);
+/// @return Retorna qual é a cor de borda da forma.
+void get_corb_forma(Forma F);
+
+/// @brief Acessa a forma passada por parâmetro e mostra qual é a área dela.
+/// @param F É um ponteiro que aponta para a forma.
+/// @return Retorna qual é a área da forma.
+double calcula_area_forma(Forma F);
 
 /// @brief Recebe uma forma e clona ela, ou seja, faz uma cópia com os mesmos atributos, entretanto altera qual é o id da forma.
 /// @param F É um ponteiro que aponta para a forma.
-/// @param id É um número inteiro que será o número identificador do clone daquela forma.
 /// @return Retorna a forma clonada.
-Forma forma_clona(Forma F, int id);
+Forma clona_forma(Forma F);
 
 /// @brief Acessa a forma passada por parâmetro e inverte as cores, ou seja, faz com que a cor de borda se torne a novamcor de preenchimento assim como a de preenchimento seja a nova cor de borda.
 /// @param F É um ponteiro que aponta para a forma.
-void forma_inverte_cores(Forma F);
+void inverte_cores_forma(Forma F);
 
-/// @brief Acessa a forma passada por parâmetro e mostra qual é a
+/// @brief Acessa a forma passada por parâmetro e libera toda a memória reservada à ela, que estava sendo ocupada e que não será mais.
 /// @param F É um ponteiro que aponta para a forma.
-void forma_libera(Forma F);
+void libera_forma(Forma F);
 
 #endif

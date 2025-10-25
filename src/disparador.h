@@ -23,7 +23,7 @@ void pd (int id, double x, double y, Divisoria D);
 /// @param car_esq É um ponteiro que aponta para qual carregador será colocado no lado esquerdo do Disparador.
 /// @param car_dir É um ponteiro que aponta para qual carregador será colocado no lado direito do Disparador.
 /// @param D 
-void atch (int id, Carregador car_esq, Carregador car_dir, Divisoria D);
+void atch (int id, int car_esq, int car_dir, Divisoria D);
 
 /* 
 /// @brief Será informado qual dos botões será apertado podendo ser 'e' para o esquerdo ou 
@@ -35,7 +35,8 @@ posição será inserida no outro carregador, liberando a posição de disparo.*
 /// @param lado É uma letra para escolher o lado da carga que será colocado em posição de disparo.
 /// @param n É um número inteiro positivo que indica a quantidade de vezes que o botão.
 /// @param D 
-void shft (int id, char lado, int n, Disparador D);
+/// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
+void shft (int id, char lado, int n, Disparador D, FILE* arq_txt);
 
 /// @brief Dispara a forma que estava em posição na arena, a uma distância dx e dy da posição do disparador, e deixa sem nenhuma forma essa posição de disparo.
 /// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
@@ -43,11 +44,12 @@ void shft (int id, char lado, int n, Disparador D);
 /// sai da coordenada onde o disparador se encontra, e aumenta dx unidades no valor do eixo x.
 /// @param dy É a variação do deslocamento da coordenada inicial da forma na posição de disparo até a nova posição dela, ou seja,
 /// sai da coordenada onde o disparador se encontra, e aumenta dy unidades no valor do eixo y.
-/// @param 
+/// @param eh_visivel É um char que determina se será ilustrado as dimensões do disparo, recebe 'v', caso seja visível e 'i', se for invisível.
 /// @param arena 
-/// @param D 
-/// @return Retorna as informações armazenadas da forma.
-void dsp (int id, double dx, double dy, [v|i], Fila arena, Disparador D);
+/// @param D
+/// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
+/// @param num_disparos Conta quantas vezes o disparados disparou alguma forma e depois escreve esse dado no txt.
+void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Disparador D, FILE* arq_txt, int* num_disparos);
 
 /// @brief O número inteiro passado por parâmetro na função passa a ser o novo número identificador do disparador.
 /// @param d É um ponteiro para o disparador que terá seu id alterado.

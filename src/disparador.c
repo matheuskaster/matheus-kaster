@@ -39,14 +39,15 @@ void pd (int id, double x, double y, Divisoria D) {
     ((disparador*)d)->y = y;
 }
 
-void atch (int id, Carregador car_esq, Carregador car_dir, Divisoria D) {
+void atch (int id, int car_esq, int car_dir, Divisoria D) {
     Disparador d = busca_elem_div(D, id, 'd');
     ((disparador*)d)->car_esq = car_esq;
     ((disparador*)d)->car_dir = car_dir;
 }
 
-void shft (int id, char lado, int n, Divisoria D) {
+void shft (int id, char lado, int n, Divisoria D, FILE* arq_txt) {
     Disparador d = busca_elem_div(D, id, 'd');
+    
     if (lado == 'd') {
         if (((disparador*)d)->pd != NULL) {
             insere_pilha (((disparador*)d)->car_dir, ((disparador*)d)->pd);
@@ -59,7 +60,6 @@ void shft (int id, char lado, int n, Divisoria D) {
             remove_pilha (((disparador*)d)->car_esq);
         }
     }
-
     if (lado == 'e') {
         if (((disparador*)d)->pd != NULL) {
             insere_pilha (((disparador*)d)->car_esq, ((disparador*)d)->pd);
@@ -75,9 +75,14 @@ void shft (int id, char lado, int n, Divisoria D) {
         printf ("ERRO. Não foi possível identificar qual botão deveria ser apertado.\n");
         exit(1);
     }
+
+    fprintf(arq_txt, "Comando assionado 'shft' apertando o botão %c do disparador %d %d vezes.\n", lado, ((disparador*)d)->id, n);
+    if ( ((disparador*)d)->pd != NULL ) {
+        fprintf(arq_txt, "A forma colocada em posição de disparo é a de id: %d, do tipo: %c.\n", get_id_forma(((disparador*)d)->pd), get_tipo_forma(((disparador*)d)->pd));
+    }
 }
 
-void dsp (int id, double dx, double dy, Fila arena, Divisoria D) {
+void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Divisoria D, FILE* arq_txt, int *num_disparos) {
     Disparador d = busca_elem_div(D, id, 'd');
     disparador *disp = (disparador*) d;
     char tipo = disp->pd;
@@ -92,7 +97,7 @@ void dsp (int id, double dx, double dy, Fila arena, Divisoria D) {
         double novo_y = y_c + dy;
         set_y_circulo (c, novo_y);
     }
-    if (tipo == 'r') {
+    else if (tipo == 'r') {
         Retangulo r = get_tipo_forma (disp);
         double x_r = get_x_retangulo (r);
         double novo_x = x_r + dx;
@@ -102,7 +107,7 @@ void dsp (int id, double dx, double dy, Fila arena, Divisoria D) {
         double novo_y = y_r + dy;
         set_y_retangulo (r, novo_y);
     }
-    if (tipo == 'l') {
+    else if (tipo == 'l') {
 
         Linha l = get_tipo_forma (disp);
         double x1_l = get_x1_linha (l);
@@ -121,7 +126,7 @@ void dsp (int id, double dx, double dy, Fila arena, Divisoria D) {
         double novo_y2 = y2_l + dy;
         set_y2_linha (l, novo_y2);
     }
-    if (tipo == 't') {
+    else if (tipo == 't') {
         Texto t = get_tipo_forma (disp);
         double x_t = get_x_texto (t);
         double novo_x = x_t + dx;
@@ -131,6 +136,13 @@ void dsp (int id, double dx, double dy, Fila arena, Divisoria D) {
         double novo_y = y_r + dy;
         set_y_texto (t, novo_y);
     }
+
+    fprintf(arq_txt, "Comando assionado 'dsp' disparando o disparador %d.\n", ((disparador*)d)->id);
+    fprintf(arq_txt, "A forma disparada é a de id %d, depois desse comando ela se encontra na arena, com coordenadas X: %.1f e Y:%.1f, ocuparndo uma área de %.2f u.a.\n", get_id_forma(disp), get_x_forma(disp), get_y_forma(disp), calcula_area_forma(disp));
+
+    insere_fila (arena, disp);
+    (*num_disparos)++;
+    ((disparador*)d)->pd = NULL;
 }
 
 void set_id_disparador (Disparador d, int id) {
