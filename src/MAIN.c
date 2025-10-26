@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "FILA.h"
 #include "DIVISORIA.h"
@@ -10,7 +11,7 @@
 
 int main (int argc, char *argv[]) {
     char* entrada = NULL;
-    char* arq_geo = NULL;
+    char* arq_geo_file_name = NULL;
     char* saida = NULL;
     char* arq_qry = NULL;
 
@@ -18,7 +19,7 @@ int main (int argc, char *argv[]) {
         if (strcmp(argv[i], "-e") == 0 && i + 1 < argc) {
             entrada = argv[++i];
         } else if (strcmp(argv[i], "-f") == 0 && i + 1 < argc) {
-            arq_geo = argv[++i];
+            arq_geo_file_name = argv[++i];
         } else if (strcmp(argv[i], "-o") == 0 && i + 1 < argc) {
             saida = argv[++i];
         } else if (strcmp(argv[i], "-q") == 0 && i + 1 < argc) {
@@ -26,7 +27,7 @@ int main (int argc, char *argv[]) {
         }
     }
 
-    if (arq_geo == NULL || saida == NULL) {
+    if (arq_geo_file_name == NULL || saida == NULL) {
         printf("Erro: Argumentos -f e -o sao obrigatórios.\n");
         printf("Uso: ./programa -f <arq.geo> -o <path_saida> [-e <path_entrada>] [-q <arq.qry>]\n");
         return 1;
@@ -36,8 +37,8 @@ int main (int argc, char *argv[]) {
     char base_geo[256];
     char path_svg_geo[1024];
 
-    monta_path_completo(path_geo, entrada, arq_geo);
-    extrai_nome_base(arq_geo, base_geo);
+    monta_path_completo(path_geo, entrada, arq_geo_file_name);
+    extrai_nome_base(arq_geo_file_name, base_geo);
     sprintf(path_svg_geo, "%s/%s.svg", saida, base_geo);
 
     Fila chao = cria_fila();
@@ -68,8 +69,8 @@ int main (int argc, char *argv[]) {
         char path_txt_final[1024];
 
         
-        montar_path_completo(path_qry_completo, entrada, arq_qry);
-        extrair_nome_base(arq_qry, nome_base_qry);
+        monta_path_completo(path_qry_completo, entrada, arq_qry);
+        extrai_nome_base(arq_qry, nome_base_qry);
         sprintf(path_svg_final, "%s/%s-%s.svg", saida, base_geo, nome_base_qry);
         sprintf(path_txt_final, "%s/%s-%s.txt", saida, base_geo, nome_base_qry);
 
@@ -82,6 +83,6 @@ int main (int argc, char *argv[]) {
         }
     }
 
-    libera_fila_e_formas(chao);
+    //libera_fila_e_formas(chao);
     return 0;
 }

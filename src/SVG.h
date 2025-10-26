@@ -1,5 +1,5 @@
-#ifndef SVG.h
-#define SVG.h
+#ifndef SVG
+#define SVG
 #include <stdio.h>
 #include "CIRCULO.h"
 #include "RETANGULO.h"
@@ -37,7 +37,7 @@ void desenha_texto_svg (FILE* arq_svg, Texto t, Estilo ts);
 /// @brief Passa as caracteísticas da forma para o svg poder escrever.
 /// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
 /// @param f É a forma genérica que será desenhada no svg.
-void desenha_forma_svg (FILE* arq_svg, Forma f);
+void desenha_forma_svg (FILE* arq_svg, Geometria f);
 
 /// @brief Escreve o rodapé do arquivo .svg, ou seja, é a tag </svg> que fecha o arquivo svg, indicando a realização com sucesso.
 /// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.

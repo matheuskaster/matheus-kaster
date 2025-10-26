@@ -1,5 +1,6 @@
 #include "DISPARADOR.h"
-#include "CARREGADOR.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include "FORMA.h"
 #include "CIRCULO.h"
 #include "RETANGULO.h"
@@ -8,7 +9,7 @@
 #include "PILHA.h"
 #include "FILA.h"
 #include "DIVISORIA.h"
-#include <stdio.h>
+#include "CARREGADOR.h"
 
 #include <stddef.h>
 
@@ -18,7 +19,7 @@ typedef struct {
     double y;
     Carregador car_esq;
     Carregador car_dir;
-    Forma pd;
+    Geometria pd;
 } disparador;
 
 Disparador cria_disparador (int id, double x, double y) {
@@ -78,18 +79,18 @@ void shft (int id, char lado, int n, Divisoria D, FILE* arq_txt) {
 
     fprintf(arq_txt, "Comando assionado 'shft' apertando o botão %c do disparador %d %d vezes.\n", lado, ((disparador*)d)->id, n);
     if ( ((disparador*)d)->pd != NULL ) {
-        fprintf(arq_txt, "A forma colocada em posição de disparo é a de id: %d, do tipo: %c.\n", get_id_forma(((disparador*)d)->pd), get_tipo_forma(((disparador*)d)->pd));
+        fprintf(arq_txt, "A geometria colocada em posição de disparo é a de id: %d, do tipo: %c.\n", get_id_forma(((disparador*)d)->pd), get_tipo_forma(((disparador*)d)->pd));
     }
 }
 
 void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Divisoria D, FILE* arq_txt, int *num_disparos) {
     Disparador d = busca_elem_div(D, id, 'd');
     disparador *disp = (disparador*) d;
-    Forma f = disp->pd;
-    char tipo = get_tipo_forma(f);
+    Geometria g = disp->pd;
+    char tipo = get_tipo_forma(g);
 
     if (tipo == 'c') {
-        Circulo c = get_info_forma (disp);
+        Circulo c = get_info_forma (g);
         double x_c = get_x_circulo (c);
         double novo_x = x_c + dx;
         set_x_circulo (c, novo_x);
@@ -99,7 +100,7 @@ void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Divisoria D
         set_y_circulo (c, novo_y);
     }
     else if (tipo == 'r') {
-        Retangulo r = get_tipo_forma (disp);
+        Retangulo r = get_tipo_forma (g);
         double x_r = get_x_retangulo (r);
         double novo_x = x_r + dx;
         set_x_retangulo (r, novo_x);
@@ -110,7 +111,7 @@ void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Divisoria D
     }
     else if (tipo == 'l') {
 
-        Linha l = get_tipo_forma (disp);
+        Linha l = get_tipo_forma (g);
         double x1_l = get_x1_linha (l);
         double novo_x1 = x1_l + dx;
         set_x1_linha (l, novo_x1);
@@ -128,7 +129,7 @@ void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Divisoria D
         set_y2_linha (l, novo_y2);
     }
     else if (tipo == 't') {
-        Texto t = get_tipo_forma (disp);
+        Texto t = get_tipo_forma (g);
         double x_t = get_x_texto (t);
         double novo_x = x_t + dx;
         set_x_texto (t, novo_x);
@@ -139,7 +140,7 @@ void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Divisoria D
     }
 
     fprintf(arq_txt, "Comando assionado 'dsp' disparando o disparador %d.\n", ((disparador*)d)->id);
-    fprintf(arq_txt, "A forma disparada é a de id %d, depois desse comando ela se encontra na arena, com coordenadas X: %.1f e Y:%.1f, ocuparndo uma área de %.2f u.a.\n", get_id_forma(disp), get_x_forma(disp), get_y_forma(disp), calcula_area_forma(disp));
+    fprintf(arq_txt, "A geometria disparada é a de id %d, depois desse comando ela se encontra na arena, com coordenadas X: %.1f e Y:%.1f, ocuparndo uma área de %.2f u.a.\n", get_id_forma(disp), get_x_forma(disp), get_y_forma(disp), get_area_forma(disp));
 
     insere_fila (arena, disp);
     (*num_disparos)++;
@@ -151,8 +152,8 @@ void rjd (int id, char lado, double dx, double dy, double ix, double iy, Fila ar
     disparador *disp = (disparador*) d;
     Carregador c_e = disp->car_esq;
     Carregador c_d = disp->car_dir;
-    pont topo_e = get_conteudo_pilha(c_e);
-    pont topo_d = get_conteudo_pilha(c_d);
+    Geometria topo_e = get_conteudo_pilha(c_e);
+    Geometria topo_d = get_conteudo_pilha(c_d);
     int i = 0;
     if (lado == 'd') {
         while (topo_e != NULL) {

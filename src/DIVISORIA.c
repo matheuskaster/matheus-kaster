@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "DISPARADOR.h"
 #include "CARREGADOR.h"
 #include "DIVISORIA.h"

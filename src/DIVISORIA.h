@@ -1,5 +1,5 @@
-#ifndef DIVISORIA.h
-#define DIVISORIA.h
+#ifndef DIVISORIA
+#define DIVISORIA
 
 typedef void* Divisoria;
 typedef void* Elemento;

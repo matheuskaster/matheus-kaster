@@ -57,15 +57,15 @@ void set_weight_estilo (Estilo ts, char *weight) {
     strcpy (((estilo*)ts)->weight, weight);
 }
 
-char* get_weight(Estilo ts) {
+char* get_weight_estilo(Estilo ts) {
     return ((estilo*)ts)->weight;
 }
 
-void set_size(Estilo ts, char *size) {
+void set_size_estilo(Estilo ts, char *size) {
     strcpy (((estilo*)ts)->size, size);
 }
 
-char* get_size(Estilo ts) {
+char* get_size_estilo(Estilo ts) {
     return ((estilo*)ts)->size;
 }
 

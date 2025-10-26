@@ -1,6 +1,7 @@
 #include "CIRCULO.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define PI 3.14159
 
@@ -76,7 +77,7 @@ void set_corp_circulo (Circulo c, char* corp) {
     strcpy (((circulo*)c)->corp, corp);
 }
 
-int get_corp_circulo (Circulo c) {
+char* get_corp_circulo (Circulo c) {
     return ((circulo*)c)->corp;
 }
 

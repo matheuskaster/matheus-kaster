@@ -1,5 +1,5 @@
-#ifndef TEXTO.h
-#define TEXTO.h
+#ifndef TEXTO
+#define TEXTO
 
 typedef void *Texto;
 typedef void *Estilo;
@@ -114,7 +114,7 @@ void set_a_texto (Texto t, char a);
 /// @brief Informa qual é a posição relativa do texto, podendo ser i, no inicio; m, no meio, ou f, quando é o fim do texto.
 /// @param t É um ponteiro que aponta para o texto.
 /// @return Retorna qual é a posição relativa do texto.
-char* get_a_texto (Texto t);
+char get_a_texto (Texto t);
 
 /// @brief O ponteiro que aponta para um char, passado por parâmetro na função, aponta para um texto e esse texto será o novo texto que estará escrito no arquivo .svg da forma.
 /// @param t É um ponteiro que aponta para o texto.

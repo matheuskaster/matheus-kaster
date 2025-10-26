@@ -1,5 +1,5 @@
-#ifndef LINHA.h
-#define LINHA.h
+#ifndef LINHA
+#define LINHA
  
 typedef void *Linha;
 
@@ -64,8 +64,9 @@ void set_y2_linha (Linha l, double y2);
 double get_y2_linha (Linha l);
 
 /// @brief O ponteiro para um char passado por parâmetro na função aponta para uma sequência em hexadecimal determinando uma cor, e essa cor, por meio da função, passa a ser a nova cor da linha, também passada por parâmetro.
+/// @param cor É a nova cor da linha.
 /// @param l É um ponteiro que aponta para a linha.
-void set_cor_linha (Linha l);
+void set_cor_linha (Linha l, char* cor);
 
 /// @brief Informa qual é a cor da linha.
 /// @param l É um ponteiro que aponta para a linha.

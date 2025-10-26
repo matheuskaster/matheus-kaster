@@ -1,5 +1,10 @@
-#ifndef DISPARADOR.h
-#define DISPARADOR.h
+#ifndef DISPARADOR
+#define DISPARADOR
+
+#include <stdio.h>
+#include "FILA.h"
+#include "PILHA.h"
+#include "DIVISORIA.h"
 
 typedef void *Disparador;
 typedef void *Carregador;

@@ -46,7 +46,7 @@ void set_y1_linha (Linha l, double y1) {
     ((linha*)l)->y1 = y1;
 }
 
-double get_y1_linha (Linha l, double y1) {
+double get_y1_linha (Linha l) {
     return ((linha*)l)->y1;
 }
 
@@ -54,7 +54,7 @@ void set_x2_linha (Linha l, double x2) {
     ((linha*)l)->x2 = x2;
 }
 
-double get_x2_linha (Linha l, double x2) {
+double get_x2_linha (Linha l) {
     return ((linha*)l)->x2;
 }
 
@@ -62,7 +62,7 @@ void set_y2_linha (Linha l, double y2) {
     ((linha*)l)->y2 = y2;
 }
 
-double get_y2_linha (Linha l, double y2) {
+double get_y2_linha (Linha l) {
     return ((linha*)l)->y2;
 }
 
@@ -74,6 +74,6 @@ char* get_cor_linha (Linha l) {
     return ((linha*)l)->cor;
 }
 
-double calcula_area (Linha l) {
+double calcula_area_linha (Linha l) {
     10 * sqrt( pow( ((linha*)l)->y2 - ((linha*)l)->y1, 2) + pow( ((linha*)l)->x2 - ((linha*)l)->x1, 2));
 }

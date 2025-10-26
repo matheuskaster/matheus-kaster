@@ -4,8 +4,9 @@
 #include "LINHA.h"
 #include "RETANGULO.h"
 #include "FORMA.h"
-#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "SVG.h"
 
 void geo (Fila chao, FILE* arq_geo) {
@@ -36,8 +37,8 @@ void geo (Fila chao, FILE* arq_geo) {
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
-            Forma F = cria_forma_circulo (tipo, id, x, y, r, corb, corp);
-            insere_fila (chao, F);
+            Geometria g = cria_forma_circulo (tipo, id, x, y, r, corb, corp);
+            insere_fila (chao, g);
 
         } else if (tipo == 'r') {
             int id;
@@ -47,8 +48,8 @@ void geo (Fila chao, FILE* arq_geo) {
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
-            Forma F = cria_forma_retangulo (tipo, id, x, y, w, h, corb, corp);
-            insere_fila (chao, F);
+            Geometria g = cria_forma_retangulo (tipo, id, x, y, w, h, corb, corp);
+            insere_fila (chao, g);
 
         } else if (tipo == 'l') {
             int id;
@@ -58,8 +59,8 @@ void geo (Fila chao, FILE* arq_geo) {
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
-            Forma F = cria_forma_linha (tipo, id, x1, y1, x2, y2, cor);
-            insere_fila (chao, F);
+            Geometria g = cria_forma_linha (tipo, id, x1, y1, x2, y2, cor);
+            insere_fila (chao, g);
 
         } else if (tipo == 't') {
             int id;
@@ -70,8 +71,8 @@ void geo (Fila chao, FILE* arq_geo) {
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
-            Forma F = cria_forma_texto (tipo, id, x, y, corb, corp, a, txto);
-            insere_fila (chao, F);
+            Geometria g = cria_forma_texto (tipo, id, x, y, corb, corp, a, txto);
+            insere_fila (chao, g);
         }
     }
     armazena_ultimo_id (ultimo_id);

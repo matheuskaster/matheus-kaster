@@ -3,7 +3,7 @@
 #include "stdlib.h"
 
 typedef struct elemento {
-    Forma chave;
+    Geometria chave;
     struct elemento *prox;
 } elemento;  
 
@@ -28,7 +28,7 @@ int tam_pilha (Pilha p) {
     return ((pilha*)p)->tam;
 }
 
-void insere_pilha (Pilha p, Forma chave) {
+void insere_pilha (Pilha p, Geometria chave) {
     pont novo = (pont)malloc(sizeof(elemento));
     if (novo == NULL) return;
     novo->chave = chave;
@@ -45,7 +45,7 @@ void remove_pilha (Pilha p) {
     ((pilha*)p)->tam--;
 }
 
-pont get_conteudo_pilha (Pilha p) {
+Geometria get_conteudo_pilha (Pilha p) {
     if (p == NULL || ((pilha*)p)->topo == NULL) {
         return;
     }

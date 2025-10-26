@@ -1,5 +1,5 @@
-#ifndef GEO.h
-#define GEO.h
+#ifndef GEO
+#define GEO
 #include <stdio.h>
 #include "FORMA.h"
 #include "FILA.h"

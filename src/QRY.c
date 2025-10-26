@@ -10,8 +10,45 @@
 #include "QRY.h"
 #include "SVG.h"
 #include "stdio.h"
+#include "string.h"
+#include <stdlib.h>
 
-void qry (chao, arq_qry, path_svg_final, path_txt_final) {
+void monta_path_completo(char* path_qry_completo, char* entrada, char* arq_qry) {
+    if (path_qry_completo == NULL || entrada == NULL || arq_qry == NULL) {
+        printf("Erro ao tentar acessar os parâmetros. \n");
+        return;
+    }
+    int len_ent = strlen(entrada);
+
+    if (len_ent == 0 || entrada[len_ent - 1] == '/') {
+        sprintf(path_qry_completo, "%s%s", entrada, arq_qry);
+    } 
+    else if (strcmp(entrada, ".") == 0) {
+        strcpy(path_qry_completo, arq_qry);
+    }
+    else {
+        sprintf(path_qry_completo, "%s/%s", entrada, arq_qry);
+    }
+}
+
+
+void extrai_nome_base(char* arq_qry, char* nome_base_qry) {
+    if (arq_qry == NULL || nome_base_qry == NULL) {
+        printf("Erro ao tentar acessar os parâmetros. \n");
+        return;
+    }
+    char* ultimo_ponto = strrchr(arq_qry, '.');
+    if (ultimo_ponto == NULL || ultimo_ponto == arq_qry) {
+        strcpy(nome_base_qry, arq_qry);
+    } 
+    else {
+        int len_ent = ultimo_ponto - arq_qry;
+        strncpy(nome_base_qry, arq_qry, len_ent);
+        nome_base_qry[len_ent] = '\0';
+    }
+}
+
+void qry (Fila chao, FILE* arq_qry, char* path_svg_final, char* path_txt_final) {
     
     FILE* arq_txt = fopen(path_txt_final, "w");
     if (arq_txt == NULL) {
@@ -57,7 +94,7 @@ void qry (chao, arq_qry, path_svg_final, path_txt_final) {
         else if (strcmp(comando, "lc") == 0) {
             int id, n;
             sscanf(linha, "lc %i %i", &id, &n);
-            lc (id, n, chao, vet_carregadores, arq_txt);
+            load_carregador (id, n, chao, vet_carregadores, arq_txt);
         }
         else if (strcmp(comando, "atch") == 0) {
             int id, car_esq, car_dir;
@@ -82,14 +119,13 @@ void qry (chao, arq_qry, path_svg_final, path_txt_final) {
             int id;
             double dx, dy, ix, iy;
             sscanf(linha, "dsp %i %c %lf %lf %lf %lf", &id, &lado, &dx, &dy, &ix, &iy);
-            
+
         }
         else if (strcmp(comando, "calc") == 0) {
             while (tam_fila(arena) >= 2) {
-                pont i = get_conteudo_fila(arena);
-                Forma I = i->chave;
-                pont j = get_conteudo_fila(arena);
-                Forma J = j->chave;
+                
+                Geometria I = get_conteudo_fila(arena);
+                Geometria J = get_conteudo_fila(arena);
                 if (houve_colisao(I, J)) {
                     double area_I = get_area_forma(I);
                     double area_J = get_area_forma(J);
@@ -101,7 +137,7 @@ void qry (chao, arq_qry, path_svg_final, path_txt_final) {
                     } else {
                         char* cor_preenchimento_I = get_corp_forma(I);
                         set_corb_forma(J, cor_preenchimento_I);
-                        Forma clone_I = clona_forma(I);
+                        Geometria clone_I = clona_forma(I);
                         num_clones++;
                         inverte_cores_forma(clone_I);
                         insere_fila(chao, I);
@@ -114,7 +150,7 @@ void qry (chao, arq_qry, path_svg_final, path_txt_final) {
                 }
             } 
             if (tam_fila(arena) == 1) {
-                Forma sobrou = get_conteudo_fila(arena);
+                Geometria sobrou = get_conteudo_fila(arena);
                 remove_fila(arena);
                 insere_fila(chao, sobrou);
             }
@@ -129,12 +165,10 @@ void qry (chao, arq_qry, path_svg_final, path_txt_final) {
     fecha_svg (arq_svg);
     fclose(arq_svg);
     fclose(arq_txt);
-    
-    // tenho que voltar e limpar a memória
 
-    libera_fila_e_formas(arena);
-    libera_div(vet_carregadores, 'c');
-    libera_div(vet_disparadores, 'd');
+    //libera_fila_e_formas(arena);
+    //libera_div(vet_carregadores, 'c');
+    //libera_div(vet_disparadores, 'd');
 
     fclose (arq_qry);
 }

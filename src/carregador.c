@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <stddef.h>
 #include "PILHA.h"
 #include "FILA.h"
@@ -29,9 +30,9 @@ void load_carregador (int id, int n, Fila chao, Divisoria D, FILE* arq_txt) {
 
     Carregador car = busca_elem_div(D, id, 'c');
     for (int i = 0; i < n; i ++) {
-        Forma F = get_conteudo_fila (chao);
+        Geometria F = get_conteudo_fila (chao);
 
-        fprintf(arq_txt, "A forma carregada é a de id %d, do tipo: %c, que estava na posição X: %.1f e Y: %.1f.\n", get_id_forma(F), get_tipo_forma(F), get_x_forma(F), get_y_forma(F));
+        fprintf(arq_txt, "A geometria carregada é a de id %d, do tipo: %c, que estava na posição X: %.1f e Y: %.1f.\n", get_id_forma(F), get_tipo_forma(F), get_x_forma(F), get_y_forma(F));
 
         insere_pilha (((carregador*)car)->p, F);
         remove_fila (chao);
@@ -62,7 +63,7 @@ void libera_memoria_carregador (Carregador car) {
 }
 
 bool esta_vazio (Carregador car) {
-    Forma F = get_conteudo_pilha (car);
+    Geometria F = get_conteudo_pilha (car);
     if (F != NULL) return false;
     else return true;
 }

@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
 #include <string.h>
@@ -57,7 +58,7 @@ bool segmento_intersecta(double p1x, double p1y, double q1x, double q1y, double 
     return false;
 }
 
-bb get_limite (Forma F1) {
+bb get_limite (Geometria F1) {
     bb limite;
     char tipo = get_tipo_forma(F1);
 

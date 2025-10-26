@@ -1,6 +1,8 @@
-#include "RETANGULO.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
+#include "RETANGULO.h"
 
 typedef struct retangulo {
     int id;
@@ -35,7 +37,7 @@ void set_id_retangulo (Retangulo r, int id) {
     ((retangulo*)r)->id = id;
 }
 
-int get_id_retagulo (Retangulo r) {
+int get_id_retangulo (Retangulo r) {
     return ((retangulo*)r)->id;
 }
 
@@ -43,7 +45,7 @@ void set_x_retangulo (Retangulo r, double x) {
     ((retangulo*)r)->x = x;
 }
 
-double get_x_retagulo (Retangulo r) {
+double get_x_retangulo (Retangulo r) {
     return ((retangulo*)r)->x;
 }
 
@@ -51,7 +53,7 @@ void set_y_retangulo (Retangulo r, double y) {
     ((retangulo*)r)->y = y;
 }
 
-double get_y_retagulo (Retangulo r) {
+double get_y_retangulo (Retangulo r) {
     return ((retangulo*)r)->y;
 }
 
@@ -59,7 +61,7 @@ void set_w_retangulo (Retangulo r, double w) {
     ((retangulo*)r)->w = w;
 }
 
-double get_w_retagulo (Retangulo r) {
+double get_w_retangulo (Retangulo r) {
     return ((retangulo*)r)->w;
 }
 
@@ -67,7 +69,7 @@ void set_h_retangulo (Retangulo r, double h) {
     ((retangulo*)r)->h = h;
 }
 
-double get_h_retagulo (Retangulo r) {
+double get_h_retangulo (Retangulo r) {
     return ((retangulo*)r)->h;
 }
 
@@ -87,6 +89,6 @@ char* get_corb_retangulo (Retangulo r) {
     return ((retangulo*)r)->corb;
 }
 
-calcula_area_retangulo (Retangulo r) {
+double calcula_area_retangulo (Retangulo r) {
     (((retangulo*)r)->w) * (((retangulo*)r)->h);
 }

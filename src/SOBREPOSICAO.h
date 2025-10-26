@@ -1,5 +1,5 @@
-#ifndef SOBREPOSICAO.h
-#define SOBREPOSICAO.h
+#ifndef SOBREPOSICAO
+#define SOBREPOSICAO
 #include "FORMA.h"
 #include "CIRCULO.h"
 #include "RETANGULO.h"

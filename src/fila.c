@@ -8,9 +8,11 @@
 #include "FILA.h"
 
 typedef struct elemento {
-    Forma chave;
+    Geometria chave;
     struct elemento *prox;
 } elemento;
+
+typedef struct elemento* pont;
 
 typedef struct {
     int tam;
@@ -33,7 +35,7 @@ int tam_fila (Fila f) {
     return ((fila*)f)->tam;
 }
 
-void insere_fila (Fila f, Forma chave) {
+void insere_fila (Fila f, Geometria chave) {
     pont novo = (pont)malloc(sizeof(elemento));
     if (novo == NULL) return;
     novo->chave = chave;
@@ -66,8 +68,12 @@ pont get_conteudo_fila (Fila f) {
     return ((fila*)f)->inicio;
 }
 
-pont anda_fila (pont atual, Fila f) {
-    return atual->prox;
+Geometria pont_chave (pont p) {
+    return p->chave;
+}
+
+pont pont_prox (pont p) {
+    return p->prox;
 }
 
 void libera_fila (Fila f) {
