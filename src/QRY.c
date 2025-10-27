@@ -12,7 +12,7 @@
 #include "stdio.h"
 #include "string.h"
 #include <stdlib.h>
-
+/*
 void monta_path_completo(char* path_qry_completo, char* entrada, char* arq_qry) {
     if (path_qry_completo == NULL || entrada == NULL || arq_qry == NULL) {
         printf("Erro ao tentar acessar os parâmetros. \n");
@@ -47,6 +47,7 @@ void extrai_nome_base(char* arq_qry, char* nome_base_qry) {
         nome_base_qry[len_ent] = '\0';
     }
 }
+*/
 
 void qry (Fila chao, FILE* arq_qry, char* path_svg_final, char* path_txt_final) {
     
