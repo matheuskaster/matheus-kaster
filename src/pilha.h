@@ -25,7 +25,7 @@ void insere_pilha(Pilha p, Geometria chave);
 
 /// @brief Remove o elemento do topo da pilha
 /// @param p É um ponteiro que aponta para a pilha p.
-void remove_pilha(Pilha p);
+Geometria remove_pilha(Pilha p);
 
 /// @brief Acessa o conteúdo do elemento no topo da pilha e informa o que ele é.
 /// @param p É um ponteiro que aponta para a pilha p.

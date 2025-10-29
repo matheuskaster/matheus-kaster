@@ -75,5 +75,10 @@ char* get_cor_linha (Linha l) {
 }
 
 double calcula_area_linha (Linha l) {
-    10 * sqrt( pow( ((linha*)l)->y2 - ((linha*)l)->y1, 2) + pow( ((linha*)l)->x2 - ((linha*)l)->x1, 2));
+    return 10 * sqrt( pow( ((linha*)l)->y2 - ((linha*)l)->y1, 2) + pow( ((linha*)l)->x2 - ((linha*)l)->x1, 2));
+}
+
+void libera_linha (Linha l) {
+    free(((linha*)l)->cor);
+    free((linha*)l);
 }

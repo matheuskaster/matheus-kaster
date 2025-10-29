@@ -150,4 +150,7 @@ void transforma_texto_em_linha (Texto t, double *x1, double *y1, double *x2, dou
 /// @return Retorna um número double correspondente à área do texto.
 double calcula_area_texto (Texto t);
 
+void libera_texto(Texto t);
+
 #endif
+

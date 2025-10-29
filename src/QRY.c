@@ -49,37 +49,24 @@ void extrai_nome_base(char* arq_qry, char* nome_base_qry) {
 }
 */
 
-void qry (Fila chao, FILE* arq_qry, char* path_svg_final, char* path_txt_final) {
+void qry (Fila chao, FILE* file_qry, FILE* file_svg_qry, FILE* file_txt) {
     
-    FILE* arq_txt = fopen(path_txt_final, "w");
-    if (arq_txt == NULL) {
-        printf("Erro na tentativa de abrir o arquivo .geo.\n");
-        exit (1);
-    }
-
     Fila arena = cria_fila();
-    Divisoria vet_carregadores = cria_div();
-    Divisoria vet_disparadores = cria_div();
+    Divisoria vet_carregadores = cria_div_car();
+    Divisoria vet_disparadores = cria_div_dis();
 
     double pontuacao = 0.0;
 
-    FILE* arq_svg = fopen(path_svg_final, "w");
-    if (arq_svg == NULL) {
-        printf("Erro na tentativa de abrir o arquivo .geo.\n");
-        exit (1);
-    }
-
-
-    abre_svg(arq_svg);
+    //abre_svg(file_svg_qry);
 
     char linha[512];
     char comando[512];
     
     double potuacao = 0.0;
     int num_clones = 0, num_esmagadas = 0;
-    int* num_disparos;
-
-    while (fgets(linha, sizeof(linha), arq_qry) != NULL) {
+    int num_disparos = 0;
+    
+    while (fgets(linha, sizeof(linha), file_qry) != NULL) {
         if(linha[0] == '\n' || linha[0] == '\r'){
             continue;
         }
@@ -90,43 +77,50 @@ void qry (Fila chao, FILE* arq_qry, char* path_svg_final, char* path_txt_final) 
             int id;
             double x, y;
             sscanf(linha, "pd %i %lf %lf", &id, &x, &y);
-            pd(id, x, y, vet_disparadores);
+            Disparador d = busca_elem_div_dis(vet_disparadores, id);
+            pd(d, x, y);
         }
         else if (strcmp(comando, "lc") == 0) {
             int id, n;
             sscanf(linha, "lc %i %i", &id, &n);
-            load_carregador (id, n, chao, vet_carregadores, arq_txt);
+            Carregador car = busca_elem_div_car(vet_carregadores, id);
+            load_carregador (car, n, chao, file_txt);
         }
         else if (strcmp(comando, "atch") == 0) {
-            int id, car_esq, car_dir;
-            sscanf(linha,"atch %i %i %i", &id, &car_esq, &car_dir);
-            atch(id, car_esq, car_dir, vet_disparadores);
+            int id, car_esq_id, car_dir_id;
+            sscanf(linha,"atch %i %i %i", &id, &car_esq_id, &car_dir_id);
+            Carregador car_esq = busca_elem_div_car(vet_carregadores, car_esq_id);
+            Carregador car_dir = busca_elem_div_car(vet_carregadores, car_dir_id);
+            Disparador d = busca_elem_div_dis(vet_disparadores, id);
+            atch(d, car_esq, car_dir);
         }
         else if (strcmp(comando, "shft") == 0) {
             char lado;
             int id, n;
             sscanf(linha, "shft %i %c %i", &id, &lado, &n);
-            shft (id, lado, n, vet_disparadores, arq_txt);
+            Disparador d = busca_elem_div_dis(vet_disparadores, id);
+            shft (d, lado, n, file_txt);
         }
         else if (strcmp(comando, "dsp") == 0) {
             int id;
             double dx, dy;
             char* v;
             sscanf(linha, "dsp %i %lf %lf %c", &id, &dx, &dy, &v);
-            dsp (id, dx, dy, v, arena, vet_disparadores, arq_txt, num_disparos);
+            Disparador d = busca_elem_div_dis(vet_disparadores, id);
+            dsp (d, dx, dy, v, arena, file_txt, &num_disparos);
         }
         else if (strcmp(comando, "rjd") == 0) {
             char lado;
             int id;
             double dx, dy, ix, iy;
-            sscanf(linha, "dsp %i %c %lf %lf %lf %lf", &id, &lado, &dx, &dy, &ix, &iy);
-
+            sscanf(linha, "rjd %i %c %lf %lf %lf %lf", &id, &lado, &dx, &dy, &ix, &iy);
+            Disparador d = busca_elem_div_dis(vet_disparadores, id);
+            rjd (d, lado, dx, dy, ix, iy, arena, file_txt, &num_disparos);
         }
         else if (strcmp(comando, "calc") == 0) {
             while (tam_fila(arena) >= 2) {
-                
-                Geometria I = get_conteudo_fila(arena);
-                Geometria J = get_conteudo_fila(arena);
+                Geometria I = remove_fila(arena);
+                Geometria J = remove_fila(arena);
                 if (houve_colisao(I, J)) {
                     double area_I = get_area_forma(I);
                     double area_J = get_area_forma(J);
@@ -151,25 +145,23 @@ void qry (Fila chao, FILE* arq_qry, char* path_svg_final, char* path_txt_final) 
                 }
             } 
             if (tam_fila(arena) == 1) {
-                Geometria sobrou = get_conteudo_fila(arena);
-                remove_fila(arena);
+                Geometria sobrou = remove_fila(arena);
                 insere_fila(chao, sobrou);
             }
         }
     }
-    svg (arq_svg);
-    fprintf(arq_txt, "RELATÓRIO:\n");
-    fprintf(arq_txt, "pontuação total: %.2f\n", pontuacao);
-    fprintf(arq_txt, "quantidade de disparos: %d\n", (*num_disparos));
-    fprintf(arq_txt, "quantidade de formas clonadas: %d\n", num_clones);
-    fprintf(arq_txt, "quantidade de formas esmagadas: %d\n", num_esmagadas);
-    fecha_svg (arq_svg);
-    fclose(arq_svg);
-    fclose(arq_txt);
+    svg (file_svg_qry, chao);
+    fprintf(file_txt, "RELATÓRIO:\n");
+    fprintf(file_txt, "pontuação total: %.2f\n", pontuacao);
+    fprintf(file_txt, "quantidade de disparos: %d\n", num_disparos);
+    fprintf(file_txt, "quantidade de formas clonadas: %d\n", num_clones);
+    fprintf(file_txt, "quantidade de formas esmagadas: %d\n", num_esmagadas);
 
+    libera_fila (arena);
+    libera_div_car (vet_carregadores);
+    libera_div_dis (vet_disparadores);
+    //fecha_svg (file_svg_qry);
     //libera_fila_e_formas(arena);
     //libera_div(vet_carregadores, 'c');
     //libera_div(vet_disparadores, 'd');
-
-    fclose (arq_qry);
 }

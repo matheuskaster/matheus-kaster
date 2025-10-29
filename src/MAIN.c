@@ -177,12 +177,17 @@ void main(int argc, char *argv[])
     free(nome_base);
     free(concat_caminho_arquivo);
 
+    free(arq_svg_geo);
+    free(arq_svg_qry);
+    free(arq_txt);
+    
     Fila chao = cria_fila();
 
     geo (chao, file_geo);
     svg (file_svg_geo, chao);
+    qry(chao, file_qry, file_svg_qry, file_txt);
 
-    //libera_fila_e_formas(chao);
+    libera_fila (chao);
     fclose(file_geo);
     fclose(file_qry);
     fclose(file_svg_geo);

@@ -4,13 +4,7 @@
 #include <math.h>
 #include <string.h>
 #include <float.h>
-#include "FORMA.h"
-#include "CIRCULO.h"
-#include "RETANGULO.h"
-#include "LINHA.h"
-#include "TEXTO.h"
 #include "SOBREPOSICAO.h"
-#include "GEO.h"
 
 typedef struct bounding_box {
     double x_min, x_max, y_min, y_max;
@@ -123,7 +117,7 @@ bool bb_esta_sobreposta (bb l1, bb l2) {
     return (l1.x_max >= l2.x_min && l1.x_min <= l2.x_max && l1.y_max >= l2.y_min && l1.y_min <= l2.y_max);
 }
 
-bool houve_colisao (F1, F2){
+bool houve_colisao (Geometria F1, Geometria F2){
     bb b1 = get_limite (F1);
     bb b2 = get_limite (F2);
 

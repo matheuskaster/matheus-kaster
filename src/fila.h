@@ -25,25 +25,16 @@ void insere_fila(Fila f, Geometria n);
 
 /// @brief Remove o elemento do início da fila
 /// @param f É um ponteiro que aponta para a fila f.
-void remove_fila(Fila f);
+Geometria remove_fila(Fila f);
 
-/// @brief Acessa o conteúdo do elemento no início da fila e informa o que ele é.
-/// @param f É um ponteiro que aponta para a fila f.
-/// @return Retorna o conteúdo do início.
-pont get_conteudo_fila(Fila f);
-
-/// @brief Pega um ponteiro de um elemento de uma fila e aponta para uma geometria.
-/// @param p É um ponteiro que aponta para um elemento.
-/// @return Retorna a chave, que é do tipo geometria.
-Geometria pont_chave (pont p);
-
-/// @brief Pega um ponteiro de um elemento de uma fila e aponta para o próximo elemento.
-/// @param p É um ponteiro que aponta para um elemento.
-/// @return Retorna o próximo, que é do tipo pont também.
-pont pont_prox (pont p);
+/// @brief 
+/// @param f 
+/// @return 
+Fila clona_fila(Fila f);
 
 /// @brief Libera a memória alocada para a fila.
 /// @param f É um ponteiro para a fila.
 void libera_fila(Fila fila);
 
 #endif
+

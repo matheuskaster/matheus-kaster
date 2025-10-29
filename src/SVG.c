@@ -45,7 +45,7 @@ void desenha_texto_svg (FILE* arq_svg, Texto t, Estilo ts) {
 }
 
 void desenha_forma_svg (FILE* arq_svg, Geometria f) {
-    char tipo = get_tipo_forma(f);
+    char tipo = get_tipo_forma(f);  
 
     if (tipo == 'c') {
         Circulo c = get_info_forma (f);
@@ -77,12 +77,12 @@ void fecha_svg(FILE* arq_svg) {
 
 void svg (FILE* arq_svg, Fila chao) {
     abre_svg (arq_svg);
-    int tam = tam_fila (chao);
-    pont atual = get_conteudo_fila (chao);
-    for (int i = 0; i < tam; i ++) {
-        Geometria g = pont_chave(atual);
+    Fila f = clona_fila (chao);
+    Geometria g = remove_fila(f);
+    while (g != NULL) {
         desenha_forma_svg (arq_svg, g);
-        atual = pont_prox(atual);
+        g = remove_fila(f);
     }
-    fecha_svg(arq_svg);
+    libera_fila (f);
+    fecha_svg (arq_svg);
 }

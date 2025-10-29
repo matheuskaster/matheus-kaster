@@ -84,3 +84,9 @@ char* get_corp_circulo (Circulo c) {
 double calcula_area_circulo (Circulo c) {
     return PI* pow(((circulo*)c)->r, 2);
 }
+
+void libera_circulo (Circulo c){
+    free(((circulo*)c)->corb);
+    free(((circulo*)c)->corp);
+    free((circulo*)c);
+}

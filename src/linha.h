@@ -77,4 +77,8 @@ char* get_cor_linha (Linha l);
 /// @param r Um ponteiro que aponta para a linha.
 /// @return Retorna um numero real, double, correspondente ao tamanho dessa área.
 double calcula_area_linha (Linha l);
+
+void libera_linha(Linha l);
+
 #endif
+

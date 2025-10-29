@@ -50,30 +50,27 @@ void insere_fila (Fila f, Geometria chave) {
     ((fila*)f)->tam++;
 }
 
-void remove_fila (Fila f) {
+Geometria remove_fila (Fila f) {
     if (f == NULL || ((fila*)f)->inicio == NULL) return;
     pont apagar = ((fila*)f)->inicio;
+    Geometria ret = apagar->chave;
     ((fila*)f)->inicio = ((fila*)f)->inicio->prox;
     if (((fila*)f)->inicio == NULL) {
         ((fila*)f)->fim == NULL;
     }
     free(apagar);
     ((fila*)f)->tam--;
+    return ret;
 }
 
-pont get_conteudo_fila (Fila f) {
-    if (f == NULL || ((fila*)f)->inicio == NULL) {
-        return;
+Fila clona_fila (Fila f) {
+    fila* clone = cria_fila ();
+    pont p = ((fila*)f)->inicio;
+    while (p != NULL) {
+        insere_fila (clone, p->chave);
+        p = p->prox;
     }
-    return ((fila*)f)->inicio;
-}
-
-Geometria pont_chave (pont p) {
-    return p->chave;
-}
-
-pont pont_prox (pont p) {
-    return p->prox;
+    return clone;
 }
 
 void libera_fila (Fila f) {
@@ -81,6 +78,9 @@ void libera_fila (Fila f) {
     pont atual = ((fila*)f)->inicio;
     while (atual != NULL) {
         pont proximo = ((pont)atual)->prox;
+        if (atual->chave != NULL) {
+            libera_forma(atual->chave);
+        }
         free(atual);
         atual = proximo;
     }

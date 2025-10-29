@@ -190,3 +190,17 @@ double calcula_area_texto (Texto t) {
     char* txto = get_txto(t);
     return 20 * strlen(txto);
 }
+
+void libera_estilo (Estilo e) {
+    free(((estilo*)e)->family);
+    free(((estilo*)e)->weight);
+    free(((estilo*)e)->size);
+    free((estilo*)e);
+}
+
+void libera_texto (Texto t) {
+    free(((texto*)t)->corb);
+    free(((texto*)t)->corp);
+    free(((texto*)t)->txto);
+    free((texto*)t);
+}

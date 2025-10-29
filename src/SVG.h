@@ -43,5 +43,10 @@ void desenha_forma_svg (FILE* arq_svg, Geometria f);
 /// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
 void fecha_svg (FILE* arq_svg);
 
+/// @brief 
+/// @param arq_svg 
+/// @param chao 
+void svg (FILE* arq_svg, Fila chao);
+
 
 #endif

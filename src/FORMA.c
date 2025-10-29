@@ -79,6 +79,26 @@ int get_id_forma (Geometria g) {
     return ((geometria*)g)->id;
 }
 
+void set_x_forma(Geometria g, double x) {
+     if (g == NULL) {
+        printf("Erro! A forma passada por parâmetro não existe. \n");
+        exit (1);
+    }
+
+    if (((geometria*)g)->tipo == 'c') {
+        set_x_circulo( ((geometria*)g)->forma , x);
+    }
+    else if (((geometria*)g)->tipo == 'r') {
+        set_x_retangulo( ((geometria*)g)->forma, x); 
+    }
+    else if (((geometria*)g)->tipo == 'l') {
+        set_x1_linha( ((geometria*)g)->forma, x);
+    }
+    else if (((geometria*)g)->tipo == 't') {
+        set_x_texto( ((geometria*)g)->forma, x);
+    }
+}
+
 double get_x_forma(Geometria g){
 
     if (g == NULL) {
@@ -97,6 +117,26 @@ double get_x_forma(Geometria g){
     }
     else if (((geometria*)g)->tipo == 't') {
         return get_x_texto( ((geometria*)g)->forma );
+    }
+}
+
+void set_y_forma(Geometria g, double y) {
+     if (g == NULL) {
+        printf("Erro! A forma passada por parâmetro não existe. \n");
+        exit (1);
+    }
+
+    if (((geometria*)g)->tipo == 'c') {
+        set_x_circulo( ((geometria*)g)->forma , y);
+    }
+    else if (((geometria*)g)->tipo == 'r') {
+        set_x_retangulo( ((geometria*)g)->forma, y); 
+    }
+    else if (((geometria*)g)->tipo == 'l') {
+        set_x1_linha( ((geometria*)g)->forma, y);
+    }
+    else if (((geometria*)g)->tipo == 't') {
+        set_x_texto( ((geometria*)g)->forma, y);
     }
 }
 
@@ -297,14 +337,14 @@ void inverte_cores_forma(Geometria g) {
     if (((geometria*)g)->tipo == 'c') {
         char *cbc = get_corb_circulo( ((geometria*)g)->forma );
         char *cpc = get_corp_circulo( ((geometria*)g)->forma );
-        set_corb_circulo(((geometria*)g)->tipo, cpc);
-        set_corp_circulo(((geometria*)g)->tipo, cbc);
+        set_corb_circulo(((geometria*)g)->forma, cpc);
+        set_corp_circulo(((geometria*)g)->forma, cbc);
     }
     else if (((geometria*)g)->tipo == 'r') {
         char *cbr = get_corb_retangulo( ((geometria*)g)->forma );
         char *cpr = get_corp_retangulo( ((geometria*)g)->forma );
-        set_corb_retangulo(((geometria*)g)->tipo, cpr);
-        set_corp_retangulo(((geometria*)g)->tipo, cbr);
+        set_corb_retangulo(((geometria*)g)->forma, cpr);
+        set_corp_retangulo(((geometria*)g)->forma, cbr);
     }
     else if (((geometria*)g)->tipo == 'l') {
         Linha l = ( ((geometria*)g)->forma);
@@ -322,10 +362,28 @@ void inverte_cores_forma(Geometria g) {
     else if (((geometria*)g)->tipo == 't') {
         char *cbt = get_corb_texto( ((geometria*)g)->forma );
         char *cpt = get_corp_texto( ((geometria*)g)->forma );
-        set_corb_texto(((geometria*)g)->tipo, cpt);
-        set_corp_texto(((geometria*)g)->tipo, cbt);
+        set_corb_texto(((geometria*)g)->forma, cpt);
+        set_corp_texto(((geometria*)g)->forma, cbt);
     }
 }
 
 void libera_forma(Geometria g) {
+    if (g == NULL) return;
+    if (((geometria*)g)->tipo == 'c') {
+        Circulo c = get_info_forma(g);
+        libera_circulo(c);
+    }
+    else if (((geometria*)g)->tipo == 'r') {
+        Retangulo r = get_info_forma(g);
+        libera_retangulo(r);
+    }
+    else if (((geometria*)g)->tipo == 'l') {
+        Linha l = get_info_forma(g);
+        libera_linha(l);
+    }
+    else if (((geometria*)g)->tipo == 't') {
+        Texto t = get_info_forma(g);
+        libera_texto(t);
+    }
+    free(g);
 }

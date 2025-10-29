@@ -65,10 +65,14 @@ char get_tipo_forma (Geometria F);
 /// @return Retorna um int que indica qual é o identificador id dessa forma.
 int get_id_forma (Geometria F);
 
+void set_x_forma(Geometria g, double x);
+
 /// @brief Acessa a forma passada por parâmetro e mostra qual é a coordenada no eixo x, na qual esta localizada a forma.
 /// @param F É um ponteiro que aponta para a forma.
 /// @return Retorna um doble representando a coordenada do eixo x que está localizada a forma.
 double get_x_forma (Geometria F);
+
+void set_y_forma(Geometria g, double y);
 
 /// @brief Acessa a forma passada por parâmetro e mostra qual é a coordenada no eixo y, na qual esta localizada a forma.
 /// @param F É um ponteiro que aponta para a forma.
@@ -114,3 +118,4 @@ void inverte_cores_forma(Geometria F);
 void libera_forma(Geometria F);
 
 #endif
+

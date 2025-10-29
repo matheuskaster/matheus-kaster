@@ -80,4 +80,6 @@ char* get_corp_circulo (Circulo c);
 /// @return Retorna um número real float, correspondente ao tamanho dessa área.
 double calcula_area_circulo (Circulo c);
 
+void libera_circulo(c);
 #endif
+

@@ -89,4 +89,8 @@ char* get_corp_retangulo (Retangulo r);
 /// @param r Um ponteiro que aponta para o retângulo.
 /// @return Retorna um número real float, correspondente ao tamanho dessa área.
 double calcula_area_retangulo (Retangulo r);
+
+void libera_retangulo(Retangulo r);
+
 #endif
+

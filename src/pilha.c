@@ -1,11 +1,12 @@
 #include "PILHA.h"
 #include "stdio.h"
 #include "stdlib.h"
+#include "FORMA.h"
 
 typedef struct elemento {
     Geometria chave;
     struct elemento *prox;
-} elemento;  
+} elemento;
 
 typedef elemento *pont;
 
@@ -29,7 +30,7 @@ int tam_pilha (Pilha p) {
 }
 
 void insere_pilha (Pilha p, Geometria chave) {
-    pont novo = (pont)malloc(sizeof(elemento));
+    elemento *novo = (elemento *)malloc(sizeof(elemento));
     if (novo == NULL) return;
     novo->chave = chave;
     novo->prox = ((pilha*)p)->topo;
@@ -37,19 +38,27 @@ void insere_pilha (Pilha p, Geometria chave) {
     ((pilha*)p)->tam++;
 }
 
-void remove_pilha (Pilha p) {
-    if (p == NULL || ((pilha*)p)->topo == NULL) return;
+Geometria remove_pilha (Pilha p) {
+    if (p == NULL || ((pilha*)p)->topo == NULL) {
+        printf("Tentando remover de pilha vazia!\n");
+        return NULL;
+    }
     pont apagar = ((pilha*)p)->topo;
+    Geometria ret = apagar->chave;
     ((pilha*)p)->topo = ((pilha*)p)->topo->prox;
     free(apagar);
     ((pilha*)p)->tam--;
+    return ret;
 }
 
 Geometria get_conteudo_pilha (Pilha p) {
     if (p == NULL || ((pilha*)p)->topo == NULL) {
-        return;
+        return NULL;
     }
-    return ((pilha*)p)->topo;
+    elemento* e = (elemento*) ((pilha*)p)->topo;
+    Geometria g = (Geometria) e->chave;
+    printf("%d", get_id_forma(g));
+    return ((pont)((pilha*)p)->topo)->chave;
 } 
 
 void libera_pilha (Pilha p) {

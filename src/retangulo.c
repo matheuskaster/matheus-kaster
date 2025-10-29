@@ -90,5 +90,11 @@ char* get_corb_retangulo (Retangulo r) {
 }
 
 double calcula_area_retangulo (Retangulo r) {
-    (((retangulo*)r)->w) * (((retangulo*)r)->h);
+    return (((retangulo*)r)->w) * (((retangulo*)r)->h);
+}
+
+void libera_retangulo (Retangulo r) {
+    free(((retangulo*)r)->corb);
+    free(((retangulo*)r)->corp);
+    free((retangulo*)r);
 }

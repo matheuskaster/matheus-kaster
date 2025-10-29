@@ -3,11 +3,9 @@
 
 #include <stdio.h>
 #include "FILA.h"
-#include "PILHA.h"
-#include "DIVISORIA.h"
+#include "CARREGADOR.h"
 
 typedef void *Disparador;
-typedef void *Carregador;
 
 /// @brief Cria um disparador.
 /// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
@@ -21,14 +19,15 @@ Disparador cria_disparador (int id, double x, double y);
 /// @param x O número double passado por parâmetro na função passa a ser a nova coordenada no eixo x onde está localizado o disparador.
 /// @param y O número double passado por parâmetro na função passa a ser a nova coordenada no eixo x onde está localizado o disparador.
 /// @param D 
-void pd (int id, double x, double y, Divisoria D);
+//void pd (int id, double x, double y, Divisoria D);
+void pd (Disparador d, double x, double y);
 
 /// @brief Os carregadores passador por parâmetro são anexados ao disparador escolhido.
 /// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
 /// @param car_esq É um ponteiro que aponta para qual carregador será colocado no lado esquerdo do Disparador.
 /// @param car_dir É um ponteiro que aponta para qual carregador será colocado no lado direito do Disparador.
 /// @param D 
-void atch (int id, int car_esq, int car_dir, Divisoria D);
+void atch (Disparador d, Carregador car_esq, Carregador car_dir);
 
 /* 
 /// @brief Será informado qual dos botões será apertado podendo ser 'e' para o esquerdo ou 
@@ -41,7 +40,7 @@ posição será inserida no outro carregador, liberando a posição de disparo.*
 /// @param n É um número inteiro positivo que indica a quantidade de vezes que o botão.
 /// @param D 
 /// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
-void shft (int id, char lado, int n, Disparador D, FILE* arq_txt);
+void shft (Disparador d, char lado, int n, FILE* arq_txt);
 
 /// @brief Dispara a forma que estava em posição na arena, a uma distância dx e dy da posição do disparador, e deixa sem nenhuma forma essa posição de disparo.
 /// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
@@ -54,7 +53,7 @@ void shft (int id, char lado, int n, Disparador D, FILE* arq_txt);
 /// @param D
 /// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
 /// @param num_disparos Conta quantas vezes o disparados disparou alguma forma e depois escreve esse dado no txt.
-void dsp (int id, double dx, double dy, char eh_visivel, Fila arena, Disparador D, FILE* arq_txt, int* num_disparos);
+void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE* arq_txt, int* num_disparos);
 
 /// @brief O número inteiro passado por parâmetro na função passa a ser o novo número identificador do disparador.
 /// @param d É um ponteiro para o disparador que terá seu id alterado.

@@ -3,65 +3,106 @@
 #include "DISPARADOR.h"
 #include "CARREGADOR.h"
 #include "DIVISORIA.h"
+#include "PILHA.h"
 
 typedef struct {
-    Elemento* elementos;
-    int quantidade_elementos;
-} divisoria;
+    Carregador* carregadores;
+    int quantidade_carregadores;
+} divisoria_car;
 
-Divisoria cria_div () {
-    divisoria* div = (divisoria*)malloc(sizeof(divisoria));
-    if (div == NULL) {
+typedef struct {
+    Disparador* disparadores;
+    int quantidade_disparadores;
+} divisoria_dis;
+
+Divisoria cria_div_car () {
+    divisoria_car* dc = (divisoria_car*)malloc(sizeof(divisoria_car));
+    if (dc == NULL) {
         printf("Erro na tentativa de alocar memória para a estrutura.\n");
         return;
     }
-    div->elementos = (Elemento*)malloc(sizeof(Elemento));
-    div->quantidade_elementos = 0;
-    return div;
+    dc->carregadores = (Carregador*)malloc(sizeof(Carregador)*100);
+    dc->quantidade_carregadores = 0;
+    return dc;
+}
+Divisoria cria_div_dis () {
+    divisoria_dis* dd = (divisoria_dis*)malloc(sizeof(divisoria_dis));
+    if (dd == NULL) {
+        printf("Erro na tentativa de alocar memória para a estrutura.\n");
+        return;
+    }
+    dd->disparadores = (Disparador*)malloc(sizeof(Disparador)*100);
+    dd->quantidade_disparadores = 0;
+    return dd;
 }
 
-void insere_elem_div (Divisoria D, Elemento e) {
-    divisoria* div = (divisoria*) D;
 
-    int tam = div->quantidade_elementos;
+void insere_elem_div_car (Divisoria D, Carregador c) {
+    divisoria_car* dc = (divisoria_car*) D;
+
+    int tam = dc->quantidade_carregadores;
     
-    div->elementos = (Elemento*) realloc (div->elementos, sizeof(Elemento) * (tam)+1);
+    //dc->carregadores = (Carregador*) realloc (dc->carregadores, sizeof(Carregador) * (tam)+1);
 
-    div->elementos[tam] = e;
-    div->quantidade_elementos++;
+    ((Carregador*)dc->carregadores)[tam] = c;
+    dc->quantidade_carregadores++;
+}
+void insere_elem_div_dis (Divisoria D, Disparador d) {
+    divisoria_dis* dd = (divisoria_dis*) D;
+
+    int tam = dd->quantidade_disparadores;
+    
+    //dd->disparadores = (Disparador*) realloc (dd->disparadores, sizeof(Disparador) * (tam)+1);
+
+    ((Disparador*)dd->disparadores)[tam] = d;
+    dd->quantidade_disparadores++;
+} 
+
+Carregador busca_elem_div_car (Divisoria D, int id) {
+    divisoria_car* div = (divisoria_car*) D;
+    Carregador c;
+    for (int i = 0; i < div->quantidade_carregadores; i++) {
+        c = div->carregadores[i];
+        if (get_id_carregador(c) == id) return c;
+    }
+    c = cria_carregador(id);
+    insere_elem_div_car(div, c);
+    return c;
+}
+Disparador busca_elem_div_dis (Divisoria D, int id) {
+    divisoria_dis* div = (divisoria_dis*) D;
+    Disparador d;
+    for (int i = 0 ; i < div->quantidade_disparadores; i++) {
+        d = div->disparadores[i];
+        if (get_id_disparador(d) == id) return d;
+    }
+    int x = 1.0, y = 1.0;
+    d = cria_disparador(id, x, y);
+    insere_elem_div_dis(div, d);
+    return d;
+    
 }
 
-Elemento busca_elem_div (Divisoria D, int id, char tipo) {
-    divisoria* div = (divisoria*) D;
-    Elemento e;
-    if (tipo == 'c') {
-        for (int i = 0; i < div->quantidade_elementos; i++) {
-            e = div->elementos[i];
-            if (get_id_carregador(e) == id) return e;
-        }
-    } else if (tipo == 'd') {
-        for (int i = 0 ; i < div->quantidade_elementos; i++) {
-            e = div->elementos[i];
-            if (get_id_disparador(e) == id) return e;
-        }
+void libera_div_car (Divisoria D) {
+    if (D == NULL) return;
+    divisoria_car* div = (divisoria_car*) D;
+    Carregador c; 
+    for (int i = 0 ; i < div->quantidade_carregadores; i++) {
+        c = div->carregadores[i];
+        libera_memoria_carregador(c);
     }
-    return NULL;
+    free(div->carregadores);
+    free(D);
 }
 
-void libera_div (Divisoria D, char tipo) {
-    divisoria* div = (divisoria*) D;
-    Elemento e;
-    if (tipo == 'c') { 
-        for (int i = 0 ; i < div->quantidade_elementos; i++) {
-            e = div->elementos[i];
-            libera_memoria_carregador(e);
-        }
+void libera_div_dis (Divisoria D) {
+    if (D == NULL) return;
+    divisoria_dis* div = (divisoria_dis*) D;
+    Disparador d;
+    for (int i = 0; i < div->quantidade_disparadores; i++) {
+        d = div->disparadores[i];
+        libera_memoria_disparador(d);
     }
-    if (tipo == 'd') {
-        for (int i = 0; i < div->quantidade_elementos; i++) {
-            e = div->elementos[i];
-            libera_memoria_disparador(e);
-        }
-    }
+    free(div->disparadores);
     free(D);
 }
