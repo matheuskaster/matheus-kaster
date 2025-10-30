@@ -55,7 +55,7 @@ void geo (Fila chao, FILE* arq_geo) {
             int id;
             double x1,y1,x2,y2;
             char cor[8];
-            sscanf (linha, "l %d %d %d %d %s", &id, &x1, &y1, &x2, &y2, cor);
+            sscanf (linha, "l %d %lf %lf %lf %lf %s", &id, &x1, &y1, &x2, &y2, cor);
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
@@ -67,7 +67,7 @@ void geo (Fila chao, FILE* arq_geo) {
             double x, y;
             char corb[8], corp[8], txto;
             char a;
-            sscanf (linha, "t %d %d %d %s %s %c %s", &id, &x, &y, corb, corp, &a, txto);
+            sscanf (linha, "t %d %lf %lf %s %s %c %s", &id, &x, &y, corb, corp, &a, txto);
             if (ultimo_id < id) {
                 ultimo_id = id;
             }

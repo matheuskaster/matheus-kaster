@@ -12,11 +12,12 @@ typedef struct linha {
 } linha;
 
 Linha cria_linha (int id, double x1, double y1, double x2, double y2, char *cor) {
-    linha* l = malloc(sizeof(linha));
+    linha* l = (linha*)malloc(sizeof(linha));
     l->id = id;
     l->x1 = x1;
     l->y1 = y1;
     l->x2 = x2;
+    l->y2 = y2;
     l->cor = (char*) malloc(strlen(cor)+1);
     if (l->cor == NULL) {
         printf("Erro na alocação de memória para a cor da linha %d.", l->id);

@@ -61,12 +61,14 @@ void shft (Disparador d, char lado, int n, FILE* arq_txt) {
             insere_carregador (((disparador*)d)->car_dir, ((disparador*)d)->pd);
         }
         ((disparador*)d)->pd = remove_carregador (((disparador*)d)->car_esq);
-        printf("id_geometria = %d \n", get_id_forma(((disparador*)d)->pd));
+        arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
+        
+        //printf("id_geometria = %d \n", get_id_forma(((disparador*)d)->pd));
 
-        //remove_pilha (((disparador*)d)->car_esq);
         for (int i = 0; i < n-1; i++) {
             insere_carregador (((disparador*)d)->car_dir, ((disparador*)d)->pd);
             ((disparador*)d)->pd = remove_carregador (((disparador*)d)->car_esq);
+            arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
             //remove_pilha (((disparador*)d)->car_esq);
         }
     }
@@ -75,10 +77,12 @@ void shft (Disparador d, char lado, int n, FILE* arq_txt) {
             insere_carregador (((disparador*)d)->car_esq, ((disparador*)d)->pd);
         }
         ((disparador*)d)->pd = remove_carregador (((disparador*)d)->car_dir);
+        arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
         //remove_pilha (((disparador*)d)->car_dir);
         for (int i = 0; i < n-1; i++) {
             insere_carregador (((disparador*)d)->car_esq, ((disparador*)d)->pd);
             ((disparador*)d)->pd = remove_carregador (((disparador*)d)->car_dir);
+            arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
             //remove_pilha (((disparador*)d)->car_dir);
         }
     } else {
@@ -220,6 +224,14 @@ void set_y_disparador (Disparador d, double y) {
 
 double get_y_disparador (Disparador d) {
     return ((disparador*)d)->y;
+}
+
+void arruma_coordenada(Disparador d, Geometria g) {
+    disparador* dis = ((disparador*)d);
+    double x = dis->x;
+    double y = dis->y;
+    set_x_forma(g, x);
+    set_y_forma(g, y);
 }
 
 void libera_memoria_disparador (Disparador d) {

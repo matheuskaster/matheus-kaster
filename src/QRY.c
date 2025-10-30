@@ -134,7 +134,7 @@ void qry (Fila chao, FILE* file_qry, FILE* file_svg_qry, FILE* file_txt) {
                         set_corb_forma(J, cor_preenchimento_I);
                         Geometria clone_I = clona_forma(I);
                         num_clones++;
-                        inverte_cores_forma(clone_I);
+                        //inverte_cores_forma(clone_I);
                         insere_fila(chao, I);
                         insere_fila(chao, J);
                         insere_fila(chao, clone_I);

@@ -127,16 +127,16 @@ void set_y_forma(Geometria g, double y) {
     }
 
     if (((geometria*)g)->tipo == 'c') {
-        set_x_circulo( ((geometria*)g)->forma , y);
+        set_y_circulo( ((geometria*)g)->forma , y);
     }
     else if (((geometria*)g)->tipo == 'r') {
-        set_x_retangulo( ((geometria*)g)->forma, y); 
+        set_y_retangulo( ((geometria*)g)->forma, y); 
     }
     else if (((geometria*)g)->tipo == 'l') {
-        set_x1_linha( ((geometria*)g)->forma, y);
+        set_y1_linha( ((geometria*)g)->forma, y);
     }
     else if (((geometria*)g)->tipo == 't') {
-        set_x_texto( ((geometria*)g)->forma, y);
+        set_y_texto( ((geometria*)g)->forma, y);
     }
 }
 
@@ -292,7 +292,7 @@ Geometria clona_forma(Geometria g) {
         char* corb = get_corb_circulo(c);
         char* corp = get_corp_circulo(c);
         ULTIMO_ID++;
-        return cria_forma_circulo ('c', novo_id, x, y, r, corb, corp);
+        return cria_forma_circulo ('c', novo_id, x, y, r, corp, corb);
     }
     else if (((geometria*)g)->tipo == 'r') {
         Retangulo r = get_info_forma(g);
@@ -303,7 +303,7 @@ Geometria clona_forma(Geometria g) {
         char* corb = get_corb_retangulo(r);
         char* corp = get_corp_retangulo(r);
         ULTIMO_ID++;
-        return cria_forma_retangulo('r', novo_id, x, y, w, h, corb, corp);
+        return cria_forma_retangulo('r', novo_id, x, y, w, h, corp, corb);
     }
     else if (((geometria*)g)->tipo == 'l') {
         Linha l = get_info_forma(g);
@@ -324,7 +324,7 @@ Geometria clona_forma(Geometria g) {
         char* a = get_a_texto(t);
         char* txto = get_txto(t);
         ULTIMO_ID++;
-        return cria_forma_texto('t', novo_id, x, y, corb, corp, a, txto);
+        return cria_forma_texto('t', novo_id, x, y, corp, corb, a, txto);
     }
 }
 

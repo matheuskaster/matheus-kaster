@@ -46,7 +46,7 @@ void set_x_circulo (Circulo c, double x) {
 }
 
 double get_x_circulo (Circulo c) {
-    return ((circulo*)c)->id;
+    return ((circulo*)c)->x;
 }
 
 void set_y_circulo (Circulo c, double y) {

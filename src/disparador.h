@@ -85,8 +85,11 @@ void set_y_disparador (Disparador d, double y);
 /// @return Retorna o valor do y do disparador.
 double get_y_disparador (Disparador d);
 
+void arruma_coordenada(Disparador d, Geometria g);
+
 /// @brief Libera a memória associada ao disparador.
 /// @param d É um ponteiro que indica de qual disparador será liberada a memória.
 void libera_memoria_disparador (Disparador d);
 
 #endif
+

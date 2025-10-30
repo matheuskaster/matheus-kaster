@@ -33,7 +33,6 @@ void load_carregador (Carregador car, int n, Fila chao, FILE* arq_txt) {
 
     for (int i = 0; i < n; i ++) {
         Geometria F = remove_fila(chao);
-        set_x_forma
         fprintf(arq_txt, "A geometria carregada é a de id %d, do tipo: %c, que estava na posição X: %.1f e Y: %.1f.\n", get_id_forma(F), get_tipo_forma(F), get_x_forma(F), get_y_forma(F));
         //printf("A geometria carregada é a de id %d, do tipo: %c, que estava na posição X: %.1f e Y: %.1f.\n", get_id_forma(F), get_tipo_forma(F), get_x_forma(F), get_y_forma(F));
 
@@ -42,7 +41,7 @@ void load_carregador (Carregador car, int n, Fila chao, FILE* arq_txt) {
 }
 
 void insere_carregador(Carregador car, Geometria g) {
-     insere_pilha (((carregador*)car)->p, g);
+    insere_pilha (((carregador*)car)->p, g);
 }
 
 Geometria remove_carregador(Carregador car) {
