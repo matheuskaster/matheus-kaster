@@ -96,7 +96,7 @@ void shft (Disparador d, char lado, int n, FILE* arq_txt) {
     }
 }
 
-void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE* arq_txt, int *num_disparos) {
+void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE* arq_txt, FILE* arq_svg, int *num_disparos) {
     //Disparador d = busca_elem_div_dis(D, id);
     disparador *disp = (disparador*) d;
     if (disp->pd == NULL) {
@@ -173,6 +173,10 @@ void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE*
         area_forma = calcula_area_texto(t);
     }
 
+    if (eh_visivel == 'v') {
+        desenha_dimensoes_de_disparo(arq_svg, d, dx, dy);
+    }
+
     fprintf(arq_txt, "Comando assionado 'dsp' disparando o disparador %d.\n", ((disparador*)d)->id);
     fprintf(arq_txt, "A geometria disparada é a de id %d, depois desse comando ela se encontra na arena, com coordenadas X: %.1f e Y:%.1f, ocuparndo uma área de %.2f u.a.\n", get_id_forma(g), x_forma, y_forma, area_forma);
 
@@ -181,7 +185,7 @@ void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE*
     ((disparador*)d)->pd = NULL;
 }
 
-void rjd (Disparador d, char lado, double dx, double dy, double ix, double iy, Fila arena, FILE* arq_txt, int *num_disparos) {
+void rjd (Disparador d, char lado, double dx, double dy, double ix, double iy, Fila arena, FILE* arq_txt, FILE* arq_svg, int *num_disparos) {
     //Disparador d = busca_elem_div_dis(D, id);
     disparador *disp = (disparador*) d;
 
@@ -189,14 +193,14 @@ void rjd (Disparador d, char lado, double dx, double dy, double ix, double iy, F
     if (lado == 'd') {
         while (!esta_vazio(disp->car_esq)) {
             shft (d, lado, 1, arq_txt);
-            dsp (d, dx+i*ix, dy+i*iy, 'v', arena, arq_txt, num_disparos);
+            dsp (d, dx+i*ix, dy+i*iy, 'i', arena, arq_txt, arq_svg, num_disparos);
             i++;
         }
     }
     else if (lado == 'e') {
         while (!esta_vazio(disp->car_dir)) {
             shft (d, lado, 1, arq_txt);
-            dsp (d, dx+i*ix, dy+i*iy, 'v', arena, arq_txt, num_disparos);
+            dsp (d, dx+i*ix, dy+i*iy, 'i', arena, arq_txt, arq_svg, num_disparos);
             i++;
         }
     }

@@ -6,7 +6,7 @@
 #include "LINHA.h"
 #include "TEXTO.h"
 #include "FILA.h"
-
+#include "DISPARADOR.h"
 #include "SVG.h"
 
 void abre_svg (FILE* arq_svg) {
@@ -66,6 +66,18 @@ void desenha_forma_svg (FILE* arq_svg, Geometria f) {
     }
 }
 
+void desenha_dimensoes_de_disparo (FILE* arq_svg, void* d, double dx, double dy) {
+    fprintf(arq_svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"purple\" stroke-width=\"%lf\" />\n", get_x_disparador(d), get_y_disparador(d), get_x_disparador(d) + dx, get_y_disparador(d) + dy, 1.0);
+    fprintf(arq_svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"purple\" stroke-dasharray=\"3,3\" stroke-width=\"%lf\" />\n", get_x_disparador(d) + dx, get_y_disparador(d), get_x_disparador(d) + dx, get_y_disparador(d) + dy, 1.0);
+    fprintf(arq_svg, "<line x1=\"%lf\" y1=\"%lf\" x2=\"%lf\" y2=\"%lf\" stroke=\"purple\" stroke-dasharray=\"3,3\" stroke-width=\"%lf\" />\n", get_x_disparador(d) + dx , get_y_disparador(d) + dy , get_x_disparador(d), get_y_disparador(d) + dy, 1.0);
+    fprintf(arq_svg, "<text x=\"%lf\" y=\"%lf\" fill=\"purple\" font-size=\"%d\" text-anchor=\"middle\" >%.2lf</text>\n", (get_x_disparador(d) + (get_x_disparador(d) + dx))/2, get_y_disparador(d), 20, dx);
+    fprintf(arq_svg, "<text x=\"%lf\" y=\"%lf\" fill=\"purple\" font-size=\"%d\" text-anchor=\"end\" >%.2lf</text>\n", get_x_disparador(d) + dx, (get_y_disparador(d) + (get_x_disparador(d) + dy))/2, 20, dy);
+}
+
+void desenha_asterisco (FILE* arq_svg, double x, double y) {
+    fprintf(arq_svg, "<text x=\"%lf\" y=\"%lf\" fill=\"red\" font-size=\"%d\" >*</text>\n", x, y, 20);
+}
+
 void fecha_svg(FILE* arq_svg) {
     if (arq_svg == NULL) {
         printf("Não foi possível acessar o arquivo. \n");
@@ -76,7 +88,7 @@ void fecha_svg(FILE* arq_svg) {
 }
 
 void svg (FILE* arq_svg, Fila chao) {
-    abre_svg (arq_svg);
+    //abre_svg (arq_svg);
     Fila f = clona_fila (chao);
     Geometria g = remove_fila(f);
     while (g != NULL) {
@@ -84,5 +96,5 @@ void svg (FILE* arq_svg, Fila chao) {
         g = remove_fila(f);
     }
     libera_fila (f);
-    fecha_svg (arq_svg);
+    //fecha_svg (arq_svg);
 }

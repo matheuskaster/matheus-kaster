@@ -52,8 +52,22 @@ void shft (Disparador d, char lado, int n, FILE* arq_txt);
 /// @param arena 
 /// @param D
 /// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
+/// @param arq_svg É o arquivo svg que vai possibilitar a ilustração das dimensões de disparo.
 /// @param num_disparos Conta quantas vezes o disparados disparou alguma forma e depois escreve esse dado no txt.
-void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE* arq_txt, int* num_disparos);
+void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE* arq_txt, FILE* arq_svg, int* num_disparos);
+
+/// @brief É o processo que aperta uma vez o botão e logo em seguida já dispara a forma para a arena, até que o carregador do lado selecionado esteja vazio.
+/// @param d 
+/// @param lado 
+/// @param dx 
+/// @param dy 
+/// @param ix 
+/// @param iy 
+/// @param arena 
+/// @param arq_txt 
+/// @param arq_svg 
+/// @param num_disparos 
+void rjd(Disparador d, char lado, double dx, double dy, double ix, double iy, Fila arena, FILE *arq_txt, FILE *arq_svg, int *num_disparos);
 
 /// @brief O número inteiro passado por parâmetro na função passa a ser o novo número identificador do disparador.
 /// @param d É um ponteiro para o disparador que terá seu id alterado.

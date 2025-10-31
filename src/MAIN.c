@@ -184,7 +184,9 @@ void main(int argc, char *argv[])
     Fila chao = cria_fila();
 
     geo (chao, file_geo);
+    abre_svg(file_svg_geo);
     svg (file_svg_geo, chao);
+    fecha_svg(file_svg_geo);
     qry(chao, file_qry, file_svg_qry, file_txt);
 
     libera_fila (chao);

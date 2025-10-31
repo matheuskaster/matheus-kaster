@@ -74,7 +74,7 @@ void set_x_texto (Texto t, double x);
 /// @brief Acessa o texto informado pelo parametro e mostra qual é a coordenada no eixo x, na qual esta localizada o texto.
 /// @param t É um ponteiro que aponta para o texto.
 /// @return Retorna um doble representando a coordenada do eixo x que esta localizada o texto.
-int get_x_texto (Texto t);
+double get_x_texto (Texto t);
 
 /// @brief O double passado por parametro pela funçao, torna-se a posiçao referente a qual coordenada ele se encontra no eixo y.
 /// @param t É um ponteiro que aponta para o texto.
@@ -84,7 +84,7 @@ void set_y_texto (Texto t, double y);
 /// @brief Acessa o texto informado pelo parametro e mostra qual é a coordenada no eixo y, na qual esta localizada o texto.
 /// @param t É um ponteiro que aponta para o texto.
 /// @return Retorna um doble representando a coordenada do eixo y que esta localizada o texto.
-int get_y_texto (Texto t);
+double get_y_texto (Texto t);
 
 /// @brief O ponteiro para um char passado por parametro na funçao, aponta para uma sequencia de letras determinam uma cor, e essa cor, por meio da funçao, passa a ser a nova cor de borda do texto, tambem passado por parametro.
 /// @param r É um ponteiro que aponta para o texto.

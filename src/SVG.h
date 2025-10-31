@@ -39,6 +39,20 @@ void desenha_texto_svg (FILE* arq_svg, Texto t, Estilo ts);
 /// @param f É a forma genérica que será desenhada no svg.
 void desenha_forma_svg (FILE* arq_svg, Geometria f);
 
+/// @brief É uma função que recebe um disparador, para acessar sua coordenada, a coordenada final da forma disparada, x e y, e utiliza do svg para 
+// ilustrar o deslocamento no eixo vertical e horizontal da forma, ocorrido no disparo.
+/// @param arq_svg 
+/// @param d 
+/// @param x_forma 
+/// @param y_forma 
+void desenha_dimensoes_de_disparo(FILE *arq_svg, void* d, double x_forma, double y_forma);
+
+/// @brief É uma função que marca um asterisco na posição onde uma forma foi esmagada.
+/// @param arq_svg 
+/// @param x 
+/// @param y 
+void desenha_asterisco(FILE *arq_svg, double x, double y);
+
 /// @brief Escreve o rodapé do arquivo .svg, ou seja, é a tag </svg> que fecha o arquivo svg, indicando a realização com sucesso.
 /// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
 void fecha_svg (FILE* arq_svg);
@@ -50,3 +64,4 @@ void svg (FILE* arq_svg, Fila chao);
 
 
 #endif
+

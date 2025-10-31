@@ -110,7 +110,7 @@ void set_x_texto (Texto t, double x) {
     ((texto*)t)->x = x;
 }
 
-int get_x_texto (Texto t) {
+double get_x_texto (Texto t) {
     return ((texto*)t)->x;
 }
 
@@ -118,7 +118,7 @@ void set_y_texto (Texto t, double y) {
     ((texto*)t)->y = y;
 }
 
-int get_y_texto (Texto t) {
+double get_y_texto (Texto t) {
     return ((texto*)t)->y;
 }
 

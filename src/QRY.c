@@ -57,7 +57,7 @@ void qry (Fila chao, FILE* file_qry, FILE* file_svg_qry, FILE* file_txt) {
 
     double pontuacao = 0.0;
 
-    //abre_svg(file_svg_qry);
+    abre_svg(file_svg_qry);
 
     char linha[512];
     char comando[512];
@@ -104,10 +104,10 @@ void qry (Fila chao, FILE* file_qry, FILE* file_svg_qry, FILE* file_txt) {
         else if (strcmp(comando, "dsp") == 0) {
             int id;
             double dx, dy;
-            char* v;
-            sscanf(linha, "dsp %i %lf %lf %c", &id, &dx, &dy, &v);
+            char* eh_visivel;
+            sscanf(linha, "dsp %i %lf %lf %c", &id, &dx, &dy, &eh_visivel);
             Disparador d = busca_elem_div_dis(vet_disparadores, id);
-            dsp (d, dx, dy, v, arena, file_txt, &num_disparos);
+            dsp (d, dx, dy, eh_visivel, arena, file_txt, file_svg_qry, &num_disparos);
         }
         else if (strcmp(comando, "rjd") == 0) {
             char lado;
@@ -115,7 +115,7 @@ void qry (Fila chao, FILE* file_qry, FILE* file_svg_qry, FILE* file_txt) {
             double dx, dy, ix, iy;
             sscanf(linha, "rjd %i %c %lf %lf %lf %lf", &id, &lado, &dx, &dy, &ix, &iy);
             Disparador d = busca_elem_div_dis(vet_disparadores, id);
-            rjd (d, lado, dx, dy, ix, iy, arena, file_txt, &num_disparos);
+            rjd (d, lado, dx, dy, ix, iy, arena, file_txt, file_svg_qry, &num_disparos);
         }
         else if (strcmp(comando, "calc") == 0) {
             while (tam_fila(arena) >= 2) {
@@ -127,6 +127,9 @@ void qry (Fila chao, FILE* file_qry, FILE* file_svg_qry, FILE* file_txt) {
                     if (area_I < area_J) {
                         pontuacao += area_I;
                         num_esmagadas++;
+                        double x = get_x_forma(I);
+                        double y = get_y_forma(I);
+                        desenha_asterisco (file_svg_qry, x, y);
                         libera_forma(I);
                         insere_fila(chao, J);
                     } else {
@@ -151,6 +154,7 @@ void qry (Fila chao, FILE* file_qry, FILE* file_svg_qry, FILE* file_txt) {
         }
     }
     svg (file_svg_qry, chao);
+    fecha_svg(file_svg_qry);
     fprintf(file_txt, "RELATÓRIO:\n");
     fprintf(file_txt, "pontuação total: %.2f\n", pontuacao);
     fprintf(file_txt, "quantidade de disparos: %d\n", num_disparos);
