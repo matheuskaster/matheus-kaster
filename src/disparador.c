@@ -9,6 +9,7 @@
 #include "PILHA.h"
 #include "FILA.h"
 #include "CARREGADOR.h"
+#include "SVG.h"
 
 #include <stddef.h>
 
@@ -106,7 +107,7 @@ void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE*
 
     Geometria g = disp->pd;
     char tipo = get_tipo_forma(g);
-    int id_forma = get_id_forma(g);
+    //int id_forma = get_id_forma(g);
     double x_forma, y_forma, area_forma;    
 
     if (tipo == 'c') {
@@ -239,10 +240,17 @@ void arruma_coordenada(Disparador d, Geometria g) {
 }
 
 void libera_memoria_disparador (Disparador d) {
+    if (d == NULL) {
+        printf ("Erro ao tentar liberar a memória do disparador. \n");
+        exit(1);
+    }
     disparador* lmd = (disparador*) d;
+    //libera_forma(lmd->pd);
+    //libera_memoria_carregador(lmd->car_esq);
+    //libera_memoria_carregador(lmd->car_dir);
     free (lmd);
 }
 
-size_t size_of (Disparador d) {
+/*size_t size_of (Disparador d) {
     return sizeof(disparador);
-}
+}*/

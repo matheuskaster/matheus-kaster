@@ -104,7 +104,7 @@ void qry (Fila chao, FILE* file_qry, FILE* file_svg_qry, FILE* file_txt) {
         else if (strcmp(comando, "dsp") == 0) {
             int id;
             double dx, dy;
-            char* eh_visivel;
+            char eh_visivel;
             sscanf(linha, "dsp %i %lf %lf %c", &id, &dx, &dy, &eh_visivel);
             Disparador d = busca_elem_div_dis(vet_disparadores, id);
             dsp (d, dx, dy, eh_visivel, arena, file_txt, file_svg_qry, &num_disparos);

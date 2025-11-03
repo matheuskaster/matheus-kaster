@@ -1,6 +1,11 @@
 #ifndef FORMA 
 #define FORMA 
 
+#include "CIRCULO.h"
+#include "RETANGULO.h"
+#include "LINHA.h"
+#include "TEXTO.h"
+
 typedef void* Geometria;
 typedef void* Forma;
 
@@ -47,8 +52,9 @@ Geometria cria_forma_linha (char tipo, int id, double x1, double y1, double x2, 
 /// @param corp É a cor de preenchimento de cada um dos caracteres do texto.
 /// @param a É um char, feito para poder identificar sobre qual parte do texto ele se refere (começo, meio, ou fim).
 /// @param txto É o texto que estará escrito no arquivo .svg da forma texto.
+/// @param ts 
 /// @return Retorna uma Forma com o tipo e um texto criado com os parâmetros.
-Geometria cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto);
+Geometria cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto, Estilo ts);
 
 /// @brief Por meio de um ponteiro a forma, ele passa especificamente a forma que está la dentro. 
 /// @param F É um ponteiro que aponta para a implementação da forma.

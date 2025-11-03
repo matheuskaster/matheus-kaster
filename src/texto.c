@@ -69,7 +69,7 @@ char* get_size_estilo(Estilo ts) {
     return ((estilo*)ts)->size;
 }
 
-Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, char* txto) {
+Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, char* txto, Estilo ts) {
     texto *t = (texto*) malloc (sizeof(texto));
     t->id = id;
     t->x = x;
@@ -96,6 +96,9 @@ Texto cria_texto (int id, double x, double y, char* corb, char* corp, char a, ch
         exit(1);
     }
     strcpy(t->txto, txto);
+
+    t->ts = cria_estilo(((estilo*)ts)->family, ((estilo*)ts)->weight, ((estilo*)ts)->size);
+
     return ((texto*)t);
 }
 void set_id_texto (Texto t, int id) {

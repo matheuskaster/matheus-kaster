@@ -19,7 +19,8 @@ void geo (Fila chao, FILE* arq_geo) {
     int ultimo_id = 0;
 
     char linha[256];
-    char tipo;
+    char* comando = (char*)malloc(sizeof(char) * 3);
+    Estilo ts = NULL;
 
     while (fgets(linha, sizeof(linha), arq_geo) != NULL){
 
@@ -27,9 +28,9 @@ void geo (Fila chao, FILE* arq_geo) {
             continue;
         }
 
-        sscanf(linha, "%c", &tipo);
+        sscanf(linha, "%s", comando);
 
-        if (tipo == 'c') {
+        if (strcmp(comando, "c") == 0) {
             int id;
             double x, y, r;
             char corb[8], corp[8];
@@ -37,10 +38,10 @@ void geo (Fila chao, FILE* arq_geo) {
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
-            Geometria g = cria_forma_circulo (tipo, id, x, y, r, corb, corp);
+            Geometria g = cria_forma_circulo ('c', id, x, y, r, corb, corp);
             insere_fila (chao, g);
 
-        } else if (tipo == 'r') {
+        } else if (strcmp(comando, "r") == 0) {
             int id;
             double x, y, w, h;
             char corb[8], corp[8];
@@ -48,10 +49,10 @@ void geo (Fila chao, FILE* arq_geo) {
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
-            Geometria g = cria_forma_retangulo (tipo, id, x, y, w, h, corb, corp);
+            Geometria g = cria_forma_retangulo ('r', id, x, y, w, h, corb, corp);
             insere_fila (chao, g);
 
-        } else if (tipo == 'l') {
+        } else if (strcmp(comando, "l") == 0) {
             int id;
             double x1,y1,x2,y2;
             char cor[8];
@@ -59,21 +60,37 @@ void geo (Fila chao, FILE* arq_geo) {
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
-            Geometria g = cria_forma_linha (tipo, id, x1, y1, x2, y2, cor);
+            Geometria g = cria_forma_linha ('l', id, x1, y1, x2, y2, cor);
             insere_fila (chao, g);
 
-        } else if (tipo == 't') {
+        } else if (strcmp(comando, "t") == 0) {
             int id;
             double x, y;
-            char corb[8], corp[8], txto;
+            char corb[8], corp[8], txto[32];
             char a;
             sscanf (linha, "t %d %lf %lf %s %s %c %s", &id, &x, &y, corb, corp, &a, txto);
             if (ultimo_id < id) {
                 ultimo_id = id;
             }
-            Geometria g = cria_forma_texto (tipo, id, x, y, corb, corp, a, txto);
+            if (ts == NULL) {
+                //criando um estilo padrão, pois não foi informado qual estilo ele quer.
+                ts = cria_estilo("sans", "normal", "15");
+            } 
+            Geometria g = cria_forma_texto ('t', id, x, y, corb, corp, a, txto, ts);
             insere_fila (chao, g);
+
+        } else if (strcmp(comando, "ts") == 0) {
+            char family[8], weight[3], size[3];
+            sscanf (linha, "ts %s %s %s", family, weight, size);
+            if (ts == NULL) {
+                //criando um estilo padrão, pois não foi informado qual estilo ele quer.
+                ts = cria_estilo(family, weight, size);
+            } else {
+                set_family_estilo(ts, family);
+                set_weight_estilo(ts, weight);
+                set_size_estilo(ts, size);
+            }
         }
     }
-    armazena_ultimo_id (ultimo_id);
+    //armazena_ultimo_id (ultimo_id);
 }

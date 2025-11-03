@@ -62,7 +62,7 @@ void extrai_nome_base(char* arq_qry, char* nome_base_qry) {
     }
 }
 
-void main(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
     char dir_entrada[PATH_LEN], dir_saida[PATH_LEN], arq_geo[FILE_NAME_LEN], arq_qry[FILE_NAME_LEN], msg[MSG_LEN];
     char *concat_caminho_arquivo;

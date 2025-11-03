@@ -2,11 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include "CIRCULO.h"
-#include "RETANGULO.h"
-#include "LINHA.h"
 #include "FORMA.h"
-#include "TEXTO.h"
 #include "DISPARADOR.h"
 #include "PILHA.h"
 #include <math.h>
@@ -55,13 +51,13 @@ Geometria cria_forma_linha (char tipo, int id, double x1, double y1, double x2, 
     return ((geometria*)g);
 }
 
-Geometria cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto) {
+Geometria cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto, Estilo ts) {
     geometria *g = (geometria*)malloc(sizeof(geometria));
     if (g == NULL){
         printf("Erro na alocação de memória para a criação da forma. \n");
         exit (1);
     }
-    g->forma = cria_texto (id, x, y, corb, corp, a, txto);
+    g->forma = cria_texto (id, x, y, corb, corp, a, txto, ts);
     g->tipo = 't';
     g->id = id;
     return ((geometria*)g);
@@ -253,13 +249,19 @@ char* get_corp_forma(Geometria g) {
     }
     else if (((geometria*)g)->tipo == 'l') {
         char *cor = get_cor_linha( ((geometria*)g)->forma );
-        if (cor[0] != '#') return;
+        
+        if (cor == NULL || cor[0] != '#') return NULL;
         int R, G, B;
         sscanf(cor, "#%02x%02x%02x", &R, &G, &B);
         int R_complem = 255 - R;
         int G_complem = 255 - G;
         int B_complem = 255 - B;
-        char* cor_complem;
+
+        char* cor_complem = (char*)malloc(sizeof(char) * 16);
+        if (cor_complem == NULL) {
+            printf("Erro ao alocar memória para a cor complementar. \n");
+            return NULL;
+        }
         sprintf (cor_complem, "#%02X%02X%02X", R_complem, G_complem, B_complem);
         return cor_complem;
     }
@@ -321,10 +323,11 @@ Geometria clona_forma(Geometria g) {
         double y = get_y_texto(t);
         char* corb = get_corb_texto(t);
         char* corp = get_corp_texto(t);
-        char* a = get_a_texto(t);
+        char a = get_a_texto(t);
         char* txto = get_txto(t);
+        Estilo ts = get_estilo_texto(t);
         ULTIMO_ID++;
-        return cria_forma_texto('t', novo_id, x, y, corp, corb, a, txto);
+        return cria_forma_texto('t', novo_id, x, y, corp, corb, a, txto, ts);
     }
 }
 
@@ -347,15 +350,16 @@ void inverte_cores_forma(Geometria g) {
         set_corp_retangulo(((geometria*)g)->forma, cbr);
     }
     else if (((geometria*)g)->tipo == 'l') {
-        Linha l = ( ((geometria*)g)->forma);
-        char *cor = get_cor_linha(l);
+        Linha l = get_info_forma;
+        char *cor = (char*)malloc(sizeof(char)*8);
+        *cor = get_cor_linha(l);
         if (cor[0] != '#') return;
         int R, G, B;
         sscanf(cor, "#%02x%02x%02x", &R, &G, &B);
         int R_complem = 255 - R;
         int G_complem = 255 - G;
         int B_complem = 255 - B;
-        char *nova_cor_borda;
+        char nova_cor_borda[16];
         sprintf (nova_cor_borda, "#%02X%02X%02X", R_complem, G_complem, B_complem);
         set_cor_linha (l, nova_cor_borda);
     }
@@ -369,6 +373,7 @@ void inverte_cores_forma(Geometria g) {
 
 void libera_forma(Geometria g) {
     if (g == NULL) return;
+    geometria* _g = (geometria*)g;
     if (((geometria*)g)->tipo == 'c') {
         Circulo c = get_info_forma(g);
         libera_circulo(c);
@@ -385,5 +390,5 @@ void libera_forma(Geometria g) {
         Texto t = get_info_forma(g);
         libera_texto(t);
     }
-    free(g);
+    free(_g);
 }

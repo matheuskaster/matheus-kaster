@@ -53,8 +53,9 @@ char* get_size_estilo(Estilo ts);
 /// @param corp É a cor de preenchimento de cada um dos caracteres do texto.
 /// @param a É um char, feito para poder identificar sobre qual parte do texto ele se refere (começo, meio, ou fim).
 /// @param txto É o texto que estará escrito no arquivo .svg da forma texto.
+/// @param ts 
 /// @return Retorna um texto criado com os parametros informados.
-Texto cria_texto (int id, double x, double y, char *corb, char *corp, char a, char *txto);
+Texto cria_texto (int id, double x, double y, char *corb, char *corp, char a, char *txto, Estilo ts);
 
 /// @brief O número inteiro passado por parametro pela funçao, torna-se o identificador para saber a qual texto ele se refere.
 /// @param c É um ponteiro que aponta para o texto.l

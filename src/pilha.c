@@ -63,11 +63,12 @@ Geometria get_conteudo_pilha (Pilha p) {
 
 void libera_pilha (Pilha p) {
     if (p == NULL) return;
-    pont atual = ((pilha*)p)->topo;
+    pilha* _p = ((pilha*)p);
+    pont atual = _p->topo;
     while (atual != NULL) {
         pont proximo = ((pont)atual)->prox;
         free(atual);
         atual = proximo;
     }
-    free (p);
+    free (_p);
 }

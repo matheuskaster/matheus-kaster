@@ -65,9 +65,10 @@ Pilha get_pilha_carregador (car){
 }
 */
 void libera_memoria_carregador (Carregador car) {
+    if (car == NULL) return;
     carregador* lmc = (carregador*) car;
-    Pilha lmp = lmc->p;
-    free (lmp);
+    libera_pilha (lmc->p);
+    //free(lmc->p);
     free (lmc);
 }
 
@@ -77,6 +78,6 @@ bool esta_vazio (Carregador car) {
     return true;
 }
 
-size_t size_of_carregador (Carregador car) {
+/*size_t size_of_carregador (Carregador car) {
     return sizeof(carregador);
-}
+}*/
