@@ -90,6 +90,8 @@ char* get_corp_retangulo (Retangulo r);
 /// @return Retorna um número real float, correspondente ao tamanho dessa área.
 double calcula_area_retangulo (Retangulo r);
 
+/// @brief Libera toda a memória que estava reservada ao retangulo, disponibilizando ela novamente ao uso.
+/// @param r É um ponteiro para qual retângulo terá sua memória liberada.
 void libera_retangulo(Retangulo r);
 
 #endif

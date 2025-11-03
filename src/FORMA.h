@@ -52,7 +52,7 @@ Geometria cria_forma_linha (char tipo, int id, double x1, double y1, double x2, 
 /// @param corp É a cor de preenchimento de cada um dos caracteres do texto.
 /// @param a É um char, feito para poder identificar sobre qual parte do texto ele se refere (começo, meio, ou fim).
 /// @param txto É o texto que estará escrito no arquivo .svg da forma texto.
-/// @param ts 
+/// @param ts É o estilo do texto.
 /// @return Retorna uma Forma com o tipo e um texto criado com os parâmetros.
 Geometria cria_forma_texto (char tipo, int id, double x, double y, char *corb, char *corp, char a, char *txto, Estilo ts);
 
@@ -71,6 +71,9 @@ char get_tipo_forma (Geometria F);
 /// @return Retorna um int que indica qual é o identificador id dessa forma.
 int get_id_forma (Geometria F);
 
+/// @brief O número double passado por parâmetro será a nova coordenada no eixo x da forma.
+/// @param g É um ponteiro que aponta para a forma que terá sua posição no eixo x alterada.
+/// @param x É a nova posição no eixo x da forma.
 void set_x_forma(Geometria g, double x);
 
 /// @brief Acessa a forma passada por parâmetro e mostra qual é a coordenada no eixo x, na qual esta localizada a forma.
@@ -78,6 +81,9 @@ void set_x_forma(Geometria g, double x);
 /// @return Retorna um doble representando a coordenada do eixo x que está localizada a forma.
 double get_x_forma (Geometria F);
 
+/// @brief O número double passado por parâmetro será a nova coordenada no eixo y da forma.
+/// @param g É um ponteiro que aponta para a forma que terá sua posição no eixo y alterada.
+/// @param y É a nova posição no eixo y da forma.
 void set_y_forma(Geometria g, double y);
 
 /// @brief Acessa a forma passada por parâmetro e mostra qual é a coordenada no eixo y, na qual esta localizada a forma.

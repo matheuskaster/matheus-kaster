@@ -143,16 +143,24 @@ void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE*
         double novo_x1 = x1_l + dx;
         set_x1_linha (l, novo_x1);
 
-        double x2_l = get_x2_linha (l);
-        double novo_x2 = x2_l + dx;
-        set_x2_linha (l, novo_x2);
+//        double x2_l = get_x2_linha (l);
+//        double novo_x2 = x2_l + dx;
+//        set_x2_linha (l, novo_x2);
 
         double y1_l = get_y1_linha (l);
         double novo_y1 = y1_l + dy;
         set_y1_linha (l, novo_y1);
 
-        double y2_l = get_y2_linha (l);
-        double novo_y2 = y2_l + dy;
+//        double y2_l = get_y2_linha (l);
+//        double novo_y2 = y2_l + dy;
+//        set_y2_linha (l, novo_y2);
+
+        double vx = calcula_variacao_x_linha(l);
+        double vy = calcula_variacao_y_linha(l);
+
+        double novo_x2 = x1_l - vx;
+        double novo_y2 = y1_l - vy;
+        set_x2_linha (l, novo_x2);
         set_y2_linha (l, novo_y2);
 
         x_forma = novo_x1;

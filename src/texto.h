@@ -53,7 +53,7 @@ char* get_size_estilo(Estilo ts);
 /// @param corp É a cor de preenchimento de cada um dos caracteres do texto.
 /// @param a É um char, feito para poder identificar sobre qual parte do texto ele se refere (começo, meio, ou fim).
 /// @param txto É o texto que estará escrito no arquivo .svg da forma texto.
-/// @param ts 
+/// @param ts É um ponteiro que aponta para o estilo do texto.
 /// @return Retorna um texto criado com os parametros informados.
 Texto cria_texto (int id, double x, double y, char *corb, char *corp, char a, char *txto, Estilo ts);
 
@@ -151,6 +151,8 @@ void transforma_texto_em_linha (Texto t, double *x1, double *y1, double *x2, dou
 /// @return Retorna um número double correspondente à área do texto.
 double calcula_area_texto (Texto t);
 
+/// @brief Libera toda a memória que tinha sido previamente reservada ao texto para poder ser utilizada novamente.
+/// @param t É um ponteiro que aponta para o texto.
 void libera_texto(Texto t);
 
 #endif

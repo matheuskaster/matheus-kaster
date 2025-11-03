@@ -78,6 +78,18 @@ char* get_cor_linha (Linha l);
 /// @return Retorna um numero real, double, correspondente ao tamanho dessa área.
 double calcula_area_linha (Linha l);
 
+/// @brief Calcula quanto que a linha se deslocou no eixo x (tentativa de arrumar a nova posição da outra coordenada da linha).
+/// @param l É um ponteiro para a linha
+/// @return Retorna quanto que o primeiro ponto se moveu, no eixo x.
+double calcula_variacao_x_linha(Linha l);
+
+/// @brief Calcula quanto que a linha se deslocou no eixo y (tentativa de arrumar a nova posição da outra coordenada da linha).
+/// @param l É um ponteiro para a linha.
+/// @return Retorna quanto que o primeiro ponto se moveu, no eixo y.
+double calcula_variacao_y_linha(Linha l);
+
+/// @brief Libera toda a memória que tinha sido reservada para a linha, novamente disponibilizando-a para uso.
+/// @param l É um ponteiro que aponta para linha que terá sua memória liberada.
 void libera_linha(Linha l);
 
 #endif

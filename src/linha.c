@@ -79,6 +79,18 @@ double calcula_area_linha (Linha l) {
     return 10 * sqrt( pow( ((linha*)l)->y2 - ((linha*)l)->y1, 2) + pow( ((linha*)l)->x2 - ((linha*)l)->x1, 2));
 }
 
+double calcula_variacao_x_linha (Linha l) {
+    double x1 = get_x1_linha(l);
+    double x2 = get_x2_linha(l);
+    return x2 - x1;
+}
+
+double calcula_variacao_y_linha (Linha l) {
+    double y1 = get_y1_linha(l);
+    double y2 = get_y2_linha(l);
+    return y2 - y1;
+}
+
 void libera_linha (Linha l) {
     free(((linha*)l)->cor);
     free((linha*)l);

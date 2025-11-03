@@ -18,7 +18,7 @@ Disparador cria_disparador (int id, double x, double y);
 /// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
 /// @param x O número double passado por parâmetro na função passa a ser a nova coordenada no eixo x onde está localizado o disparador.
 /// @param y O número double passado por parâmetro na função passa a ser a nova coordenada no eixo x onde está localizado o disparador.
-/// @param D 
+/// @param D É um ponteiro para uma divisória, um vetor que armazena todos e somente disparadores.
 //void pd (int id, double x, double y, Divisoria D);
 void pd (Disparador d, double x, double y);
 
@@ -26,7 +26,7 @@ void pd (Disparador d, double x, double y);
 /// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
 /// @param car_esq É um ponteiro que aponta para qual carregador será colocado no lado esquerdo do Disparador.
 /// @param car_dir É um ponteiro que aponta para qual carregador será colocado no lado direito do Disparador.
-/// @param D 
+/// @param D É um ponteiro para uma divisória, um vetor que armazena todos e somente disparadores.
 void atch (Disparador d, Carregador car_esq, Carregador car_dir);
 
 /* 
@@ -38,7 +38,7 @@ posição será inserida no outro carregador, liberando a posição de disparo.*
 /// @param id É um numero inteiro positivo que indentifica a qual disparador ele se refere.
 /// @param lado É uma letra para escolher o lado da carga que será colocado em posição de disparo.
 /// @param n É um número inteiro positivo que indica a quantidade de vezes que o botão.
-/// @param D 
+/// @param D É um ponteiro para uma divisória, um vetor que armazena todos e somente disparadores.
 /// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
 void shft (Disparador d, char lado, int n, FILE* arq_txt);
 
@@ -49,24 +49,24 @@ void shft (Disparador d, char lado, int n, FILE* arq_txt);
 /// @param dy É a variação do deslocamento da coordenada inicial da forma na posição de disparo até a nova posição dela, ou seja,
 /// sai da coordenada onde o disparador se encontra, e aumenta dy unidades no valor do eixo y.
 /// @param eh_visivel É um char que determina se será ilustrado as dimensões do disparo, recebe 'v', caso seja visível e 'i', se for invisível.
-/// @param arena 
-/// @param D
+/// @param arena É uma fila que representa o local que ocorre todo o combate do jogo.
+/// @param D É um ponteiro para uma divisória, um vetor que armazena todos e somente disparadores.
 /// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
 /// @param arq_svg É o arquivo svg que vai possibilitar a ilustração das dimensões de disparo.
 /// @param num_disparos Conta quantas vezes o disparados disparou alguma forma e depois escreve esse dado no txt.
 void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE* arq_txt, FILE* arq_svg, int* num_disparos);
 
 /// @brief É o processo que aperta uma vez o botão e logo em seguida já dispara a forma para a arena, até que o carregador do lado selecionado esteja vazio.
-/// @param d 
-/// @param lado 
-/// @param dx 
-/// @param dy 
-/// @param ix 
-/// @param iy 
-/// @param arena 
-/// @param arq_txt 
-/// @param arq_svg 
-/// @param num_disparos 
+/// @param d É um ponteiro que aponta para qual disparador será feita a ação de rajada.
+/// @param lado É um char que identifica qual dos botões será apertado.
+/// @param dx É o deslocamento desde a posição em que o disparador se encontra até a nova posição da forma disparada no eixo x.
+/// @param dy É o deslocamento desde a posição em que o disparador se encontra até a nova posição da forma disparada no eixo y.
+/// @param ix É um valor que o índice do número de formas disparadas será multiplicado, para ter uma diferença significativa no deslocamento no eixo x de uma forma e da próxima lançada.
+/// @param iy É um valor que o índice do número de formas disparadas será multiplicado, para ter uma diferença significativa no deslocamento no eixo y de uma forma e da próxima lançada.
+/// @param arena É uma fila que representa o local que ocorre todo o combate do jogo.
+/// @param arq_txt É o arquivo txt que realizará um relatório do que está acontecendo nesse comando.
+/// @param arq_svg É o arquivo svg que vai possibilitar a ilustração das dimensões de disparo.
+/// @param num_disparos Conta quantas vezes o disparados disparou alguma forma e depois escreve esse dado no txt.
 void rjd(Disparador d, char lado, double dx, double dy, double ix, double iy, Fila arena, FILE *arq_txt, FILE *arq_svg, int *num_disparos);
 
 /// @brief O número inteiro passado por parâmetro na função passa a ser o novo número identificador do disparador.
@@ -99,6 +99,11 @@ void set_y_disparador (Disparador d, double y);
 /// @return Retorna o valor do y do disparador.
 double get_y_disparador (Disparador d);
 
+/// @brief Quando uma forma está no carregador de um disparador, sua coordenada ainda não é ajustada para se encontrar na mesma posição do disparador
+// por conta desse problema essa função corrigi essa coordenada para a forma ter a posição do local onde ela se econtra, para o disparo ocorrer
+// corretamente.
+/// @param d É um ponteiro para o disparador no qual a forma se encontra.
+/// @param g É um ponteiro para a forma.
 void arruma_coordenada(Disparador d, Geometria g);
 
 /// @brief Libera a memória associada ao disparador.

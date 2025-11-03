@@ -80,6 +80,8 @@ char* get_corp_circulo (Circulo c);
 /// @return Retorna um número real float, correspondente ao tamanho dessa área.
 double calcula_area_circulo (Circulo c);
 
+/// @brief Libera toda a memória alocada utilizada pelo círculo novamente disponível para uso.
+/// @param c É um ponteiro que aponta para o círculo que terá sua memória liberadaa.
 void libera_circulo(Circulo c);
 
 #endif

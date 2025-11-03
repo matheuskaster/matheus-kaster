@@ -41,25 +41,25 @@ void desenha_forma_svg (FILE* arq_svg, Geometria f);
 
 /// @brief É uma função que recebe um disparador, para acessar sua coordenada, a coordenada final da forma disparada, x e y, e utiliza do svg para 
 // ilustrar o deslocamento no eixo vertical e horizontal da forma, ocorrido no disparo.
-/// @param arq_svg 
-/// @param d 
-/// @param x_forma 
-/// @param y_forma 
-void desenha_dimensoes_de_disparo(FILE *arq_svg, void* d, double x_forma, double y_forma);
+/// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
+/// @param d É um ponteiro que aponta para o disparador.
+/// @param dx É o deslocamento da forma no eixo x.
+/// @param dy É o deslocametno da forma no eixo y.
+void desenha_dimensoes_de_disparo(FILE *arq_svg, void* d, double dx, double dy);
 
 /// @brief É uma função que marca um asterisco na posição onde uma forma foi esmagada.
-/// @param arq_svg 
-/// @param x 
-/// @param y 
+/// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
+/// @param x É a posição no eixo x onde o asterisco que será desenhado se encontrará.
+/// @param y É a posição no eixo y onde o asterisco que será desenhado se encontrará.
 void desenha_asterisco(FILE *arq_svg, double x, double y);
 
 /// @brief Escreve o rodapé do arquivo .svg, ou seja, é a tag </svg> que fecha o arquivo svg, indicando a realização com sucesso.
 /// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
 void fecha_svg (FILE* arq_svg);
 
-/// @brief 
-/// @param arq_svg 
-/// @param chao 
+/// @brief É uma função que desenha todas as formas do chão.
+/// @param arq_svg É um arquivo do tipo FILE* para acessar o arquivo, já inicializado.
+/// @param chao É o local onde as formas recém criadas se encontram e onde elas retornarão ao fim do jogo.
 void svg (FILE* arq_svg, Fila chao);
 
 

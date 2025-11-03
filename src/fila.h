@@ -27,9 +27,9 @@ void insere_fila(Fila f, Geometria n);
 /// @param f É um ponteiro que aponta para a fila f.
 Geometria remove_fila(Fila f);
 
-/// @brief 
-/// @param f 
-/// @return 
+/// @brief Clona uma pilha, ou seja cria uma nova fila e faz com que ela tenha o mesmo número de elementos, apontando para o endereço onde os elementos da pilha original se encontram.
+/// @param f É um ponteiro que aponta para a fila f, a fila que será clonada.
+/// @return Retorna a fila clonada
 Fila clona_fila(Fila f);
 
 /// @brief Libera a memória alocada para a fila.

@@ -5,6 +5,7 @@
 #include "RETANGULO.h"
 #include "LINHA.h"
 #include "TEXTO.h"
+#include <stdbool.h>
 
 /// @brief É uma função que recebe duas formas, calcula a área delas e verifica existe alguma intersecção das áreas.
 /// @param F1 É um void pointer que aponta para a forma que já estava na arena.
