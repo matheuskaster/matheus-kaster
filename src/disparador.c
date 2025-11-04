@@ -62,14 +62,14 @@ void shft (Disparador d, char lado, int n, FILE* arq_txt) {
             insere_carregador (((disparador*)d)->car_dir, ((disparador*)d)->pd);
         }
         ((disparador*)d)->pd = remove_carregador (((disparador*)d)->car_esq);
-        arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
+        //arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
         
         //printf("id_geometria = %d \n", get_id_forma(((disparador*)d)->pd));
 
         for (int i = 0; i < n-1; i++) {
             insere_carregador (((disparador*)d)->car_dir, ((disparador*)d)->pd);
             ((disparador*)d)->pd = remove_carregador (((disparador*)d)->car_esq);
-            arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
+            //arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
             //remove_pilha (((disparador*)d)->car_esq);
         }
     }
@@ -78,12 +78,12 @@ void shft (Disparador d, char lado, int n, FILE* arq_txt) {
             insere_carregador (((disparador*)d)->car_esq, ((disparador*)d)->pd);
         }
         ((disparador*)d)->pd = remove_carregador (((disparador*)d)->car_dir);
-        arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
+        //arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
         //remove_pilha (((disparador*)d)->car_dir);
         for (int i = 0; i < n-1; i++) {
             insere_carregador (((disparador*)d)->car_esq, ((disparador*)d)->pd);
             ((disparador*)d)->pd = remove_carregador (((disparador*)d)->car_dir);
-            arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
+            //arruma_coordenada(((disparador*)d), ((disparador*)d)->pd);
             //remove_pilha (((disparador*)d)->car_dir);
         }
     } else {
@@ -112,12 +112,13 @@ void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE*
 
     if (tipo == 'c') {
         Circulo c = get_info_forma (g);
-        double x_c = get_x_circulo (c);
-        double novo_x = x_c + dx;
+        //double x_c = get_x_circulo (c);
+        //double novo_x = x_c + dx;
+        double novo_x = disp->x + dx;
         set_x_circulo (c, novo_x);
 
-        double y_c = get_y_circulo (c);
-        double novo_y = y_c + dy;
+        //double y_c = get_y_circulo (c);
+        double novo_y = disp->y + dy;
         set_y_circulo (c, novo_y);
         x_forma = novo_x;
         y_forma = novo_y;
@@ -125,12 +126,12 @@ void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE*
     }
     else if (tipo == 'r') {
         Retangulo r = get_info_forma (g);
-        double x_r = get_x_retangulo (r);
-        double novo_x = x_r + dx;
+        //double x_r = get_x_retangulo (r);
+        double novo_x = disp->x + dx;
         set_x_retangulo (r, novo_x);
 
-        double y_r = get_y_retangulo (r);
-        double novo_y = y_r + dy;
+        //double y_r = get_y_retangulo (r);
+        double novo_y = disp->y + dy;
         set_y_retangulo (r, novo_y);
         x_forma = novo_x;
         y_forma = novo_y;
@@ -143,20 +144,20 @@ void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE*
         double vx = calcula_variacao_x_linha(l);
         double vy = calcula_variacao_y_linha(l);
 
-        double x1_l = get_x1_linha (l);
-        double novo_x1 = x1_l + dx;
+        //double x1_l = get_x1_linha (l);
+        double novo_x1 = disp->x + dx;
         set_x1_linha (l, novo_x1);
         
-        double x2_l = get_x2_linha (l);
-        double novo_x2 = x2_l + dx + vx;
+        //double x2_l = get_x2_linha (l);
+        double novo_x2 = novo_x1 + vx;
         set_x2_linha (l, novo_x2);
 
-        double y1_l = get_y1_linha (l);
-        double novo_y1 = y1_l + dy;
+        //double y1_l = get_y1_linha (l);
+        double novo_y1 = disp->y + dy;
         set_y1_linha (l, novo_y1);
 
-        double y2_l = get_y2_linha (l);
-        double novo_y2 = y2_l + dy + vy;
+        //double y2_l = get_y2_linha (l);
+        double novo_y2 = novo_y1 + vy;
         set_y2_linha (l, novo_y2);
 
 
@@ -171,12 +172,12 @@ void dsp (Disparador d, double dx, double dy, char eh_visivel, Fila arena, FILE*
     }
     else if (tipo == 't') {
         Texto t = get_info_forma (g);
-        double x_t = get_x_texto (t);
-        double novo_x = x_t + dx;
+        //double x_t = get_x_texto (t);
+        double novo_x = disp->x + dx;
         set_x_texto (t, novo_x);
 
-        double y_r = get_y_texto (t);
-        double novo_y = y_r + dy;
+        //double y_r = get_y_texto (t);
+        double novo_y = disp->y + dy;
         set_y_texto (t, novo_y);
 
         x_forma = novo_x;
