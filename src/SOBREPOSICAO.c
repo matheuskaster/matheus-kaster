@@ -92,7 +92,7 @@ bb get_limite (Geometria F1) {
         
         double comp = strlen(txto) * 10.0;
         
-        double alt = 15.0; 
+        double alt = 0.15;
         double x = get_x_texto(t);
         double y = get_y_texto(t);
 

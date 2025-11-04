@@ -1,6 +1,7 @@
 #ifndef CARREGADOR
 #define CARREGADOR
 
+#include <stdio.h>
 #include <stdbool.h>
 #include "PILHA.h"
 #include "FILA.h"

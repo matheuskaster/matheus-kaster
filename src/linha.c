@@ -82,13 +82,13 @@ double calcula_area_linha (Linha l) {
 double calcula_variacao_x_linha (Linha l) {
     double x1 = get_x1_linha(l);
     double x2 = get_x2_linha(l);
-    return x2 - x1;
+    return fabs (x2 - x1);
 }
 
 double calcula_variacao_y_linha (Linha l) {
     double y1 = get_y1_linha(l);
     double y2 = get_y2_linha(l);
-    return y2 - y1;
+    return fabs (y2 - y1);
 }
 
 void libera_linha (Linha l) {
